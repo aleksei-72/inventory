@@ -1,0 +1,78 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ master, dev ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up environment (node.js & npm)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '15.x'
+      - name: Install packages
+        run: npm ci
+      - name: Build project
+        env:
+          NODE_ENV: development
+        run: npm run build
+      - name: Prepare artifact
+        run: |
+          cd build
+          zip -qq -r web.zip .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: web
+          path: build/web.zip
+
+  deploy_dev:
+    name: Deploy to dev server
+    if: contains( github.ref, 'dev' )
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: web
+      - name: Extract files from archive
+        run: |
+          unzip -qq web.zip
+          rm web.zip
+      - name: Deploy to development server
+        uses: up9cloud/action-rsync@v1.3
+        env:
+          USER: deployer
+          HOST: msk-svrm-go.s.dfms.ga
+          PORT: 456
+          KEY: ${{ secrets.DEPLOY_KEY }}
+          TARGET: /srv/inventory/web/stage
+
+  deploy_production:
+    name: Deploy to production server
+    if: contains( github.ref, 'master' )
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: web
+      - name: Extract files from archive
+        run: |
+          unzip -qq web.zip
+          rm web.zip
+      - name: Deploy to production server
+        uses: up9cloud/action-rsync@v1.3
+        env:
+          USER: deployer
+          HOST: msk-svrm-go.s.dfms.ga
+          PORT: 456
+          KEY: ${{ secrets.DEPLOY_KEY }}
+          TARGET: /srv/inventory/web/master
+  
