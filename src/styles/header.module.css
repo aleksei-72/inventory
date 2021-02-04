@@ -1,0 +1,48 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+}
+.title {
+    color: #4C6FFF;
+}
+.button_container {
+    display: flex;
+    align-items: center;
+}
+.logout_link {
+    margin-left: 24px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: underline;
+}
+.button_icon {
+    margin-left: 8px;
+}
+
+.input_container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.print_button {
+    margin-right: 8px;
+    color: #BDBDBD;
+    border: 1px solid #BDBDBD;
+}
+.print_button:hover {
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+}
+.add_item_button {
+    color: #4C6FFF;
+    border: 1px solid #4C6FFF;
+}
+.add_item_button:hover {
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+}
+.search_icon {
+    position: absolute;
+    right: 18px;
+}

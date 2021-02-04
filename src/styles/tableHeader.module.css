@@ -1,0 +1,38 @@
+.header {
+    font-size: 14px;
+    font-weight: 500;
+    color: #828282;
+    padding: 18px 0px 18px 20px;
+    display: flex;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    margin-bottom: 16px;
+}
+
+.table {
+    width: 100%;
+}
+
+.item {
+    padding: 0px 20px;
+}
+.number {
+    width: 146px;
+    text-align: right;
+}
+.category {
+    width: 146px;
+}
+.name {
+    width: 263px;
+}
+.owner {
+    width: 313px;
+}
+.location {
+    width: 204px;
+}
+.amount {
+    text-align: right;
+    width: 120px;
+}

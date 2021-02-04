@@ -1,0 +1,46 @@
+.cell {
+    height: 100%;
+    padding: 10px 20px;
+    border-right: 1px solid #BDBDBD;    
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    color:#282828;
+}
+.item:nth-child(odd) {
+    background: rgba(237, 242, 247, 0.5);
+}
+.check {
+    width: 20px;
+    height: 20px;
+}
+.delete_btn {
+    padding: 0px 16px;
+}
+.number {
+    width: 146px;
+    text-align: right;
+}
+.link {
+    width: 146px;
+}
+.name {
+    width: 263px;
+}
+.owner {
+    width: 313px;
+}
+.location {
+    width: 204px;
+}
+.amount {
+    text-align: right;
+    width: 120px;
+}
+.comments {
+    border: none;
+}
