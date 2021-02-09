@@ -38,7 +38,10 @@
     width: 313px;
 }
 .location {
-    width: 204px;
+    width: 300px;
+}
+.location_item {
+    font-size: 14px;
 }
 .amount {
     justify-content: flex-end;

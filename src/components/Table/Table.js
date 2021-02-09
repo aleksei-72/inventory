@@ -9,13 +9,19 @@ const Table = (props) => {
             <TableHeader/>
             {
                 props.tableItems.map((el) => {
+                    let checkItem = item => {
+                        if (!item) item = []
+                        return item
+                    }                                       
                     return <TableItem title = {el.title}
                                       id = {el.id} 
                                       count = {el.count} 
                                       key = {el.id} 
                                       number = {el.number} 
-                                    //   comment = {el.comment}
-                                    //   categoryTitle = {el.category.title}
+                                      comment = {el.comment}
+                                      categoryTitle = {el.category.title}
+                                      owner = {checkItem(el.profile)}
+                                      location = {checkItem(el.rooms)}
                                       />
             })
             }
