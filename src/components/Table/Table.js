@@ -1,9 +1,11 @@
 import React from 'react';
 import TableItem from './TableItem';
 import TableHeader from './TableHeader';
+import { Redirect } from 'react-router-dom';
 
 
 const Table = (props) => {
+    if(props.isAuth === false) return <Redirect to={"/login"}/>
     return (
         <section className="main-table">
             <TableHeader/>

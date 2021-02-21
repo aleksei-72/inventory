@@ -1,19 +1,21 @@
-import { BrowserRouter } from 'react-router-dom';
-import HeaderContainer from './components/Header/HeaderContainer';
-import TableContainer from './components/Table/TableContainer';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import MainApp from './components/Main/MainApp';
+import LoginContainer from './components/Login/LoginContainer';
+import store from './store';
 
 function App() {
-  return (    
-    <div className="wrapper">
-      <BrowserRouter>
-      <HeaderContainer/>
-        <main className="main-content">
-          <TableContainer/>
-        </main>
-      </BrowserRouter>  
-    </div>
-  
-  )
+	if( localStorage.getItem('token') ) { store.getState().authReducer.isAuth = true }
+	return (
+		<BrowserRouter>
+			<Switch>
+				<Route path='/' exact render={() => <MainApp />} />
+				<Route path='/login' exact render={() => <LoginContainer />} />
+			</Switch>
+		</BrowserRouter>
+
+	)
 }
 
 export default App;
+
+

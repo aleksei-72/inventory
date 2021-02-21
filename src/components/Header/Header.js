@@ -3,9 +3,11 @@ import style from './../../styles/header.module.css'
 import printIcon from './../../img/icons/Print.svg'
 import searchIcon from './../../img/icons/Search.svg'
 import addIcon from './../../img/icons/Add.svg'
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../reducers/auth';
 
 const Header = (props) => {
+    const dispatch = useDispatch()
     return (
         <header className={style.header}>
             <div>
@@ -22,7 +24,7 @@ const Header = (props) => {
                 <button className={style.add_item_button}>Добавить поле
                     <img src={addIcon} alt="add" className={style.button_icon} />
                 </button>
-                <NavLink className={style.logout_link} to="#">Выйти из системы</NavLink>
+                <button onClick = {() => dispatch(logout())} className={style.logout_link}>Выйти из системы</button>
             </div>
         </header>
 

@@ -3,6 +3,7 @@ import React from 'react';
 import Table from './Table';
 import { getTableItems } from '../../reducers/tableItems';
 
+
 class TableContainer extends React.Component {
     componentDidMount() {
         this.props.getTableItems()
@@ -14,7 +15,8 @@ class TableContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        tableItems: state.tableItemsReducer
+        tableItems: state.tableItemsReducer,
+        isAuth: state.authReducer.isAuth
     }
 }
 
