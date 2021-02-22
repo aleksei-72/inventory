@@ -6,12 +6,12 @@ let temporary = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3MiwidXNlcl
 let instance = axios.create({})
 if (localStorage.getItem('token')) {
     instance = axios.create({
-        headers: { 'Authorization': `${localStorage.getItem('token')}` }
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
 }
 
 export const getItems = () => {
-    return axios.get('https://api.staging.inventory-platform.gq/items?limit=50', {headers: { 'Authorization': `${localStorage.getItem('token')}` }}).then(res => res.data.items)
+    return axios.get('https://api.staging.inventory-platform.gq/items?limit=50', {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then(res => res.data.items)
 }
 
 export const login = (username, password) => {

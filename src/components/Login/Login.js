@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../api/api';
-// import { setUser } from '../../reducers/auth';
 import style from './../../styles/login.module.css';
 
 
