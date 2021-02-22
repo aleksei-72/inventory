@@ -1,7 +1,6 @@
 import axios from "axios"
 import { setAuthData } from './../reducers/auth'
 
-let temporary = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3MiwidXNlcl9yb2xlIjoiYWRtaW4iLCJleHAiOjE3NzA4MTc2Mjh9.IjECD5-VVp3ERbAZjD5IYCXhqa-PO3M3IWJOemXY9iA"
 
 let instance = axios.create({})
 if (localStorage.getItem('token')) {
@@ -18,7 +17,7 @@ export const login = (username, password) => {
     return async dispatch => {
         try {
             const res = await instance.post('https://api.staging.inventory-platform.gq/auth', { username, password })
-            localStorage.setItem('token', temporary)
+            localStorage.setItem('token', res.data)
             dispatch(setAuthData(res.data))
             console.log(res)
         } catch (error) {
