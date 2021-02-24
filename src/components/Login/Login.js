@@ -10,6 +10,11 @@ const Login = (props) => {
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     if(props.isAuth === true) return <Redirect to={"/"}/>
+
+    let onFormSubmit = e => {
+        if (e.charCode == 13) dispatch(login(username, password))
+    } 
+
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
@@ -18,6 +23,7 @@ const Login = (props) => {
                     <label>
                         <span>Введите имя пользователя</span>
                         <input 
+                                onKeyPress={(e) => onFormSubmit(e)}
                                 value = {username} 
                                 onChange = { (event) => setUsername(event.target.value) } 
                                 className={`${style.input} ${style.input__username}`}/>
@@ -25,6 +31,7 @@ const Login = (props) => {
                     <label>
                         <span>Введите пароль</span>
                         <input 
+                                onKeyPress={(e) => onFormSubmit(e)}
                                 value = {password} 
                                 onChange = { (event) => setPassword(event.target.value) } 
                                 className={`${style.input} ${style.input__password}`} 
@@ -34,7 +41,7 @@ const Login = (props) => {
                         <span>Забыли пароль?</span>
                     </div>
                 </form>
-                <button onClick={ () => dispatch(login(username, password)) } className={style.button}>Войти в аккаунт</button>
+                <button onKeyPress={(e) => onFormSubmit(e)} onClick={ () => dispatch(login(username, password)) } className={style.button}>Войти в аккаунт</button>
             </div>
         </div>
     )

@@ -23,6 +23,8 @@
     flex-direction: column;
 }
 .input {
+    font-size: 16px;
+    font-weight: normal;
     width: 320px;
     padding: 16px 10px;
     margin-top: 8px;

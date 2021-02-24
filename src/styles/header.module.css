@@ -28,6 +28,12 @@
     display: flex;
     align-items: center;
 }
+.search {
+    color: #000 !important;
+}
+input.search::placeholder {
+    color: #B0B0B0;
+}
 .print_button {
     margin-right: 8px;
     color: #BDBDBD;

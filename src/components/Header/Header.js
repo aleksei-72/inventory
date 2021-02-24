@@ -14,7 +14,7 @@ const Header = (props) => {
                 <h1>Inventory.<span className={style.title}>System</span></h1>
             </div>
             <div className={style.input_container}>
-                <input type="text" placeholder="Поиск по инвентаризационному номеру" />
+                <input className={style.search} type="text" placeholder="Поиск по инвентаризационному номеру" />
                 <img src={searchIcon} alt="search" className={style.search_icon} />
             </div>
             <div className={style.button_container}>
