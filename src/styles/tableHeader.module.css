@@ -2,8 +2,9 @@
     font-size: 14px;
     font-weight: 500;
     color: #828282;
-    padding: 18px 0px 18px 20px;
+    padding: 18px 77px 18px 20px;
     display: flex;
+    justify-content: space-between;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
     border-radius: 3px;
     margin-bottom: 16px;
@@ -21,19 +22,24 @@
     text-align: right;
 }
 .category {
-    width: 146px;
+    padding: 0px 15px;
+    width: 126px;
 }
 .name {
-    width: 285px;
+    width: 233px;
 }
 .owner {
-    width: 313px;
+    padding: 0px 27px;
+    width: 220px;
 }
 .location {
-    width: 300px;
+    width:200px;
 }
 
 .amount {
     text-align: right;
     width: 120px;
+}
+.comments {
+    width: 210px;
 }

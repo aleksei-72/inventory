@@ -1,25 +1,30 @@
 .cell {
-    height: 100%;
-    padding: 10px 20px;
-    border-right: 1px solid #BDBDBD;    
     font-weight: 400;
     font-size: 14px;
-    display: flex;
-    align-items: center;
 }
-
+.cell__container {
+    word-wrap: break-word;
+}
 .item {
-    height: 65px;
+    position: relative;
+    min-height: 65px;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     color:#282828;
+    padding-left: 20px;
 }
 .item:nth-child(odd) {
     background: rgba(237, 242, 247, 0.5);
 }
 .check {
+    height: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    border-right: none !important;
     width: 20px;
-    height: 20px;
+    padding-left: 20px;
 }
 .delete_btn {
     padding: 0px 16px;
@@ -28,25 +33,36 @@
     width: 146px;
     justify-content: flex-end;
 }
-.link {
-    width: 146px;
+.category {
+    width: 126px;
 }
 .name {
-    width: 285px;
+    width: 277px;
 }
 .owner {
-    width: 313px;
+    width: 220px;
 }
 .location {
-    width: 300px;
+    width: 200px;
 }
 .location_item {
     font-size: 14px;
 }
 .amount {
+    padding-right: 25px;
     justify-content: flex-end;
     width: 120px;
 }
 .comments {
+    border-right: none !important;
+    width: 210px;
     border: none;
+}
+.cell__container {
+    padding: 20px 20px 20px 0px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #BDBDBD; 
+    max-width: 250px;
+    word-wrap: break-word;
 }
