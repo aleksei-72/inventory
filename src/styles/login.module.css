@@ -33,9 +33,7 @@
     box-sizing: border-box;
     border-radius: 3px;
 }
-.input__username {
-    margin-bottom: 16px;
-}
+
 .button {
     color: #fff;
     margin-top: 40px;
@@ -53,4 +51,8 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+}
+.error {
+    color:#FF4C4C;
+    margin: 8px 0px 16px 0px;
 }

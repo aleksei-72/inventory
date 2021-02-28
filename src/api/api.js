@@ -1,5 +1,6 @@
 import axios from "axios"
 import { setAuthData } from './../reducers/auth'
+import {stopSubmit} from 'redux-form'
 
 
 let instance = axios.create({})
@@ -21,7 +22,8 @@ export const login = (username, password) => {
             dispatch(setAuthData(res.data))
             console.log(res)
         } catch (error) {
-            console.log(error)
+            console.log(error)            
+            dispatch(stopSubmit("login", {_error: "Пользователь не был найден в системе"}))
         }
     }
 }
