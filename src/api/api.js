@@ -10,8 +10,8 @@ if (localStorage.getItem('token')) {
     })
 }
 
-export const getItems = () => {
-    return axios.get('https://api.staging.inventory-platform.gq/items?limit=50', {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then(res => res.data.items)
+export const getItems = (currentPage) => {
+    return axios.get(`https://api.staging.inventory-platform.gq/items?limit=15&skip=${currentPage}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }})
 }
 
 export const login = (username, password) => {

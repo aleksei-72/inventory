@@ -1,13 +1,10 @@
 import { connect } from 'react-redux'
 import React from 'react';
 import Table from './Table';
-import { getTableItems } from '../../reducers/tableItems';
+
 
 
 class TableContainer extends React.Component {
-    componentDidMount() {
-        this.props.getTableItems()
-    }
     render() {
         return <Table {...this.props} />
     }
@@ -15,9 +12,10 @@ class TableContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        tableItems: state.tableItemsReducer,
+        tableItems: state.tableItemsReducer.items,
+        currentPage: state.tableItemsReducer.currentPage,
         isAuth: state.authReducer.isAuth
     }
 }
 
-export default connect(mapStateToProps, {getTableItems})(TableContainer)
+export default connect(mapStateToProps, {})(TableContainer)
