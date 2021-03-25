@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react';
 import Table from './Table';
+import { deleteItem } from '../../api/api';
 
 
 
@@ -17,5 +18,10 @@ const mapStateToProps = (state) => {
         isAuth: state.authReducer.isAuth
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteTableItem: (id) => dispatch(deleteItem(id))
+    }
+}
 
-export default connect(mapStateToProps, {})(TableContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(TableContainer)

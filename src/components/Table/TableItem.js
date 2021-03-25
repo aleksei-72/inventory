@@ -26,12 +26,12 @@ const TableItem = (props) => {
                 <p className={`${style.cell} `}>{locationItem}</p>
             </div>
             <div className={`${style.cell__container} ${style.amount}`}>
-                <p className={`${style.cell}`}>{!props.count ? '0' : props.count} шт.</p>
+                <p className={`${style.cell}`}>{!props.count ? '0' : props.count}</p>
             </div>
             <div className={`${style.cell__container} ${style.comments}`}>
                 <p className={`${style.cell}`}>{!props.comment ? 'Исправно' : props.comment}</p>
             </div>
-            <button className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>
+            <button onClick = {() => props.deleteItem(props.id)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>
         </div>
     )
 }

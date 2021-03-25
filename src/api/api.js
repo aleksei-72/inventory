@@ -1,5 +1,6 @@
 import axios from "axios"
 import { setAuthData } from './../reducers/auth'
+import { addNewTableItem, deleteTableItem } from './../reducers/tableItems'
 import {stopSubmit} from 'redux-form'
 
 
@@ -27,6 +28,36 @@ export const login = (username, password) => {
         }
     }
 }
+
+export const addTableItem = () => {
+    return async dispatch => {
+        try {
+            const res = await instance.post('https://api.staging.inventory-platform.gq/items')
+            dispatch(addNewTableItem(res.data))
+            console.log(res.data)
+            return res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const deleteItem = (itemId) =>{
+    return async dispatch => {
+        try {
+            const res = await instance.delete(`https://api.staging.inventory-platform.gq/items/${itemId}`)
+            console.log(res)
+            dispatch(deleteTableItem(itemId))
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+
+
+
 // export const me = () => {
 //     return async dispatch => {
 //         try {

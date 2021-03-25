@@ -6,23 +6,21 @@ import { getItems } from '../../api/api';
 import { useDispatch } from 'react-redux';
 import { setTableItems } from './../../reducers/tableItems';
 
-
 const Table = (props) => {
     const dispatch = useDispatch() 
     const [items, setItems] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [fetch, setFetch] = useState(true)
     const [totalCount, setTotalCount] = useState(20)
-  
     useEffect(() => {
       if(fetch) {
         getItems(currentPage)
         .then(res => {
+            console.log(res.data)
             dispatch(setTableItems(res.data.items))
             setItems([...items, ...res.data.items])
             setCurrentPage(prevVal => prevVal + 15)
             setTotalCount(res.data.total_count)
-
         })
         .finally( () => {
           setFetch(false)
@@ -43,6 +41,8 @@ const Table = (props) => {
         }
     }
     if(props.isAuth === false) {return <Redirect to={"/login"}/>}
+
+
     return (
         <section className="main-table">
             <TableHeader/>
@@ -58,9 +58,10 @@ const Table = (props) => {
                                       key = {el.id} 
                                       number = {el.number} 
                                       comment = {el.comment}
-                                      categoryTitle = {el.category.title}
+                                      categoryTitle = {el.category ? el.category.title : "Не указано"}
                                       owner = {checkItem(el.profile)}
                                       location = {checkItem(el.rooms)}
+                                      deleteItem = {props.deleteTableItem}
                                       />
             })
             }

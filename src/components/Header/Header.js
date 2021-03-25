@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../reducers/auth';
 
 const Header = (props) => {
+    console.log(props)
     const dispatch = useDispatch()
     return (
         <header className={style.header}>
@@ -21,9 +22,15 @@ const Header = (props) => {
                 <button className={style.print_button}>Печать
                     <img src={printIcon} alt="print" className={style.button_icon} />
                 </button>
-                <button className={style.add_item_button}>Добавить поле
+
+
+
+                <button onClick = { props.addTableItem } className={style.add_item_button}>Добавить поле
                     <img src={addIcon} alt="add" className={style.button_icon} />
                 </button>
+
+
+
                 <button onClick = {() => dispatch(logout())} className={style.logout_link}>Выйти из системы</button>
             </div>
         </header>
