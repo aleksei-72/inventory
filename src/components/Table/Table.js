@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setTableItems } from './../../reducers/tableItems';
 
 const Table = (props) => {
+  console.log(props)
     const dispatch = useDispatch() 
     const [items, setItems] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
@@ -62,6 +63,7 @@ const Table = (props) => {
                                       owner = {checkItem(el.profile)}
                                       location = {checkItem(el.rooms)}
                                       deleteItem = {props.deleteTableItem}
+                                      upadteItem = {props.updateTableItem}
                                       />
             })
             }

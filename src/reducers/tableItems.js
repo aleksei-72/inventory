@@ -2,6 +2,7 @@ const SET_ITEMS = "SET_ITEMS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const ADD_NEW_TABLE_ITEM = "ADD_NEW_TABLE_ITEM";
 const DELETE_TABLE_ITEM = "DELETE_TABLE_ITEM";
+const UPDATE_TABLE_ITEM = "UPDATE_TABLE_ITEM";
 
 let initialState = {
     items: []
@@ -24,21 +25,32 @@ const tableItemsReducer = (state = initialState, action) => {
             const deletedItemId = action.itemId
             const deletedItem = [...state.items].find(item => item.id === deletedItemId)
             const deletedItemIndex = state.items.indexOf(deletedItem)
-            const updatedItems = [
-                    ...state.items.slice(0, deletedItemIndex),
-                    ...state.items.slice(deletedItemIndex + 1, state.items.length - 1)
+            const updatedItemsWithoutDeleted = [
+                ...state.items.slice(0, deletedItemIndex),
+                ...state.items.slice(deletedItemIndex + 1, state.items.length - 1)
+            ]
+            return { ...state, items: [...updatedItemsWithoutDeleted] }
 
-                ]
-                return { ...state, items: [...updatedItems] }                
-                
+        case UPDATE_TABLE_ITEM:
+            const updatedItemId = action.item.id
+            const updatedItem = [...state.items].find(item => item.id === updatedItemId)
+            const updatedItemIndex = state.items.indexOf(updatedItem)
+            console.log("update")
+            const updatedItems= [
+                ...state.items.slice(0, updatedItemIndex),
+                action.item,
+                ...state.items.slice(updatedItemIndex + 1, state.items.length)
+            ]
+            return { ...state, items: [...updatedItems] }
         default:
             return state
     }
 }
 
 export const setTableItems = (items) => ({ type: SET_ITEMS, items });
-export const addTableItem = (item) => ({ type: ADD_NEW_TABLE_ITEM, item});
-export const deleteTableItem = (itemId) => ({ type: DELETE_TABLE_ITEM, itemId});
-export const addNewTableItem = (item) => (dispatch) => {dispatch(addTableItem(item))};
+export const addTableItem = (item) => ({ type: ADD_NEW_TABLE_ITEM, item });
+export const updateTableItem = (item) => ({ type: UPDATE_TABLE_ITEM, item });
+export const deleteTableItem = (itemId) => ({ type: DELETE_TABLE_ITEM, itemId });
+export const addNewTableItem = (item) => (dispatch) => { dispatch(addTableItem(item)) };
 
 export default tableItemsReducer

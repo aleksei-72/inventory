@@ -1,6 +1,6 @@
 import axios from "axios"
 import { setAuthData } from './../reducers/auth'
-import { addNewTableItem, deleteTableItem } from './../reducers/tableItems'
+import { addNewTableItem, deleteTableItem, updateTableItem } from './../reducers/tableItems'
 import {stopSubmit} from 'redux-form'
 
 
@@ -56,6 +56,31 @@ export const deleteItem = (itemId) =>{
 }
 
 
+export const updateItem = (item) =>{
+    return async dispatch => {
+        try {
+            const res = await instance.put(`https://api.staging.inventory-platform.gq/items/${item.id}`,
+            {
+                id:item.id,
+                number:item.number,
+                title:item.title,
+                comment:item.comment,
+                count:item.count
+            })
+            console.log(res)
+            dispatch(updateTableItem(item))
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+
+
+
+
+//**************************************************************************************************************************************************************************************************** */
 
 
 // export const me = () => {

@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import React from 'react';
 import Table from './Table';
 import { deleteItem } from '../../api/api';
+import { updateItem } from './../../api/api';
 
 
 
@@ -20,7 +21,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteTableItem: (id) => dispatch(deleteItem(id))
+        deleteTableItem: (id) => dispatch(deleteItem(id)),
+        updateTableItem: (item) => dispatch(updateItem(item))
     }
 }
 

@@ -53,7 +53,7 @@
     justify-content: flex-end;
     width: 120px;
 }
-.comments {
+.comment {
     border-right: none !important;
     width: 210px;
     border: none;
@@ -65,4 +65,24 @@
     border-right: 1px solid #BDBDBD; 
     max-width: 250px;
     word-wrap: break-word;
+}
+
+
+textarea {
+    background: transparent;
+    border: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: right;
+    resize: none !important;
+    overflow: hidden;
+}
+.title__field,
+.location__field,
+.commemt__field {
+    text-align: left
+}
+.amount__field {
+    text-align: right;
 }
