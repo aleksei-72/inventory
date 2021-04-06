@@ -4,7 +4,9 @@ import LoginContainer from './components/Login/LoginContainer';
 import store from './store';
 
 function App() {
-	if( localStorage.getItem('token') ) { store.getState().authReducer.isAuth = true }
+	if ( localStorage.getItem('token') ) { 
+		store.getState().authReducer.isAuth = true 
+	}
 	return (
 		<BrowserRouter>
 			<Switch>

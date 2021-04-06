@@ -4,7 +4,7 @@ import deleteIcon from './../../img/icons/Delete.svg';
 import { NavLink } from 'react-router-dom';
 
 const TableItem = (props) => {
-    console.log(props)
+    // console.log(props)
     // let locationItem = props.location.map(el => <div key={el.id} className={style.location_item}>{`${el.department.title} (${el.number})`}</div>);    
     const [check, setCheck] = useState(false)
     const [number, setNumber] = useState(props.number)
@@ -32,7 +32,8 @@ const TableItem = (props) => {
 
 
     let locationItem = props.location.map(el => {
-        return <div key={el.id} className={style.location_item}>
+            console.log('el', el)
+            return <div key={el.id} className={style.location_item}>
             <textarea
                 onKeyPress={(e) => auto_grow(e.currentTarget)}
                 rows={1}
@@ -50,9 +51,13 @@ const TableItem = (props) => {
                 }}
                 defaultValue={`${el.department.title} (${el.number})`}
                 className={`${style.location__field}`} />
-        </div>
+        </div>        
+        
     })
-
+    console.log('locatioItem', locationItem)
+    if(locationItem.length === 0) {
+        console.log(0)
+    }
     return (
         <div className={style.item}>
 

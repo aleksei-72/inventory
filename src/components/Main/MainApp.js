@@ -1,4 +1,5 @@
 import React from 'react';
+// import CategoriesContainer from '../Categories/CategoriesContainer';
 import HeaderContainer from './../Header/HeaderContainer';
 import TableContainer from './../Table/TableContainer';
 
@@ -7,6 +8,7 @@ const MainApp = (props) => {
         <div>
             <div className="wrapper">
                 <HeaderContainer />
+                {/* <CategoriesContainer/> */}
                 <main className="main-content">
                     <TableContainer />
                 </main>

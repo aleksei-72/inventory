@@ -1,5 +1,5 @@
 import axios from "axios"
-import { setAuthData } from './../reducers/auth'
+import { setAuthData, updateTokenData } from './../reducers/auth'
 import { addNewTableItem, deleteTableItem, updateTableItem } from './../reducers/tableItems'
 import {stopSubmit} from 'redux-form'
 
@@ -10,6 +10,16 @@ if (localStorage.getItem('token')) {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
 }
+
+export const updateToken = (dispatch) => {
+    return instance.post('https://api.staging.inventory-platform.gq/token')
+    .then( res => {
+        dispatch(updateTokenData(res.data))
+        return res.data
+    } )
+}
+
+
 
 export const getItems = (currentPage) => {
     return axios.get(`https://api.staging.inventory-platform.gq/items?limit=15&skip=${currentPage}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }})
@@ -34,6 +44,7 @@ export const addTableItem = () => {
         try {
             const res = await instance.post('https://api.staging.inventory-platform.gq/items')
             dispatch(addNewTableItem(res.data))
+            updateToken(dispatch)
             console.log(res.data)
             return res.data
         } catch (error) {
@@ -47,6 +58,7 @@ export const deleteItem = (itemId) =>{
         try {
             const res = await instance.delete(`https://api.staging.inventory-platform.gq/items/${itemId}`)
             console.log(res)
+            updateToken(dispatch)
             dispatch(deleteTableItem(itemId))
         }
         catch (error) {
@@ -68,6 +80,7 @@ export const updateItem = (item) =>{
                 count:item.count
             })
             console.log(res)
+            updateToken(dispatch)
             dispatch(updateTableItem(item))
         }
         catch (error) {
@@ -89,7 +102,7 @@ export const updateItem = (item) =>{
 //             const res = await instance.get('https://api.staging.inventory-platform.gq/me')
 //             console.log(res)
 //         } catch (error) {
-//             localStorage.removeItem('token')
+//             // localStorage.removeItem('token')
 //             console.log(error)
 //         }
 //     }

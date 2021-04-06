@@ -5,6 +5,7 @@ import searchIcon from './../../img/icons/Search.svg'
 import addIcon from './../../img/icons/Add.svg'
 import { useDispatch } from 'react-redux';
 import { logout } from '../../reducers/auth';
+// import { updateToken } from '../../api/api';
 
 const Header = (props) => {
     console.log(props)
@@ -28,7 +29,9 @@ const Header = (props) => {
                 <button onClick = { props.addTableItem } className={style.add_item_button}>Добавить поле
                     <img src={addIcon} alt="add" className={style.button_icon} />
                 </button>
-
+                {/* <button onClick = {() => updateToken()  } className={style.add_item_button}>Token
+                    <img src={addIcon} alt="add" className={style.button_icon} />
+                </button> */}
 
 
                 <button onClick = {() => dispatch(logout())} className={style.logout_link}>Выйти из системы</button>
