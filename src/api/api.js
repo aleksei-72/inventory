@@ -1,18 +1,21 @@
-import axios from "axios"
+
+// import axios from "axios"
 import { setAuthData, updateTokenData } from './../reducers/auth'
 import { addNewTableItem, deleteTableItem, updateTableItem } from './../reducers/tableItems'
 import {stopSubmit} from 'redux-form'
+import axios from './../axios';
+import { setAuthorization } from './../axios';
 
 
-let instance = axios.create({})
-if (localStorage.getItem('token')) {
-    instance = axios.create({
-        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-    })
-}
+// let axios = axios.create({})
+// if (localStorage.getItem('token')) {
+//     axios = axios.create({
+//         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+//     })
+// }
 
 export const updateToken = (dispatch) => {
-    return instance.post('https://api.staging.inventory-platform.gq/token')
+    return axios.post('/token')
     .then( res => {
         dispatch(updateTokenData(res.data))
         return res.data
@@ -22,14 +25,19 @@ export const updateToken = (dispatch) => {
 
 
 export const getItems = (currentPage) => {
-    return axios.get(`https://api.staging.inventory-platform.gq/items?limit=15&skip=${currentPage}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }})
+    const res = axios.get(`/items?limit=15&skip=${currentPage}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
+        setAuthorization(localStorage.getItem('token'))
+        return res
+    } )
+    return res
 }
 
 export const login = (username, password) => {
     return async dispatch => {
         try {
-            const res = await instance.post('https://api.staging.inventory-platform.gq/auth', { username, password })
+            const res = await axios.post('/auth', { username, password })
             localStorage.setItem('token', res.data)
+            setAuthorization(res.data)
             dispatch(setAuthData(res.data))
             console.log(res)
         } catch (error) {
@@ -42,9 +50,10 @@ export const login = (username, password) => {
 export const addTableItem = () => {
     return async dispatch => {
         try {
-            const res = await instance.post('https://api.staging.inventory-platform.gq/items')
+            const res = await axios.post('/items')
             dispatch(addNewTableItem(res.data))
             updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
             console.log(res.data)
             return res.data
         } catch (error) {
@@ -56,9 +65,10 @@ export const addTableItem = () => {
 export const deleteItem = (itemId) =>{
     return async dispatch => {
         try {
-            const res = await instance.delete(`https://api.staging.inventory-platform.gq/items/${itemId}`)
+            const res = await axios.delete(`/items/${itemId}`)
             console.log(res)
             updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
             dispatch(deleteTableItem(itemId))
         }
         catch (error) {
@@ -71,7 +81,7 @@ export const deleteItem = (itemId) =>{
 export const updateItem = (item) =>{
     return async dispatch => {
         try {
-            const res = await instance.put(`https://api.staging.inventory-platform.gq/items/${item.id}`,
+            const res = await axios.put(`/items/${item.id}`,
             {
                 id:item.id,
                 number:item.number,
@@ -81,6 +91,7 @@ export const updateItem = (item) =>{
             })
             console.log(res)
             updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
             dispatch(updateTableItem(item))
         }
         catch (error) {
@@ -89,21 +100,3 @@ export const updateItem = (item) =>{
     }
 }
 
-
-
-
-
-//**************************************************************************************************************************************************************************************************** */
-
-
-// export const me = () => {
-//     return async dispatch => {
-//         try {
-//             const res = await instance.get('https://api.staging.inventory-platform.gq/me')
-//             console.log(res)
-//         } catch (error) {
-//             // localStorage.removeItem('token')
-//             console.log(error)
-//         }
-//     }
-// }

@@ -29,11 +29,6 @@ const Header = (props) => {
                 <button onClick = { props.addTableItem } className={style.add_item_button}>Добавить поле
                     <img src={addIcon} alt="add" className={style.button_icon} />
                 </button>
-                {/* <button onClick = {() => updateToken()  } className={style.add_item_button}>Token
-                    <img src={addIcon} alt="add" className={style.button_icon} />
-                </button> */}
-
-
                 <button onClick = {() => dispatch(logout())} className={style.logout_link}>Выйти из системы</button>
             </div>
         </header>

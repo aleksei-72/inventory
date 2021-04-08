@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react';
 import Login from './Login';
+import { withRouter } from 'react-router';
 
 class LoginContainer extends React.Component {
     render() {
@@ -14,4 +15,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {})(LoginContainer)
+export default withRouter( connect(mapStateToProps, {})(LoginContainer))
