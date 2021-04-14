@@ -1,4 +1,5 @@
 const SET_ITEMS = "SET_ITEMS";
+const SET_CATEGORY_TABLE_ITEMS = "SET_CATEGORY_TABLE_ITEMS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const ADD_NEW_TABLE_ITEM = "ADD_NEW_TABLE_ITEM";
 const DELETE_TABLE_ITEM = "DELETE_TABLE_ITEM";
@@ -11,8 +12,15 @@ let initialState = {
 const tableItemsReducer = (state = initialState, action) => {
     console.log(action.type)
     switch (action.type) {
-        case SET_ITEMS:
+        case SET_ITEMS:           
+            console.log(action.items) 
             return { ...state, items: [...state.items, ...action.items] }
+
+
+        case SET_CATEGORY_TABLE_ITEMS:
+                console.log(action.items)
+                return { ...state, items: [...action.items] }
+
 
         case SET_CURRENT_PAGE:
             return { ...state, currentPage: action.currentPage }
@@ -47,7 +55,8 @@ const tableItemsReducer = (state = initialState, action) => {
     }
 }
 
-export const setTableItems = (items) => ({ type: SET_ITEMS, items });
+export const setTableItems = (items, categoryId) => ({ type: SET_ITEMS, items, categoryId });
+export const setCategoryTableItems = (items) => ({ type: SET_CATEGORY_TABLE_ITEMS, items });
 export const addTableItem = (item) => ({ type: ADD_NEW_TABLE_ITEM, item });
 export const updateTableItem = (item) => ({ type: UPDATE_TABLE_ITEM, item });
 export const deleteTableItem = (itemId) => ({ type: DELETE_TABLE_ITEM, itemId });

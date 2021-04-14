@@ -4,21 +4,25 @@ import TableHeader from './TableHeader';
 import { Redirect } from 'react-router-dom';
 import { getItems } from '../../api/api';
 import { useDispatch } from 'react-redux';
+// import { setTableItems, setCategoryTableItems } from './../../reducers/tableItems';
 import { setTableItems } from './../../reducers/tableItems';
 
 const Table = (props) => {
   console.log(props)
     const dispatch = useDispatch() 
     const [items, setItems] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(0)
     const [fetch, setFetch] = useState(true)
     const [totalCount, setTotalCount] = useState(20)
+    console.log("fetch ------------------------- ",fetch)
+
     useEffect(() => {
-      if(fetch) {
-        getItems(currentPage)
+      if(fetch ) {
+        getItems(currentPage, props.categoryId)
         .then(res => {
             console.log(res.data)
-            dispatch(setTableItems(res.data.items))
+            console.log(currentPage)
+            dispatch(setTableItems(res.data.items, props.categoryId))
             setItems([...items, ...res.data.items])
             setCurrentPage(prevVal => prevVal + 15)
             setTotalCount(res.data.total_count)
@@ -28,6 +32,7 @@ const Table = (props) => {
         } )
       }    
     }, [fetch])
+
   
     useEffect(() => {
       document.addEventListener('scroll', scrollHandler)
@@ -41,8 +46,9 @@ const Table = (props) => {
             setFetch(true)
         }
     }
-    if(props.isAuth === false) {return <Redirect to={"/login"}/>}
 
+    
+    if(props.isAuth === false) {return <Redirect to={"/login"}/>}
 
     return (
         <section className="main-table">

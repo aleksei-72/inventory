@@ -1,10 +1,9 @@
-
-// import axios from "axios"
 import { setAuthData, updateTokenData } from './../reducers/auth'
 import { addNewTableItem, deleteTableItem, updateTableItem } from './../reducers/tableItems'
 import {stopSubmit} from 'redux-form'
 import axios from './../axios';
 import { setAuthorization } from './../axios';
+// import { setCategoriesItems } from './../reducers/categories';
 
 
 // let axios = axios.create({})
@@ -23,14 +22,15 @@ export const updateToken = (dispatch) => {
 }
 
 
-
-export const getItems = (currentPage) => {
-    const res = axios.get(`/items?limit=15&skip=${currentPage}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
+export const getItems = (currentPage, categoryId) => {
+    const res = axios.get(`/items?limit=15&skip=${currentPage}&category_id=${categoryId}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
+        console.log(res)
         setAuthorization(localStorage.getItem('token'))
         return res
     } )
     return res
 }
+
 
 export const login = (username, password) => {
     return async dispatch => {
@@ -85,14 +85,16 @@ export const updateItem = (item) =>{
             {
                 id:item.id,
                 number:item.number,
+                category_string: item.category,
+                profile_string: item.owner,
                 title:item.title,
                 comment:item.comment,
                 count:item.count
             })
             console.log(res)
+            dispatch(updateTableItem(item))
             updateToken(dispatch)
             setAuthorization(localStorage.getItem('token'))
-            dispatch(updateTableItem(item))
         }
         catch (error) {
             console.log(error)
@@ -100,3 +102,21 @@ export const updateItem = (item) =>{
     }
 }
 
+export const getCategories = (dispatch) => {
+    return axios.get(`/categories`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+        .then((res) => {
+            console.log(res.data)
+            // dispatch(setCategoriesItems(res.data))
+            setAuthorization(localStorage.getItem('token'))
+            return res.data
+        })
+}
+
+
+// export const updateToken = (dispatch) => {
+//     return axios.post('/token')
+//     .then( res => {
+//         dispatch(updateTokenData(res.data))
+//         return res.data
+//     } )
+// }

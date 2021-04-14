@@ -16,7 +16,8 @@ const mapStateToProps = (state) => {
     return {
         tableItems: state.tableItemsReducer.items,
         currentPage: state.tableItemsReducer.currentPage,
-        isAuth: state.authReducer.isAuth
+        isAuth: state.authReducer.isAuth,
+        categoryId: state.categoriesReducer.currentCategoryId
     }
 }
 const mapDispatchToProps = (dispatch) => {

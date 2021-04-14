@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import style from './../../styles/tableItem.module.css';
 import deleteIcon from './../../img/icons/Delete.svg';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 const TableItem = (props) => {
     // console.log(props)
     // let locationItem = props.location.map(el => <div key={el.id} className={style.location_item}>{`${el.department.title} (${el.number})`}</div>);    
     const [check, setCheck] = useState(false)
     const [number, setNumber] = useState(props.number)
-    // const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('')
     const [title, setTitle] = useState(props.title)
-    // const [owner, setOwner] = useState()
+    const [owner, setOwner] = useState()
     const [location, setLocation] = useState('')
     const [amount, setAmount] = useState(props.count)
     const [comment, setComment] = useState(props.comment)
@@ -18,8 +18,10 @@ const TableItem = (props) => {
     let dataItem = {
         id: props.id,
         check: check,
+        category:category,
         number: number,
         title: title,
+        owner:owner,
         location: location,
         count: amount,
         comment: comment
@@ -32,7 +34,8 @@ const TableItem = (props) => {
 
 
     let locationItem = props.location.map(el => {
-            console.log('el', el)
+            // console.log('el',props.title, el)
+            // console.log(props.title)
             return <div key={el.id} className={style.location_item}>
             <textarea
                 onKeyPress={(e) => auto_grow(e.currentTarget)}
@@ -46,17 +49,17 @@ const TableItem = (props) => {
                 onChange={(e) => {
                     setLocation(e.currentTarget.value)
                     console.log(e.currentTarget.value)
-                    console.log(location)
-                    console.log(`${el.department.title} (${el.number})`)
+                    // console.log(location)
+                    // console.log(`${el.department.title} (${el.number})`)
                 }}
                 defaultValue={`${el.department.title} (${el.number})`}
                 className={`${style.location__field}`} />
         </div>        
         
     })
-    console.log('locatioItem', locationItem)
+    // console.log('locatioItem', locationItem)
     if(locationItem.length === 0) {
-        console.log(0)
+        // console.log(0)
     }
     return (
         <div className={style.item}>
@@ -64,8 +67,8 @@ const TableItem = (props) => {
             <div className={`${style.cell__container} ${style.check}`}>
                 <input checked={check} onChange={(e) => {
                     setCheck(e.currentTarget.checked)
-                    console.log(check)
-                    console.log(e.target)
+                    // console.log(check)
+                    // console.log(e.target)
                 }} className={`${style.cell}`} type="checkbox" />
             </div>
 
@@ -101,8 +104,23 @@ const TableItem = (props) => {
 
 
 
-            <div className={`${style.cell__container} ${style.category}`}>
+            {/* <div className={`${style.cell__container} ${style.category}`}>
                 <NavLink className={`${style.cell}`} to="#">{props.categoryTitle}</NavLink>
+            </div> */}
+
+            <div className={`${style.cell__container} ${style.category}`}>
+                <textarea
+                    onKeyPress={(e) => auto_grow(e.currentTarget)}
+                    rows={1}
+                    cols={8}
+                    onBlur={(e) => props.upadteItem(dataItem)}
+                    onChange={(e) => {
+                        setCategory(e.target.value)
+                        console.log(e.currentTarget)
+                        console.log(category)
+                    }}
+                    defaultValue={props.categoryTitle}
+                    className={`${style.category__field}`} />
             </div>
 
             {/* <div className={`${style.cell__container} ${style.name}`}>
@@ -130,8 +148,27 @@ const TableItem = (props) => {
 
             </div>
 
-            <div className={`${style.cell__container} ${style.owner}`}>
+            {/* <div className={`${style.cell__container} ${style.owner}`}>
                 <p className={`${style.cell}`}>{!props.owner.name ? 'Не указано' : props.owner.name}</p>
+            </div> */}
+
+            <div className={`${style.cell__container} ${style.owner}`}>
+                <textarea
+                    onKeyPress={(e) => auto_grow(e.currentTarget)}
+                    rows={1}
+                    cols={26}
+
+
+                    onBlur={(e) => props.upadteItem(dataItem)}
+
+
+                    onChange={(e) => {
+                        setOwner(e.currentTarget.value)
+                        console.log(e.currentTarget)
+                        console.log(owner)
+                    }}
+                    defaultValue={!props.owner.name ? 'Не указано' : props.owner.name}
+                    className={`${style.title__field}`} />
             </div>
 
             <div className={`${style.cell__container} ${style.location}`}>

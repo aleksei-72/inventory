@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './../../styles/categories.module.css'
 import CategoriesItems from './CategoriesItems';
 
 
 const Categories = (props) => {
     console.log(props)
-    const [visibility, setVisibility] = useState(true)
+    const [visibility, setVisibility] = useState(false)
     return (
         <div className = {style.wrapper}>
-            <h2>Категории</h2>
-            <button onClick = {() => setVisibility(!visibility)}>Открыть категории</button>
-            {visibility ? <CategoriesItems /> : null}
+            <div className = {style.title__container}>
+                <h2 className = {style.title}>Категории</h2>
+                <button className = {`${style.link}`} onClick = {() => setVisibility(!visibility)}>Открыть категории</button>
+            </div>
+            {visibility ? <CategoriesItems categoriesItems = {props.categoriesItems} /> : null}
         </div>
     )
 }
