@@ -11,7 +11,10 @@ class HeaderContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        tableItems: state.tableItemsReducer.items,
+        searchString: state.tableItemsReducer.search
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

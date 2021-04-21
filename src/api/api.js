@@ -21,9 +21,8 @@ export const updateToken = (dispatch) => {
     } )
 }
 
-
-export const getItems = (currentPage, categoryId) => {
-    const res = axios.get(`/items?limit=15&skip=${currentPage}&category_id=${categoryId}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
+export const getItems = (currentPage, categoryId, search) => {
+    const res = axios.get(`/items?limit=15&skip=${currentPage}&category_id=${categoryId}&query=${search}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
         console.log(res)
         setAuthorization(localStorage.getItem('token'))
         return res
@@ -89,7 +88,8 @@ export const updateItem = (item) =>{
                 profile_string: item.owner,
                 title:item.title,
                 comment:item.comment,
-                count:item.count
+                count:item.count,
+                room_string: [item.location]
             })
             console.log(res)
             dispatch(updateTableItem(item))
@@ -111,6 +111,18 @@ export const getCategories = (dispatch) => {
             return res.data
         })
 }
+
+
+// export const getSearchItems = (search) => {
+//     return axios.get(`/items?query=${search}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+//         .then((res) => {
+//             console.log(res.data)
+//             // dispatch(setCategoriesItems(res.data))
+//             setAuthorization(localStorage.getItem('token'))
+//             return res.data
+//         })
+// }
+
 
 
 // export const updateToken = (dispatch) => {

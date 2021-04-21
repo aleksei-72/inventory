@@ -21,6 +21,9 @@ line-height: 24px;
 
 color: #828282;
 }
+.categoriesItems__container {
+    float: left;
+}
 .item {
     color: #282828;
     width: 288px;

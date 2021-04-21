@@ -131,7 +131,7 @@ const TableItem = (props) => {
 
                 <textarea
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
-                    rows={2}
+                    // rows={2}
                     cols={26}
 
 
@@ -172,7 +172,20 @@ const TableItem = (props) => {
             </div>
 
             <div className={`${style.cell__container} ${style.location}`}>
-                <p className={`${style.cell} `}>{locationItem}</p>
+                <p className={`${style.cell} `}>{props.location.length === 0 ?
+                    <textarea
+                        onKeyPress={(e) => auto_grow(e.currentTarget)}
+                        rows={1}
+                        cols={15}
+                        onBlur={(e) => props.upadteItem(dataItem)}
+                        onChange={(e) => {
+                            setLocation(e.currentTarget.value)
+                            console.log(e.currentTarget.value)
+                            console.log(location)
+                        }}
+                        defaultValue={`Не указано`}
+                        className={`${style.location__field}`} 
+                    /> : locationItem}</p>
             </div>
 
             {/* <div className={`${style.cell__container} ${style.amount}`}>

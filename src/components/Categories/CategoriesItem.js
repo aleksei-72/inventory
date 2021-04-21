@@ -12,7 +12,7 @@ const CategoriesItem = (props) => {
     const dispatch = useDispatch()
     return (
         <div onClick={() => {
-            getItems(0, props.id).then((res) => {
+            getItems(0, props.id, props.searchString).then((res) => {
                 console.log(res.data)
                 dispatch(setCategoryTableItems(res.data.items))
             })

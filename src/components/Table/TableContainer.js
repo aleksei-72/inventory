@@ -17,7 +17,8 @@ const mapStateToProps = (state) => {
         tableItems: state.tableItemsReducer.items,
         currentPage: state.tableItemsReducer.currentPage,
         isAuth: state.authReducer.isAuth,
-        categoryId: state.categoriesReducer.currentCategoryId
+        categoryId: state.categoriesReducer.currentCategoryId,
+        searchString: state.tableItemsReducer.search
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -26,5 +27,6 @@ const mapDispatchToProps = (dispatch) => {
         updateTableItem: (item) => dispatch(updateItem(item))
     }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableContainer)

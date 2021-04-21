@@ -3,6 +3,7 @@ import CategoriesItem from './CategoriesItem';
 import { useDispatch } from 'react-redux';
 import { getCategories } from './../../api/api';
 import { setCategoriesItems } from './../../reducers/categories';
+import style from './../../styles/categories.module.css';
 
 
 const CategoriesItems = (props) => {
@@ -15,11 +16,11 @@ const CategoriesItems = (props) => {
         })
     }, [])
     return (
-        <div>
+        <div className = {`${style.categoriesItems__container}`}>
             {
                 props.categoriesItems.map((el) => {
                     console.log(el)
-                    return <CategoriesItem title = {el.title} id = {el.id}/>
+                    return <CategoriesItem searchString = {props.searchString} title = {el.title} id = {el.id}/>
                 })
             }
         </div>

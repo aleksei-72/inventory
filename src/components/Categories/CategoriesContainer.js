@@ -12,7 +12,8 @@ class CategoriesContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         categoriesItems: state.categoriesReducer.categories,
-        categoryId: state.categoriesReducer.currentCategoryId
+        categoryId: state.categoriesReducer.currentCategoryId,
+        searchString: state.tableItemsReducer.search
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -34,6 +34,14 @@
 input.search::placeholder {
     color: #B0B0B0;
 }
+.search_button {
+    position: absolute;
+    right: 0;
+    width: 52px;
+    height: 46px;
+    background: #4C6FFF;
+    border-radius: 3px;
+}
 .print_button {
     margin-right: 8px;
     color: #BDBDBD;

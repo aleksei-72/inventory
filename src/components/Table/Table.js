@@ -18,7 +18,7 @@ const Table = (props) => {
 
     useEffect(() => {
       if(fetch ) {
-        getItems(currentPage, props.categoryId)
+        getItems(currentPage, props.categoryId, props.searchString)
         .then(res => {
             console.log(res.data)
             console.log(currentPage)
@@ -44,6 +44,13 @@ const Table = (props) => {
     const scrollHandler = (e) => {
         if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length < totalCount) {
             setFetch(true)
+
+
+
+
+
+
+
         }
     }
 

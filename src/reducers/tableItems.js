@@ -1,12 +1,14 @@
 const SET_ITEMS = "SET_ITEMS";
 const SET_CATEGORY_TABLE_ITEMS = "SET_CATEGORY_TABLE_ITEMS";
+const SET_SEARCH_TABLE_ITEMS = "SET_SEARCH_TABLE_ITEMS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const ADD_NEW_TABLE_ITEM = "ADD_NEW_TABLE_ITEM";
 const DELETE_TABLE_ITEM = "DELETE_TABLE_ITEM";
 const UPDATE_TABLE_ITEM = "UPDATE_TABLE_ITEM";
 
 let initialState = {
-    items: []
+    items: [],
+    search: ' '
 }
 
 const tableItemsReducer = (state = initialState, action) => {
@@ -20,6 +22,10 @@ const tableItemsReducer = (state = initialState, action) => {
         case SET_CATEGORY_TABLE_ITEMS:
                 console.log(action.items)
                 return { ...state, items: [...action.items] }
+
+        case SET_SEARCH_TABLE_ITEMS:
+                console.log(action.items)
+                return { ...state, items: [...action.items], search:action.searchString }
 
 
         case SET_CURRENT_PAGE:
@@ -57,6 +63,11 @@ const tableItemsReducer = (state = initialState, action) => {
 
 export const setTableItems = (items, categoryId) => ({ type: SET_ITEMS, items, categoryId });
 export const setCategoryTableItems = (items) => ({ type: SET_CATEGORY_TABLE_ITEMS, items });
+
+
+export const setSearchTableItems = (items, searchString) => ({ type: SET_SEARCH_TABLE_ITEMS, items, searchString});
+
+
 export const addTableItem = (item) => ({ type: ADD_NEW_TABLE_ITEM, item });
 export const updateTableItem = (item) => ({ type: UPDATE_TABLE_ITEM, item });
 export const deleteTableItem = (itemId) => ({ type: DELETE_TABLE_ITEM, itemId });

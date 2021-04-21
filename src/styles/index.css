@@ -2,6 +2,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 .wrapper {
   margin: 0 auto;
@@ -54,7 +55,16 @@ input[type=text] {
 }
 .main-table {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  /* transform: scaleY(-1); */
 }
+  /* .main-table::-webkit-scrollbar {
+    top:0;
+    position: absolute;
+  } */
+
 .main-content {
   display: flex;
   justify-content: space-between;
