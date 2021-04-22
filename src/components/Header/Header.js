@@ -9,6 +9,7 @@ import { logout } from '../../reducers/auth';
 import { getItems } from '../../api/api';
 // import { updateToken } from '../../api/api';
 import { setSearchTableItems } from './../../reducers/tableItems';
+import { printItems } from './../../print';
 
 const Header = (props) => {
     console.log(props)
@@ -47,7 +48,7 @@ const Header = (props) => {
 
 
 
-                <button className={style.print_button}>Печать
+                <button onClick = { () => printItems() } className={style.print_button}>Печать
                     <img src={printIcon} alt="print" className={style.button_icon} />
                 </button>
 

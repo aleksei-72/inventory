@@ -43,3 +43,14 @@
 .comments {
     width: 210px;
 }
+
+
+/* @media print {
+    .item {
+        padding: 0px 10px !important;
+        border: 1px solid #000 !important;
+    }
+    .header {
+        box-shadow: none;
+    }
+  } */

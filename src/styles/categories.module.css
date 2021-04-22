@@ -33,4 +33,10 @@ color: #828282;
     border-radius: 3px;
     padding: 18px;
     cursor: pointer;
-}   
+}
+
+@media print {
+    .title__container {
+        display: none !important;
+    }
+  }

@@ -107,3 +107,48 @@ textarea {
 .category__field {
     color: #4C6FFF;
 }
+
+/* @media print {
+    * {
+        font-size: 12px !important;
+    }
+    .item {
+        border: 1px solid #D1D1D1 !important;
+    }
+    .cell__container {
+        padding: 5px !important;
+    }
+    .check {
+        display: none !important;
+    }
+
+
+
+
+    .number {
+        width: 12px !important;
+        max-width: 12px !important;
+        justify-content: flex-start;
+    }
+    .category {
+        width: 113px !important;
+    }
+    .name {
+        width: 153px !important;
+        max-width: 103px !important;
+    }
+    .owner {
+        width: 190px !important;
+    }
+    .location {
+        width: 132px !important;
+    }
+    .amount {
+        padding-right: 25px;
+        justify-content: flex-end;
+        width: 101px !important;
+    }
+    .comment {
+        display: none !important;
+    }
+  } */

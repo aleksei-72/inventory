@@ -70,3 +70,9 @@ input[type=text] {
   justify-content: space-between;
   padding-left: 40px;
 }
+
+/* @media print {
+  .main-table {
+    width: 50%;
+  }
+} */
