@@ -1,0 +1,30 @@
+.header {
+    font-size: 14px;
+    font-weight: 500;
+    color: #828282;
+    padding: 18px 0px 18px 20px;
+    display: flex;
+    /* justify-content: space-between; */
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    margin-bottom: 16px;
+}
+.item {
+    padding: 0px 17px;
+    /* border: 1px solid #000; */
+}
+.name {
+    width: 266px;
+}
+.username {
+    width: 180px;
+}
+.role {
+    width: 139px;
+}
+.lastVisit {
+    width: 212px;
+}
+.password {
+    width: 170px;
+}

@@ -45,12 +45,16 @@
 }
 
 
-/* @media print {
+@media print {
     .item {
-        padding: 0px 10px !important;
+        /* padding: 0px 10px !important; */
         border: 1px solid #000 !important;
     }
     .header {
         box-shadow: none;
     }
-  } */
+    .number {
+        width: none;
+        /* text-align: right; */
+    }
+  }

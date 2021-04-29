@@ -61,8 +61,8 @@ input.search::placeholder {
     position: absolute;
     right: 18px;
 }
-/* @media print {
+@media print {
     .header {
         display: none !important;
     }
-  } */
+  }

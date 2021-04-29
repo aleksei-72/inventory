@@ -17,7 +17,7 @@ const Table = (props) => {
     console.log("fetch ------------------------- ",fetch)
 
     useEffect(() => {
-      if(fetch ) {
+      if(fetch) {
         getItems(currentPage, props.categoryId, props.searchString)
         .then(res => {
             console.log(res.data)

@@ -6,10 +6,12 @@ import searchIconBtn from './../../img/icons/Search_btn.svg'
 import addIcon from './../../img/icons/Add.svg'
 import { useDispatch } from 'react-redux';
 import { logout } from '../../reducers/auth';
-import { getItems } from '../../api/api';
+import { getItems, getUsers } from '../../api/api';
 // import { updateToken } from '../../api/api';
 import { setSearchTableItems } from './../../reducers/tableItems';
 import { printItems } from './../../print';
+import { NavLink } from 'react-router-dom';
+import { setUsersTableItems } from './../../reducers/users';
 
 const Header = (props) => {
     console.log(props)
@@ -36,14 +38,17 @@ const Header = (props) => {
                 </button>
 
 
-                {/* <button className={style.search_button}>
-                    <img src={searchIconBtn} alt="search" className={style.search_icon} />
-                </button> */}
 
 
             </div>
             <div className={style.button_container}>
 
+                <NavLink to = "/users">
+                    <button onClick = { () => getUsers().then( res => {
+                        console.log(res)
+                        dispatch(setUsersTableItems(res))
+                    } ) } className={style.print_button}> Настройки </button>
+                </NavLink>
 
 
 

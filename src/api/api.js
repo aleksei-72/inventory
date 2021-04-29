@@ -1,5 +1,6 @@
 import { setAuthData, updateTokenData } from './../reducers/auth'
 import { addNewTableItem, deleteTableItem, updateTableItem } from './../reducers/tableItems'
+import { addNewTableUserItem, deleteTableUserItem, updateTableUserItem } from './../reducers/users'
 import {stopSubmit} from 'redux-form'
 import axios from './../axios';
 import { setAuthorization } from './../axios';
@@ -111,6 +112,70 @@ export const getCategories = (dispatch) => {
             return res.data
         })
 }
+
+export const getUsers = (dispatch) => {
+    return axios.get(`/users`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+        .then((res) => {
+            console.log(res.data)
+            // dispatch(setCategoriesItems(res.data))
+            // setAuthorization(localStorage.getItem('token'))
+            return res.data
+        })
+}
+
+export const addTableUserItem = () => {
+    return async dispatch => {
+        try {
+            const res = await axios.post('/users')
+            dispatch(addNewTableUserItem(res.data))
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+            console.log(res.data)
+            return res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const deleteUserItem = (userId) =>{
+    return async dispatch => {
+        try {
+            const res = await axios.delete(`/users/${userId}`)
+            console.log(res)
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+            dispatch(deleteTableUserItem(userId))
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const updateUser = (user) =>{
+    console.log(user)
+    return async dispatch => {
+        try {
+            const res = await axios.put(`/users/${user.id}`,
+            {
+                id: user.id,
+                name:user.name,
+                username:user.username,
+                role:user.role,
+                blocked:user.blocked
+            })
+            console.log(res)
+            dispatch(updateTableUserItem(user))
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 
 
 // export const getSearchItems = (search) => {

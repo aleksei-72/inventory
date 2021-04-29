@@ -8,7 +8,7 @@ const UPDATE_TABLE_ITEM = "UPDATE_TABLE_ITEM";
 
 let initialState = {
     items: [],
-    search: ' '
+    search: ''
 }
 
 const tableItemsReducer = (state = initialState, action) => {
@@ -41,7 +41,7 @@ const tableItemsReducer = (state = initialState, action) => {
             const deletedItemIndex = state.items.indexOf(deletedItem)
             const updatedItemsWithoutDeleted = [
                 ...state.items.slice(0, deletedItemIndex),
-                ...state.items.slice(deletedItemIndex + 1, state.items.length - 1)
+                ...state.items.slice(deletedItemIndex + 1, state.items.length)
             ]
             return { ...state, items: [...updatedItemsWithoutDeleted] }
 
