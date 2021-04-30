@@ -19,9 +19,12 @@ const Header = (props) => {
     const [search, setSearch] = useState(' ')
     return (
         <header className={style.header}>
-            <div>
-                <h1>Inventory.<span className={style.title}>System</span></h1>
-            </div>
+            <NavLink to='/'>
+                <div>
+                    <h1>Inventory.<span className={style.title}>System</span></h1>
+                </div>
+            </NavLink>
+
             <div className={style.input_container}>
                 <input className={style.search} type="text" placeholder="Поиск" value={search} onChange={(e) => {
                     console.log(search)

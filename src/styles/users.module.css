@@ -103,6 +103,11 @@ textarea, input {
 }
 
 
+.status__container {
+    border-right: none;
+}
+
+
 
 .item {
     padding: 0px 20px;

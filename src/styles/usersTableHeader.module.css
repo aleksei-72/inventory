@@ -14,17 +14,17 @@
     /* border: 1px solid #000; */
 }
 .name {
-    width: 266px;
+    width: 312px;
 }
 .username {
     width: 180px;
 }
 .role {
-    width: 139px;
+    width: 145px;
 }
 .lastVisit {
-    width: 212px;
+    width: 205px;
 }
 .password {
-    width: 170px;
+    width: 135px;
 }

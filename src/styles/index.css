@@ -22,6 +22,9 @@ code {
   box-sizing: border-box;
   font-weight: 500;
 }
+h1 {
+  color:#000;
+}
 a {
   text-decoration: none;
   color: #4C6FFF;

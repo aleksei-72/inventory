@@ -15,7 +15,7 @@ const UsersTableItem = (props) => {
     const [username, setUsername] = useState(props.username)
     const [role, setRole] = useState(props.role)
 
-    
+
     let dataItem = {
         id: props.id,
         name: name,
@@ -30,14 +30,14 @@ const UsersTableItem = (props) => {
     }
 
     const roleOptions = [
-        {value: 'admin', label: 'admin' },
-        {value: 'reader', label: 'reader' },
-        {value: 'view', label: 'view' }
+        { value: 'admin', label: 'admin' },
+        { value: 'reader', label: 'reader' },
+        { value: 'view', label: 'view' }
     ]
 
     const statusOptions = [
-        {value: true, label: 'active' },
-        {value: false, label: 'blocked' }
+        { value: true, label: 'active' },
+        { value: false, label: 'blocked' }
     ]
 
     const statusStyles = {
@@ -48,42 +48,64 @@ const UsersTableItem = (props) => {
     }
     const customStyles = {
         menu: (provided, state) => ({
-          ...provided,
-          width: state.selectProps.width,
-          borderBottom: '1px dotted pink',
-          color: state.selectProps.menuColor,
-          padding: 2,
+            ...provided,
+            width: state.selectProps.width,
+            borderBottom: '1px dotted pink',
+            color: state.selectProps.menuColor,
+            padding: 2,
+            position: 'absolute',
+            right: 20,
+            top: 35
         }),
-      
-        control: (_, { selectProps: { width }}) => ({
-          width: 90,
-          height: 35,
-          margin: 10,
-          border: '1px solid #000'
+        placeholder: () => ({
+            color:'#282828',
+            fontSize: 14
         }),
-      
-        singleValue: (provided, state) => {
-          const opacity = state.isDisabled ? 0.5 : 1;
-          const transition = 'opacity 300ms';
-      
-          return { ...provided, opacity, transition };
-        }
-      }
 
-    const RoleComponent = () => <Select placeholder={props.role} defaultValue={`${props.role}`} styles={customStyles} options = {roleOptions} onChange = { (e) => {
+        singleValue: () => ({
+            fontSize: 14
+        }),
+
+        // group: () => ({
+        //     fontSize: 18
+        // }),
+
+        dropdownIndicator: () => ({
+            color:'#282828',
+            position: 'absolute',
+            top: 17,
+            right: 20
+        }),
+
+        control: (_, { selectProps: { width } }) => ({
+            width: 90,
+            height: 35,
+            margin: 10,
+            // border: '1px solid #000'
+        }),
+
+        singleValue: (provided, state) => {
+            const opacity = state.isDisabled ? 0.5 : 1;
+            const transition = 'opacity 300ms';
+
+            return { ...provided, opacity, transition };
+        }
+    }
+
+    const RoleComponent = () => <Select placeholder={props.role} defaultValue={`${props.role}`} styles={customStyles} options={roleOptions} onChange={(e) => {
         console.log(props)
         console.log(e)
         setRole(e.value)
         props.updateUser(dataItem)
-    } }/>
-    const StatusComponent = () => <Select placeholder={!props.status ? 'active' : 'blocked'} styles={customStyles} options = {statusOptions} onChange = { (e) => {
+    }} />
+    const StatusComponent = () => <Select placeholder={!props.status ? 'active' : 'blocked'} styles={customStyles} options={statusOptions} onChange={(e) => {
         console.log(e)
         console.log(props)
         console.log(e.value)
         // console.log(props)
         setBlockedStatus(e.value)
         props.updateUser(dataItem)
-    } }/>
+    }} />
 
 
     return (
@@ -103,7 +125,7 @@ const UsersTableItem = (props) => {
                                 console.log(name)
                             }}
                             defaultValue={props.name}
-                            className={`${style.number__field}`} />
+                            className={`${style.name__field}`} />
                     </div>
                 </div>
 
@@ -117,12 +139,12 @@ const UsersTableItem = (props) => {
                             console.log(username)
                         }}
                         defaultValue={props.username}
-                        className={`${style.number__field}`} />
+                        className={`${style.username__field}`} />
                 </div>
 
 
                 <div className={`${style.cell__container} ${style.role}`}>
-                    <RoleComponent/>
+                    <RoleComponent />
                 </div>
 
 
@@ -136,23 +158,23 @@ const UsersTableItem = (props) => {
                             // console.log(amount)
                         }}
                         defaultValue={!props.lastActiveAt ? 'Не был в системе' : props.lastActiveAt}
-                        className={`${style.number__field}`} />
+                        className={`${style.role__field}`} />
                 </div>
 
                 <div className={`${style.cell__container} ${style.password}`}>
                     <input
-                        type = 'password'
+                        type='password'
                         onKeyPress={(e) => auto_grow(e.currentTarget)}
                         onBlur={(e) => props.updateUser(dataItem)}
                         onChange={(e) => {
                             // setAmount(e.currentTarget.value)
                             console.log(e.currentTarget.value)
                             // console.log(amount)
-                        }}                        
+                        }}
                         placeholder={`Пароль`}
-                        className={`${style.number__field}`} />
+                        className={`${style.password__field}`} />
                 </div>
-                <div className={`${style.cell__container} ${style.comment}`}>
+                <div className={`${style.cell__container} ${style.status__container}`}>
                     <StatusComponent style={statusStyles.selectContainer} />
                 </div>
 
