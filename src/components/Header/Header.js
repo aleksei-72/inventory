@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import style from './../../styles/header.module.css'
-import printIcon from './../../img/icons/Print.svg'
+// import printIcon from './../../img/icons/Print.svg'
 import searchIcon from './../../img/icons/Search.svg'
 import searchIconBtn from './../../img/icons/Search_btn.svg'
-import addIcon from './../../img/icons/Add.svg'
+// import addIcon from './../../img/icons/Add.svg'
+import settingsIcon from './../../img/icons/Settings.svg'
 import { useDispatch } from 'react-redux';
 import { logout } from '../../reducers/auth';
 import { getItems, getUsers } from '../../api/api';
 // import { updateToken } from '../../api/api';
 import { setSearchTableItems } from './../../reducers/tableItems';
-import { printItems } from './../../print';
+// import { printItems } from './../../print';
 import { NavLink } from 'react-router-dom';
 import { setUsersTableItems } from './../../reducers/users';
+import { getRooms } from './../../api/api';
 
 const Header = (props) => {
     console.log(props)
@@ -46,25 +48,18 @@ const Header = (props) => {
             </div>
             <div className={style.button_container}>
 
+    
                 <NavLink to = "/users">
                     <button onClick = { () => getUsers().then( res => {
                         console.log(res)
                         dispatch(setUsersTableItems(res))
-                    } ) } className={style.print_button}> Настройки </button>
+                    } ) } className={style.settings_button}> Настройки
+                        <img src={settingsIcon} alt="settings" className={style.settings_icon}/>
+                     </button>
                 </NavLink>
 
 
-
-
-                <button onClick = { () => printItems() } className={style.print_button}>Печать
-                    <img src={printIcon} alt="print" className={style.button_icon} />
-                </button>
-
-
-
-                <button onClick={props.addTableItem} className={style.add_item_button}>Добавить поле
-                    <img src={addIcon} alt="add" className={style.button_icon} />
-                </button>
+                
                 <button onClick={() => dispatch(logout())} className={style.logout_link}>Выйти из системы</button>
             </div>
         </header>

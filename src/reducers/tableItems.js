@@ -6,17 +6,28 @@ const ADD_NEW_TABLE_ITEM = "ADD_NEW_TABLE_ITEM";
 const DELETE_TABLE_ITEM = "DELETE_TABLE_ITEM";
 const UPDATE_TABLE_ITEM = "UPDATE_TABLE_ITEM";
 
+const SET_ROOMS = "SET_ROOMS";
+
+
 let initialState = {
     items: [],
+    rooms: [],
     search: ''
 }
 
 const tableItemsReducer = (state = initialState, action) => {
     console.log(action.type)
+    console.log(action)
     switch (action.type) {
         case SET_ITEMS:           
             console.log(action.items) 
             return { ...state, items: [...state.items, ...action.items] }
+
+
+        case SET_ROOMS:
+            console.log(action.rooms)
+            return { ...state, rooms: [...state.rooms, ...action.rooms] }
+
 
 
         case SET_CATEGORY_TABLE_ITEMS:
@@ -45,6 +56,17 @@ const tableItemsReducer = (state = initialState, action) => {
             ]
             return { ...state, items: [...updatedItemsWithoutDeleted] }
 
+        // case DELETE_TABLE_ITEM:
+        //     const deletedItemId = action.itemId
+        //     const deletedItem = [...state.items].find(item => item.id === deletedItemId)
+        //     const deletedItemIndex = state.items.indexOf(deletedItem)
+        //     const updatedItemsWithoutDeleted = [
+        //         ...state.items.splice(deletedItemIndex, 0)
+        //     ]
+
+        //     console.log(updatedItemsWithoutDeleted)
+        //     return { ...state }
+
         case UPDATE_TABLE_ITEM:
             const updatedItemId = action.item.id
             const updatedItem = [...state.items].find(item => item.id === updatedItemId)
@@ -72,5 +94,9 @@ export const addTableItem = (item) => ({ type: ADD_NEW_TABLE_ITEM, item });
 export const updateTableItem = (item) => ({ type: UPDATE_TABLE_ITEM, item });
 export const deleteTableItem = (itemId) => ({ type: DELETE_TABLE_ITEM, itemId });
 export const addNewTableItem = (item) => (dispatch) => { dispatch(addTableItem(item)) };
+
+
+export const setRooms = (rooms) => ({ type: SET_ROOMS, rooms });
+
 
 export default tableItemsReducer

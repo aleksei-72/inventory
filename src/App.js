@@ -3,6 +3,7 @@ import MainApp from './components/Main/MainApp';
 import LoginContainer from './components/Login/LoginContainer';
 import store from './store';
 import UsersContainer from './components/Users/UsersContainer';
+import OwnersContainer from './components/Owners/OwnersContainer';
 
 function App() {
 	if ( localStorage.getItem('token') ) { 
@@ -14,6 +15,7 @@ function App() {
 				<Route path='/' exact render={() => <MainApp />} />
 				<Route path='/login' exact render={() => <LoginContainer />} />
 				<Route path='/users' exact render={() => <UsersContainer />} />
+				<Route path='/owners' exact render={() => <OwnersContainer />} />
 			</Switch>
 		</BrowserRouter>
 

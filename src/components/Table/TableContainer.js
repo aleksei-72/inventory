@@ -15,6 +15,13 @@ class TableContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         tableItems: state.tableItemsReducer.items,
+        categoriesItems: state.categoriesReducer.categories,
+        ownersTableItems: state.ownersReducer.owners,
+
+        roomsItems: state.tableItemsReducer.rooms,
+
+
+        usersTableItems: state.usersReducer.users,
         currentPage: state.tableItemsReducer.currentPage,
         isAuth: state.authReducer.isAuth,
         categoryId: state.categoriesReducer.currentCategoryId,

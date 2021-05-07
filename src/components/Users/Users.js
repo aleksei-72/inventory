@@ -3,7 +3,7 @@ import HeaderContainer from './../Header/HeaderContainer';
 import style from './../../styles/users.module.css'
 import { getUsers } from '../../api/api';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import UsersTableItem from './UsersTableItem';
 import { setUsersTableItems } from './../../reducers/users';
 import UsersTableHeader from './UsersTableHeader';
@@ -24,9 +24,7 @@ const Users = (props) => {
         .then(res => {
           console.log(res.data)
           dispatch(setUsersTableItems(res))
-          // setItems([...items, ...res.data.items])
           setCurrentPage(prevVal => prevVal + 15)
-          // setTotalCount(res.data.total_count)
         })
         .finally(() => {
           setFetch(false)
@@ -54,9 +52,18 @@ const Users = (props) => {
       <HeaderContainer />
       <div className={`${style.users__wrapper}`}>
         <h2 className={`${style.title}`}>Панель настроек</h2>
-        <button onClick={props.addTableUserItem} className={style.add_item_button}>Добавить пользователя
+
+        <div className={`${style.button__container}`}>
+          <div className={`${style.links__container}`}>
+            <div className={`${style.links__containerItem}`}>          <NavLink to='/users' > <div>Пользователи</div> </NavLink>          </div>
+            <div className={`${style.links__containerItem}`}>          <NavLink to='/owners' > <div>Ответственные</div> </NavLink>          </div>
+          </div>
+          <button onClick={props.addTableUserItem} className={style.add_item_button}>Добавить пользователя
                     <img src={addIcon} alt="add" className={style.button_icon} />
-                </button>
+          </button>
+        </div>
+
+
         <section className={`${style.users__table}`}>
           <UsersTableHeader />
           {
@@ -68,8 +75,8 @@ const Users = (props) => {
                 username={el.username}
                 blocked={el.blocked}
                 lastActiveAt={el.lastActiveAt}
-                deleteTableItem = {props.deleteTableItem}
-                updateUser = {props.updateTableUserItem}
+                deleteTableItem={props.deleteTableItem}
+                updateUser={props.updateTableUserItem}
               />
             })
           }

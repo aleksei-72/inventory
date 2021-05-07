@@ -1,6 +1,7 @@
 import { setAuthData, updateTokenData } from './../reducers/auth'
 import { addNewTableItem, deleteTableItem, updateTableItem } from './../reducers/tableItems'
 import { addNewTableUserItem, deleteTableUserItem, updateTableUserItem } from './../reducers/users'
+import { addNewTableOwnerItem, deleteTableOwnerItem} from './../reducers/owners'
 import {stopSubmit} from 'redux-form'
 import axios from './../axios';
 import { setAuthorization } from './../axios';
@@ -79,21 +80,23 @@ export const deleteItem = (itemId) =>{
 
 
 export const updateItem = (item) =>{
+    console.log(item)
     return async dispatch => {
         try {
             const res = await axios.put(`/items/${item.id}`,
             {
                 id:item.id,
                 number:item.number,
-                category_string: item.category,
-                profile_string: item.owner,
+                category_id: item.category,
+                // profile_string: item.owner,
                 title:item.title,
                 comment:item.comment,
                 count:item.count,
-                room_string: [item.location]
+                profile_id: item.profile,
+                room_id: [item.location]
             })
-            console.log(res)
-            dispatch(updateTableItem(item))
+            console.log(res.data)
+            dispatch(updateTableItem(res.data))
             updateToken(dispatch)
             setAuthorization(localStorage.getItem('token'))
         }
@@ -176,17 +179,71 @@ export const updateUser = (user) =>{
     }
 }
 
+export const getProfiles = (dispatch) => {
+    return axios.get(`/profiles`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+        .then((res) => {
+            console.log(res.data)
+            // dispatch(setCategoriesItems(res.data))
+            setAuthorization(localStorage.getItem('token'))
+            return res.data
+        })
+}
+
+export const addTableOwnerItem = () => {
+    return async dispatch => {
+        try {
+            const res = await axios.post('/profiles', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+            dispatch(addNewTableOwnerItem(res.data))
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+            console.log(res.data)
+            return res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const deleteOwnerItem = (ownerId) =>{
+    return async dispatch => {
+        try {
+            const res = await axios.delete(`/profiles/${ownerId}`)
+            console.log(res)
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+            dispatch(deleteTableOwnerItem(ownerId))
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
 
 
-// export const getSearchItems = (search) => {
-//     return axios.get(`/items?query=${search}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+
+export const getRooms = (dispatch) => {
+    return axios.get(`/rooms`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+        .then((res) => {
+            console.log(res.data)
+            // dispatch(setCategoriesItems(res.data))
+            setAuthorization(localStorage.getItem('token'))
+            return res.data
+        })
+}
+
+
+// export const addTableOwnerItem = (dispatch) => {
+//     return axios.post(`/profiles`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
 //         .then((res) => {
 //             console.log(res.data)
 //             // dispatch(setCategoriesItems(res.data))
 //             setAuthorization(localStorage.getItem('token'))
 //             return res.data
 //         })
+//         .catch (error => console.log(error))
 // }
+
+
 
 
 

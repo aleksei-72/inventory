@@ -2,7 +2,7 @@ import axios from "axios";
 // import store from './store';
 
 
-axios.defaults.baseURL = 'https://api.staging.inventory-platform.gq';
+axios.defaults.baseURL = 'http://api.staging.inventory-platform.gq';
 
 axios.interceptors.response.use(response => response, error => {
   if (error.response) {

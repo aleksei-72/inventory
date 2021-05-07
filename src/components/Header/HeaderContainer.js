@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react';
 import Header from './Header';
-import { addTableItem } from './../../api/api';
+// import { addTableItem } from './../../api/api';
 
 
 class HeaderContainer extends React.Component {
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTableItem: () => dispatch(addTableItem())
+        // addTableItem: () => dispatch(addTableItem())
     }
 }
 

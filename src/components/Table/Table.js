@@ -2,36 +2,58 @@ import React, { useEffect, useState } from 'react';
 import TableItem from './TableItem';
 import TableHeader from './TableHeader';
 import { Redirect } from 'react-router-dom';
-import { getItems } from '../../api/api';
+import { getItems, getProfiles, getUsers } from '../../api/api';
 import { useDispatch } from 'react-redux';
 // import { setTableItems, setCategoryTableItems } from './../../reducers/tableItems';
-import { setTableItems } from './../../reducers/tableItems';
+import { setRooms, setTableItems } from './../../reducers/tableItems';
+import { setUsersTableItems } from './../../reducers/users';
+import { getCategories, getRooms } from './../../api/api';
+import { setCategoriesItems } from './../../reducers/categories';
+import { setOwnersTableItems } from './../../reducers/owners';
 
 const Table = (props) => {
-  console.log(props)
+  // console.log(props)
     const dispatch = useDispatch() 
     const [items, setItems] = useState([])
     const [currentPage, setCurrentPage] = useState(0)
     const [fetch, setFetch] = useState(true)
     const [totalCount, setTotalCount] = useState(20)
-    console.log("fetch ------------------------- ",fetch)
+    // console.log("fetch ------------------------- ",fetch)
 
-    useEffect(() => {
-      if(fetch) {
-        getItems(currentPage, props.categoryId, props.searchString)
+  useEffect(() => {
+    if (fetch) {
+      getItems(currentPage, props.categoryId, props.searchString)
         .then(res => {
-            console.log(res.data)
-            console.log(currentPage)
-            dispatch(setTableItems(res.data.items, props.categoryId))
-            setItems([...items, ...res.data.items])
-            setCurrentPage(prevVal => prevVal + 15)
-            setTotalCount(res.data.total_count)
+          console.log(res.data)
+          console.log(currentPage)
+          dispatch(setTableItems(res.data.items, props.categoryId))
+          setItems([...items, ...res.data.items])
+          setCurrentPage(prevVal => prevVal + 15)
+          setTotalCount(res.data.total_count)
         })
-        .finally( () => {
+        .finally(() => {
           setFetch(false)
-        } )
-      }    
-    }, [fetch])
+        })
+      getUsers()
+        .then(res => {
+          console.log(res.data)
+          dispatch(setUsersTableItems(res))
+          // setCurrentPage(prevVal => prevVal + 15)
+        })
+      getCategories().then(res => {
+        console.log(res)
+        dispatch(setCategoriesItems(res))
+      })
+      getProfiles().then(res => {
+        console.log(res)
+        dispatch(setOwnersTableItems(res))
+      })
+      getRooms().then(res => {
+        console.log(res)
+        dispatch(setRooms(res))
+      })
+    }
+  }, [fetch])
 
   
     useEffect(() => {
@@ -76,7 +98,12 @@ const Table = (props) => {
                                       owner = {checkItem(el.profile)}
                                       location = {checkItem(el.rooms)}
                                       deleteItem = {props.deleteTableItem}
-                                      upadteItem = {props.updateTableItem}
+                                      updateItem = {props.updateTableItem}
+                                      usersTableItems = {props.usersTableItems}
+                                      categoriesItems = {props.categoriesItems}
+                                      ownersTableItems = {props.ownersTableItems}
+
+                                      roomsItems = {props.roomsItems}
                                       />
             })
             }
