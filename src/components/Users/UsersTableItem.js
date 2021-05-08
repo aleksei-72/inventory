@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import style from './../../styles/users.module.css';
 import deleteIcon from './../../img/icons/Delete.svg';
 // import { NavLink } from 'react-router-dom';
@@ -10,7 +10,7 @@ const UsersTableItem = (props) => {
     console.log(props)
     // let locationItem = props.location.map(el => <div key={el.id} className={style.location_item}>{`${el.department.title} (${el.number})`}</div>);    
     const [blocked, setBlockedStatus] = useState(props.blocked)
-    const [id, setId] = useState(props.id)
+    // const [id, setId] = useState(props.id)
     const [name, setName] = useState(props.name)
     const [username, setUsername] = useState(props.username)
     const [role, setRole] = useState(props.role)
@@ -84,12 +84,12 @@ const UsersTableItem = (props) => {
             // border: '1px solid #000'
         }),
 
-        singleValue: (provided, state) => {
-            const opacity = state.isDisabled ? 0.5 : 1;
-            const transition = 'opacity 300ms';
+        // singleValue: (provided, state) => {
+        //     const opacity = state.isDisabled ? 0.5 : 1;
+        //     const transition = 'opacity 300ms';
 
-            return { ...provided, opacity, transition };
-        }
+        //     return { ...provided, opacity, transition };
+        // }
     }
 
     const RoleComponent = () => <Select placeholder={props.role} defaultValue={`${props.role}`} styles={customStyles} options={roleOptions} onChange={(e) => {

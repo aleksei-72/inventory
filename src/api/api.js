@@ -1,7 +1,7 @@
 import { setAuthData, updateTokenData } from './../reducers/auth'
 import { addNewTableItem, deleteTableItem, updateTableItem } from './../reducers/tableItems'
 import { addNewTableUserItem, deleteTableUserItem, updateTableUserItem } from './../reducers/users'
-import { addNewTableOwnerItem, deleteTableOwnerItem} from './../reducers/owners'
+import { addNewTableOwnerItem, deleteTableOwnerItem, updateTableOwnerItem} from './../reducers/owners'
 import {stopSubmit} from 'redux-form'
 import axios from './../axios';
 import { setAuthorization } from './../axios';
@@ -204,6 +204,25 @@ export const addTableOwnerItem = () => {
     }
 }
 
+export const updateOwner = (owner) =>{
+    console.log(owner)
+    return async dispatch => {
+        try {
+            const res = await axios.put(`/profiles/${owner.id}`,
+            {
+                name:owner.name                
+            })
+            console.log(res)
+            dispatch(updateTableOwnerItem(owner))
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export const deleteOwnerItem = (ownerId) =>{
     return async dispatch => {
         try {
@@ -218,6 +237,9 @@ export const deleteOwnerItem = (ownerId) =>{
         }
     }
 }
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import React from 'react';
-import { addTableOwnerItem, deleteOwnerItem, updateUser } from '../../api/api';
+import { addTableOwnerItem, deleteOwnerItem, updateOwner } from '../../api/api';
 import Owners from './Owners';
 
 
@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteTableOwnerItem: (id) => dispatch(deleteOwnerItem(id)),
-        // updateTableUserItem: (user) => dispatch(updateUser(user)),
+        updateTableOwnerItem: (owner) => dispatch(updateOwner(owner)),
         addTableOwnerItem: (item) => dispatch(addTableOwnerItem())
     }
 }

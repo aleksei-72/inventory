@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import style from './../../styles/users.module.css';
 import deleteIcon from './../../img/icons/Delete.svg';
 // import { NavLink } from 'react-router-dom';
@@ -10,18 +10,21 @@ const OwnersTableItem = (props) => {
     console.log(props)
     // let locationItem = props.location.map(el => <div key={el.id} className={style.location_item}>{`${el.department.title} (${el.number})`}</div>);    
     // const [blocked, setBlockedStatus] = useState(props.blocked)
-    const [id, setId] = useState(props.id)
+
+
+
+    // const [id, setId] = useState(props.id)
     const [name, setName] = useState(props.name)
+
+
+    
     // const [username, setUsername] = useState(props.username)
     // const [role, setRole] = useState(props.role)
 
 
     let dataItem = {
         id: props.id,
-        name: name,
-        // username: username,
-        // role: role,
-        // blocked: blocked
+        name: name
     }
 
     function auto_grow(element) {
@@ -39,7 +42,7 @@ const OwnersTableItem = (props) => {
                             onKeyPress={(e) => auto_grow(e.currentTarget)}
                             onBlur={(e) => {
                                 console.log(dataItem)
-                                props.updateUser(dataItem)
+                                props.updateOwner(dataItem)
                             }}
                             onChange={(e) => {
                                 setName(e.target.value)

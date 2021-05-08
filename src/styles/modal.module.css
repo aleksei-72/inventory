@@ -1,0 +1,73 @@
+.modal {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal__content {
+    background: #fff;
+    max-width: 450px;
+}
+
+.title__container {
+    width: 100%;
+    border-bottom: 1px solid #D1D1D1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px 16px 24px;
+    margin-bottom: 24px;
+}
+.close_btn {
+    padding: 0;
+}
+.button__container {
+    padding: 0px 24px 24px 24px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 32px;
+}
+.title {
+    font-size: 20px;
+    color: #828282;
+}
+
+.delete_btn,
+.cancel_btn {
+    font-size: 16px;
+    color: #fff;
+    padding: 10px 27px;
+    background: #4C6FFF;
+    border-radius: 3px;
+}
+.cancel_btn {
+    color: #4C6FFF;
+    background: #EDF2F7;
+    margin-right: 8px;
+}
+.warning__container {
+    padding: 0px 24px;
+    color: #282828;
+}
+.warning__container p{
+    margin-bottom: 12px;
+}
+.warning__container span {
+    font-weight: 600;
+}

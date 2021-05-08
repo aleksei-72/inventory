@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import style from './../../styles/tableItem.module.css';
 import deleteIcon from './../../img/icons/Delete.svg';
 import Select from 'react-select';
+import Modal from '../Modal/Modal';
 
 // import { NavLink } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ const TableItem = (props) => {
     const [location, setLocation] = useState('')
     const [amount, setAmount] = useState(props.count)
     const [comment, setComment] = useState(props.comment)
+    const [modalActive, setModalActive] = useState(false)
 
     let dataItem = {
         id: props.id,
@@ -83,12 +85,12 @@ const TableItem = (props) => {
 
 
 
-    const statusStyles = {
-        selectContainer: {
-            background: '#fff'
-        },
-        select: {}
-    }
+    // const statusStyles = {
+    //     selectContainer: {
+    //         background: '#fff'
+    //     },
+    //     select: {}
+    // }
     const customUsersSelectStyles = {
         menu: (provided, state) => ({
             ...provided,
@@ -121,12 +123,12 @@ const TableItem = (props) => {
             margin: 10,
         }),
 
-        singleValue: (provided, state) => {
-            const opacity = state.isDisabled ? 0.5 : 1;
-            const transition = 'opacity 300ms';
+        // singleValue: (provided, state) => {
+        //     const opacity = state.isDisabled ? 0.5 : 1;
+        //     const transition = 'opacity 300ms';
 
-            return { ...provided, opacity, transition };
-        }
+        //     return { ...provided, opacity, transition };
+        // }
     }
 
     const ownersOption = props.ownersTableItems.map( el => {
@@ -184,12 +186,12 @@ const TableItem = (props) => {
             margin: 10,
         }),
 
-        singleValue: (provided, state) => {
-            const opacity = state.isDisabled ? 0.5 : 1;
-            const transition = 'opacity 300ms';
+        // singleValue: (provided, state) => {
+        //     const opacity = state.isDisabled ? 0.5 : 1;
+        //     const transition = 'opacity 300ms';
 
-            return { ...provided, opacity, transition };
-        }
+        //     return { ...provided, opacity, transition };
+        // }
     }
 
     const LocationSelect = () => <Select placeholder={`${locationVal[0].department.title} (${locationVal[0].number})`} 
@@ -255,12 +257,12 @@ const TableItem = (props) => {
             // border: '1px solid #000'
         }),
 
-        singleValue: (provided, state) => {
-            const opacity = state.isDisabled ? 0.5 : 1;
-            const transition = 'opacity 300ms';
+        // singleValue: (provided, state) => {
+        //     const opacity = state.isDisabled ? 0.5 : 1;
+        //     const transition = 'opacity 300ms';
 
-            return { ...provided, opacity, transition };
-        }
+        //     return { ...provided, opacity, transition };
+        // }
     }
 
 
@@ -475,7 +477,9 @@ const TableItem = (props) => {
                     className={`${style.commemt__field}`} />
             </div>
 
-            <button onClick={() => props.deleteItem(props.id)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>
+            <button onClick={() => setModalActive(true)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>
+
+            <Modal active = {modalActive} setActive = {setModalActive} deleteItem = {props.deleteItem} id = {props.id}/>
         </div>
     )
 }

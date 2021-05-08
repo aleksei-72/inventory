@@ -13,7 +13,7 @@ import { setSearchTableItems } from './../../reducers/tableItems';
 // import { printItems } from './../../print';
 import { NavLink } from 'react-router-dom';
 import { setUsersTableItems } from './../../reducers/users';
-import { getRooms } from './../../api/api';
+// import { getRooms } from './../../api/api';
 
 const Header = (props) => {
     console.log(props)

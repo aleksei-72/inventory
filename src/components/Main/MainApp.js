@@ -1,5 +1,6 @@
 import React from 'react';
 import CategoriesContainer from '../Categories/CategoriesContainer';
+// import Modal from '../Modal/Modal';
 import HeaderContainer from './../Header/HeaderContainer';
 import TableContainer from './../Table/TableContainer';
 

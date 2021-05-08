@@ -107,6 +107,7 @@ const Table = (props) => {
                                       />
             })
             }
+            
         </section>
     )
 }

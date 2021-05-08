@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import HeaderContainer from '../Header/HeaderContainer';
 import style from './../../styles/users.module.css'
-import { getUsers } from '../../api/api';
-import { useDispatch } from 'react-redux';
+// import { getUsers } from '../../api/api';
+// import { useDispatch } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
-import UsersTableItem from '../Users/UsersTableItem';
-import { setUsersTableItems } from '../../reducers/users';
-import UsersTableHeader from '../Users/UsersTableHeader';
+// import UsersTableItem from '../Users/UsersTableItem';
+// import { setUsersTableItems } from '../../reducers/users';
+// import UsersTableHeader from '../Users/UsersTableHeader';
 import addIcon from './../../img/icons/Add.svg'
 import OwnersTableHeader from './OwnersTableHeader';
 import OwnersTableItem from './OwnersTableItem';
 // import { addTableOwnerItem } from './../../api/api';
-import { getProfiles } from './../../api/api';
+// import { getProfiles } from './../../api/api';
 
 
 const Owners = (props) => {
@@ -92,7 +92,7 @@ const Owners = (props) => {
                 // blocked={el.blocked}
                 // lastActiveAt={el.lastActiveAt}
                 deleteTableOwnerItem = {props.deleteTableOwnerItem}
-                // updateUser = {props.updateTableUserItem}
+                updateOwner = {props.updateTableOwnerItem}
               />
             })
           }
