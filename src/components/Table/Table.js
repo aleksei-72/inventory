@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import TableItem from './TableItem';
 import TableHeader from './TableHeader';
 import { Redirect } from 'react-router-dom';
-import { getItems, getProfiles, getUsers } from '../../api/api';
+import { getItems, getProfiles, getUsers, setDefaultAppValues } from '../../api/api';
 import { useDispatch } from 'react-redux';
-// import { setTableItems, setCategoryTableItems } from './../../reducers/tableItems';
 import { setRooms, setTableItems } from './../../reducers/tableItems';
 import { setUsersTableItems } from './../../reducers/users';
 import { getCategories, getRooms } from './../../api/api';
@@ -31,6 +30,10 @@ const Table = (props) => {
           setCurrentPage(prevVal => prevVal + 15)
           setTotalCount(res.data.total_count)
         })
+        .catch((err) => {
+          setDefaultAppValues(dispatch)
+          console.log(err)
+        }  )
         .finally(() => {
           setFetch(false)
         })
@@ -40,18 +43,34 @@ const Table = (props) => {
           dispatch(setUsersTableItems(res))
           // setCurrentPage(prevVal => prevVal + 15)
         })
+        .catch((err) => {
+          setDefaultAppValues(dispatch)
+          console.log(err)
+        }  )
       getCategories().then(res => {
         console.log(res)
         dispatch(setCategoriesItems(res))
       })
+      .catch((err) => {
+        setDefaultAppValues(dispatch)
+        console.log(err)
+      }  )
       getProfiles().then(res => {
         console.log(res)
         dispatch(setOwnersTableItems(res))
       })
+      .catch((err) => {
+        setDefaultAppValues(dispatch)
+        console.log(err)
+      }  )
       getRooms().then(res => {
         console.log(res)
         dispatch(setRooms(res))
       })
+      .catch((err) => {
+        setDefaultAppValues(dispatch)
+        console.log(err)
+      }  )
     }
   }, [fetch])
 
@@ -66,13 +85,6 @@ const Table = (props) => {
     const scrollHandler = (e) => {
         if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length < totalCount) {
             setFetch(true)
-
-
-
-
-
-
-
         }
     }
 
@@ -95,6 +107,7 @@ const Table = (props) => {
                                       number = {el.number} 
                                       comment = {el.comment}
                                       categoryTitle = {el.category ? el.category.title : "Не указано"}
+                                      categoryId = {el.category ? el.category.id : "Нет id"}
                                       owner = {checkItem(el.profile)}
                                       location = {checkItem(el.rooms)}
                                       deleteItem = {props.deleteTableItem}
@@ -102,7 +115,6 @@ const Table = (props) => {
                                       usersTableItems = {props.usersTableItems}
                                       categoriesItems = {props.categoriesItems}
                                       ownersTableItems = {props.ownersTableItems}
-
                                       roomsItems = {props.roomsItems}
                                       />
             })

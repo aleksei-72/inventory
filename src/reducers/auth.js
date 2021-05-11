@@ -9,11 +9,15 @@ let initialState = {
 }
 
 const authReducer = (state = initialState, action) => {
+    console.log(action)
     switch (action.type) {
         case SET_AUTH_DATA:
             return {...state, token:action.data, isAuth:true}
 
         case LOGOUT:
+                console.log(action)
+                console.log('--------------logout--------------')
+
                 localStorage.removeItem('token')
                 return {...state, currentUser: {}, isAuth:false}
 

@@ -1,14 +1,10 @@
 import React from 'react';
 import style from './../../styles/modal.module.css'
-import deleteIcon from './../../img/icons/Delete.svg';
 import closeIcon from './../../img/icons/Close.svg';
 
 
 
 const Modal = (props) => {
-    console.log(props)
-
-
     return (
         <div className={ props.active ? `${style.modal} ${style.active}` : `${style.modal}`} onClick = { () => props.setActive(false) }>
             <div className={`${style.modal__content}`} onClick = { e => e.stopPropagation() }>

@@ -2,13 +2,13 @@ import axios from "axios";
 // import store from './store';
 
 
-axios.defaults.baseURL = 'http://api.staging.inventory-platform.gq';
+axios.defaults.baseURL = 'https://api.staging.inventory-platform.gq';
+
 
 axios.interceptors.response.use(response => response, error => {
   if (error.response) {
     if (error.response.status === 401) {
         console.log(error.response.status)
-        console.log(401)
         clearAuthorization();
 
 
@@ -22,6 +22,7 @@ axios.interceptors.response.use(response => response, error => {
 
   return Promise.reject(error);
 });
+
 
 export const setAuthorization = token => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

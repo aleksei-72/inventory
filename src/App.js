@@ -14,7 +14,7 @@ function App() {
 		<BrowserRouter>
 
 			<Switch>
-				<Route path='/' exact render={() => <MainApp />} />
+				<Route path='/' exact render={() => <MainApp data={store.getState()} />} />
 				<Route path='/login' exact render={() => <LoginContainer />} />
 				<Route path='/users' exact render={() => <UsersContainer />} />
 				<Route path='/owners' exact render={() => <OwnersContainer />} />

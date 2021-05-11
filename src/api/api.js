@@ -1,11 +1,12 @@
-import { setAuthData, updateTokenData } from './../reducers/auth'
-import { addNewTableItem, deleteTableItem, updateTableItem } from './../reducers/tableItems'
-import { addNewTableUserItem, deleteTableUserItem, updateTableUserItem } from './../reducers/users'
-import { addNewTableOwnerItem, deleteTableOwnerItem, updateTableOwnerItem} from './../reducers/owners'
+import { logout, setAuthData, updateTokenData } from './../reducers/auth'
+import { addNewTableItem, deleteTableItem, setInitialState, updateTableItem } from './../reducers/tableItems'
+import { addNewTableUserItem, deleteAllUsers, deleteTableUserItem, updateTableUserItem } from './../reducers/users'
+import { addNewTableOwnerItem, deleteAllOwners, deleteTableOwnerItem, updateTableOwnerItem} from './../reducers/owners'
 import {stopSubmit} from 'redux-form'
 import axios from './../axios';
 import { setAuthorization } from './../axios';
-// import { setCategoriesItems } from './../reducers/categories';
+import { deleteAllCategories } from '../reducers/categories'
+// import { setCategoriesItems, deleteAllCategories } from './../reducers/categories';
 
 
 // let axios = axios.create({})
@@ -59,6 +60,10 @@ export const addTableItem = () => {
             return res.data
         } catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
         }
     }
 }
@@ -74,6 +79,10 @@ export const deleteItem = (itemId) =>{
         }
         catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
         }
     }
 }
@@ -102,6 +111,10 @@ export const updateItem = (item) =>{
         }
         catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
         }
     }
 }
@@ -137,6 +150,11 @@ export const addTableUserItem = () => {
             return res.data
         } catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
+
         }
     }
 }
@@ -152,6 +170,11 @@ export const deleteUserItem = (userId) =>{
         }
         catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
+
         }
     }
 }
@@ -175,6 +198,11 @@ export const updateUser = (user) =>{
         }
         catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
+
         }
     }
 }
@@ -200,6 +228,11 @@ export const addTableOwnerItem = () => {
             return res.data
         } catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
+
         }
     }
 }
@@ -219,6 +252,10 @@ export const updateOwner = (owner) =>{
         }
         catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
         }
     }
 }
@@ -234,6 +271,9 @@ export const deleteOwnerItem = (ownerId) =>{
         }
         catch (error) {
             console.log(error)
+            setDefaultAppValues(dispatch)
+            // dispatch(logout())
+            // dispatch(setInitialState())
         }
     }
 }
@@ -253,6 +293,14 @@ export const getRooms = (dispatch) => {
         })
 }
 
+
+export const setDefaultAppValues = (dispatch) => {
+    dispatch(logout())
+    dispatch(setInitialState())
+    dispatch(deleteAllUsers())
+    dispatch(deleteAllOwners())
+    dispatch(deleteAllCategories())
+}
 
 // export const addTableOwnerItem = (dispatch) => {
 //     return axios.post(`/profiles`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })

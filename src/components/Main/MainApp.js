@@ -4,6 +4,7 @@ import CategoriesContainer from '../Categories/CategoriesContainer';
 import HeaderContainer from './../Header/HeaderContainer';
 import TableContainer from './../Table/TableContainer';
 
+
 const MainApp = (props) => {
     return (
         <div>

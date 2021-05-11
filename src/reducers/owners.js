@@ -3,18 +3,23 @@ const ADD_NEW_TABLE_OWNER_ITEM = "ADD_NEW_TABLE_OWNER_ITEM";
 const DELETE_TABLE_OWNER_ITEM = "DELETE_TABLE_OWNER_ITEM";
 const UPDATE_TABLE_OWNER_ITEM = "UPDATE_TABLE_OWNER_ITEM";
 
+const DELETE_ALL_OWNERS = "DELETE_ALL_OWNERS";
+
 
 let initialState = {
     owners: []
 }
 
 const ownersReducer = (state = initialState, action) => {
-    console.log(action.type)
-    console.log(action)
+    // console.log(action.type)
+    // console.log(action)
     switch (action.type) {
         case SET_OWNERS:
             console.log(action.owners)
             return { ...state, owners: [...action.owners] }
+        case DELETE_ALL_OWNERS:
+            console.log(action.owners)
+            return { ...state, owners: [] }
 
         case ADD_NEW_TABLE_OWNER_ITEM:
             console.log("new owner")
@@ -68,6 +73,8 @@ export const setOwnersTableItems = (owners) => ({ type: SET_OWNERS, owners })
 export const addNewTableOwnerItem = (owner) => ({ type: ADD_NEW_TABLE_OWNER_ITEM, owner });
 export const deleteTableOwnerItem = (ownerId) => ({ type: DELETE_TABLE_OWNER_ITEM, ownerId });
 export const updateTableOwnerItem = (owner) => ({ type: UPDATE_TABLE_OWNER_ITEM, owner });
+
+export const deleteAllOwners = () => ({ type: DELETE_ALL_OWNERS });
 
 
 export default ownersReducer

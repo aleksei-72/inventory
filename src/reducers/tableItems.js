@@ -7,6 +7,7 @@ const DELETE_TABLE_ITEM = "DELETE_TABLE_ITEM";
 const UPDATE_TABLE_ITEM = "UPDATE_TABLE_ITEM";
 
 const SET_ROOMS = "SET_ROOMS";
+const SET_INITIAL_STATE = "SET_INITIAL_STATE";
 
 
 let initialState = {
@@ -17,11 +18,15 @@ let initialState = {
 
 const tableItemsReducer = (state = initialState, action) => {
     console.log(action.type)
-    console.log(action)
+    // console.log(action)
     switch (action.type) {
         case SET_ITEMS:           
             console.log(action.items) 
             return { ...state, items: [...state.items, ...action.items] }
+
+        case SET_INITIAL_STATE:
+            console.log(action.items)
+            return { ...state, items: [], rooms: [] }
 
 
         case SET_ROOMS:
@@ -77,6 +82,9 @@ const tableItemsReducer = (state = initialState, action) => {
                 action.item,
                 ...state.items.slice(updatedItemIndex + 1, state.items.length)
             ]
+
+            console.log(updatedItems)
+
             return { ...state, items: [...updatedItems] }
         default:
             return state
@@ -95,7 +103,7 @@ export const updateTableItem = (item) => ({ type: UPDATE_TABLE_ITEM, item });
 export const deleteTableItem = (itemId) => ({ type: DELETE_TABLE_ITEM, itemId });
 export const addNewTableItem = (item) => (dispatch) => { dispatch(addTableItem(item)) };
 
-
+export const setInitialState = () => ({ type: SET_INITIAL_STATE });
 export const setRooms = (rooms) => ({ type: SET_ROOMS, rooms });
 
 

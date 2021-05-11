@@ -2,6 +2,9 @@ const SET_USERS = "SET_USERS";
 const ADD_NEW_TABLE_USER_ITEM = "ADD_NEW_TABLE_USER_ITEM";
 const DELETE_TABLE_USER_ITEM = "DELETE_TABLE_USER_ITEM";
 const UPDATE_TABLE_USER_ITEM = "UPDATE_TABLE_USER_ITEM";
+const DELETE_ALL_USERS = "DELETE_ALL_USERS";
+
+
 
 let initialState = {
     users: [],
@@ -9,12 +12,15 @@ let initialState = {
 }
 
 const usersReducer = (state = initialState, action) => {
-    console.log(action.type)
-    console.log(action)
+    // console.log(action.type)
+    // console.log(action)
     switch (action.type) {
         case SET_USERS:
             console.log(action.users)
             return { ...state, users: [...action.users] }
+        case DELETE_ALL_USERS:
+            console.log(action.users)
+            return { ...state, users: [] }
 
         case ADD_NEW_TABLE_USER_ITEM:
             console.log("new user")
@@ -58,6 +64,7 @@ export const addNewTableUserItem = (user) => ({ type: ADD_NEW_TABLE_USER_ITEM, u
 export const deleteTableUserItem = (userId) => ({ type: DELETE_TABLE_USER_ITEM, userId });
 export const updateTableUserItem = (item) => ({ type: UPDATE_TABLE_USER_ITEM, item });
 
+export const deleteAllUsers = () => ({ type: DELETE_ALL_USERS });
 
 // export const setCategoryId = (categoryId) => ({type:SET_CATEGORY_ID, categoryId})
 
