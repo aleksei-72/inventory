@@ -7,7 +7,7 @@ import style from './../../styles/categories.module.css';
 
 
 const CategoriesItems = (props) => {
-    console.log(props)
+    // console.log(props)
     const dispatch = useDispatch()
     useEffect(() => {
         getCategories().then(res => {
@@ -19,7 +19,7 @@ const CategoriesItems = (props) => {
         <div className = {`${style.categoriesItems__container}`}>
             {
                 props.categoriesItems.map((el) => {
-                    console.log(el)
+                    // console.log(el)
                     return <CategoriesItem searchString = {props.searchString} title = {el.title} id = {el.id}/>
                 })
             }

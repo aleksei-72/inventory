@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 
 
 const TableItem = (props) => {
-    // console.log(props)  
+    // console.log(props)
 
     const [check, setCheck] = useState(false)
     const [number, setNumber] = useState(props.number)
@@ -16,6 +16,7 @@ const TableItem = (props) => {
     // const [location, setLocation] = useState('')
     const [amount, setAmount] = useState(props.count)
     const [comment, setComment] = useState(props.comment)
+    const [price, setPrice] = useState(props.price)
     const [modalActive, setModalActive] = useState(false)
 
 
@@ -47,7 +48,8 @@ const TableItem = (props) => {
         profile:owner,
         location: locationVal[0].id,
         count: amount,
-        comment: comment
+        comment: comment,
+        price: price
     }
 
     const customUsersSelectStyles = {
@@ -235,7 +237,7 @@ const TableItem = (props) => {
                             console.log(number)
                         }}
                         defaultValue={props.number}
-                        className={`${style.number__field}`} />
+                        className={`${style.number__field} ${style.field}`} />
                 </div>
             </div>
 
@@ -249,7 +251,6 @@ const TableItem = (props) => {
 
                 <textarea
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
-                    // rows={2}
                     cols={26}
                     onBlur={(e) => props.updateItem(dataItem)}
                     onChange={(e) => {
@@ -258,7 +259,7 @@ const TableItem = (props) => {
                         console.log(title)
                     }}
                     defaultValue={props.title}
-                    className={`${style.title__field}`} />
+                    className={`${style.title__field} ${style.field}`} />
 
             </div>
 
@@ -284,7 +285,34 @@ const TableItem = (props) => {
                         setAmount(e.currentTarget.value)
                     }}
                     defaultValue={!props.count ? '0' : props.count}
-                    className={`${style.amount__field}`} />
+                    className={`${style.amount__field} ${style.field}`} />
+            </div>
+
+
+
+
+
+            <div className={`${style.cell__container} ${style.price}`}>
+                <textarea
+                    rows={1}
+
+                    onKeyPress={(e) => auto_grow(e.currentTarget)}
+                    onBlur={(e) => props.updateItem(dataItem)}
+                    onChange={(e) => {
+                        setPrice(e.currentTarget.value)
+                        console.log(price)
+                    }}
+                    defaultValue={!props.price? 0 : props.price}
+                    className={`${style.amount__field} ${style.field}`} />
+            </div>
+
+            <div className={`${style.cell__container} ${style.cost}`}>
+                <textarea
+                    rows={1}
+
+                    disabled="disabled"
+                    defaultValue={props.cost}
+                    className={`${style.amount__field} ${style.field}`} />
             </div>
 
 
@@ -293,18 +321,14 @@ const TableItem = (props) => {
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
                     rows={1}
                     cols={25}
-
-
                     onBlur={(e) => props.updateItem(dataItem)}
-
-
                     onChange={(e) => {
                         setComment(e.currentTarget.value)
                         console.log(e.currentTarget.value)
                         console.log(comment)
                     }}
                     defaultValue={!props.comment ? 'Исправно' : props.comment}
-                    className={`${style.commemt__field}`} />
+                    className={`${style.commemt__field} ${style.field}`} />
             </div>
 
             <button onClick={() => setModalActive(true)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>

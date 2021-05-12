@@ -8,7 +8,7 @@ import { setCategoryTableItems } from './../../reducers/tableItems';
 
 
 const CategoriesItem = (props) => {
-    console.log(props)
+    // console.log(props)
     const dispatch = useDispatch()
     return (
         <div onClick={() => {

@@ -102,7 +102,8 @@ export const updateItem = (item) =>{
                 comment:item.comment,
                 count:item.count,
                 profile_id: item.profile,
-                room_id: [item.location]
+                room_id: [item.location],
+                price: item.price
             })
             console.log(res.data)
             dispatch(updateTableItem(res.data))

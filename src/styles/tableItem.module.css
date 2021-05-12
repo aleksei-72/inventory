@@ -9,7 +9,7 @@
     position: relative;
     min-height: 65px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     color:#282828;
     padding-left: 20px;
   /* transform: scaleY(-1); */
@@ -45,20 +45,20 @@
     justify-content: flex-end;
 }
 .category {
-    width: 126px;
-    min-width: 126px;
+    width: 146px;
+    min-width: 146px;
 }
 .name {
-    width: 277px;
-    min-width: 277px;
+    width: 263px;
+    min-width: 263px;
 }
 .owner {
-    width: 220px;
-    min-width: 220px;
+    width: 313px;
+    min-width: 313px;
 }
 .location {
-    width: 200px;
-    min-width: 200px;
+    width: 204px;
+    min-width: 204px;
 }
 .location_item {
     font-size: 14px;
@@ -69,22 +69,28 @@
     width: 120px;
     min-width: 120px;
 }
+.price,
+.cost {
+    /* padding-right: 25px; */
+    /* justify-content: flex-end; */
+    width: 180px;
+    min-width: 180px;
+}
+
 .comment {
     border-right: none !important;
-    width: 210px;
-    min-width: 210px;
+    width: 230px;
+    min-width: 230px;
     border: none;
 }
 .cell__container {
-    padding: 20px 20px 20px 0px;
+    padding: 16px 20px 16px 10px;
     display: flex;
     align-items: center;
     border-right: 1px solid #BDBDBD; 
     max-width: 250px;
-    word-wrap: break-word;
-    
+    word-wrap: break-word;    
 }
-
 
 textarea {
     background: transparent;
@@ -95,6 +101,16 @@ textarea {
     text-align: right;
     resize: none !important;
     overflow: hidden;
+}
+.field {
+    border-radius: 3px;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+}
+.field:focus {
+    background: #FFFFFF;
+    outline: #D1D1D1;
+    border: 1px solid #D1D1D1 !important;
 }
 .title__field,
 .location__field,

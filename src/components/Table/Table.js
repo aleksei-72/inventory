@@ -83,13 +83,44 @@ const Table = (props) => {
     })
 
     const scrollHandler = (e) => {
-        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length < totalCount) {
+        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150) {
+          console.log(fetch)
+          console.log(e.target.documentElement.scrollHeight)
+          console.log(e.target.documentElement.scrollTop)
+          console.log( window.innerHeight)
+          console.log( e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight))
+          // console.log( window.innerHeight)
             setFetch(true)
+        }
+        else {
+          // console.log('scroll error')
         }
     }
 
+
+
+    // useEffect(() => {
+    //   document.addEventListener('scroll', scrollHandler)
+    //   return () => {
+    //     document.removeEventListener('scroll', scrollHandler)
+    //   }
+    // })
+
+    // const scrollHandler = (e) => {
+    //     if(document.scrollTop + document.clientHeight >= document.scrollHeight) {
+    //         setFetch(true)
+    //     }
+    // }
+    // document.addEventListener('scroll', scrollHandler)
+
     
     if(props.isAuth === false) {return <Redirect to={"/login"}/>}
+
+    var elf = 'rate-55345'
+    var numEl = parseInt(elf.match(/\d+/))
+
+    console.log(numEl)
+    // alert(null * 5)
 
     return (
         <section className="main-table">
@@ -105,6 +136,10 @@ const Table = (props) => {
                                       count = {el.count} 
                                       key = {el.id} 
                                       number = {el.number} 
+
+                                      price = {el.price} 
+                                      cost = {parseInt(el.count.match(/\d+/)) * el.price} 
+
                                       comment = {el.comment}
                                       categoryTitle = {el.category ? el.category.title : "Не указано"}
                                       categoryId = {el.category ? el.category.id : "Нет id"}

@@ -10,6 +10,8 @@ const TableHeader = (props) => {
             <div className={`${style.item} ${style.owner}`}>Ответственный</div>
             <div className={`${style.item} ${style.location}`}>Место</div>
             <div className={`${style.item} ${style.amount}`}>Количество</div>
+            <div className={`${style.item} ${style.price}`}>Цена</div>
+            <div className={`${style.item} ${style.cost}`}>Сумма</div>
             <div className={`${style.item} ${style.comments}`}>Комментарии</div>
         </header>
 

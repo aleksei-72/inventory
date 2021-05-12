@@ -31,7 +31,7 @@ const tableItemsReducer = (state = initialState, action) => {
 
         case SET_ROOMS:
             console.log(action.rooms)
-            return { ...state, rooms: [...state.rooms, ...action.rooms] }
+            return { ...state, rooms: [...action.rooms] }
 
 
 
