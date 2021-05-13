@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react';
 import Categories from './Categories';
-import { addTableItem } from './../../api/api';
+import { addCategoriesItem, addTableItem, deleteCategoriesItem, updateCategoriesItem } from './../../api/api';
 
 
 class CategoriesContainer extends React.Component {
@@ -20,6 +20,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        deleteCategory: (id) => dispatch(deleteCategoriesItem(id)),
+        updateCategory: (item) => dispatch(updateCategoriesItem(item)),
+        addCategory: () => dispatch(addCategoriesItem()),
         addTableItem: () => dispatch(addTableItem())
     }
 }

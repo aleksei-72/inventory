@@ -5,8 +5,8 @@ import { addNewTableOwnerItem, deleteAllOwners, deleteTableOwnerItem, updateTabl
 import {stopSubmit} from 'redux-form'
 import axios from './../axios';
 import { setAuthorization } from './../axios';
-import { deleteAllCategories } from '../reducers/categories'
-// import { setCategoriesItems, deleteAllCategories } from './../reducers/categories';
+import { deleteAllCategories, deleteCategory, addCategory, updateCategory } from '../reducers/categories'
+// import { setCategoriesItems, deleteAllCategories, addCategory } from './../reducers/categories';
 
 
 // let axios = axios.create({})
@@ -128,6 +128,66 @@ export const getCategories = (dispatch) => {
             setAuthorization(localStorage.getItem('token'))
             return res.data
         })
+}
+
+
+
+export const addCategoriesItem = () => {
+    return async dispatch => {
+        try {
+            const res = await axios.post('/categories')
+            dispatch(addCategory(res.data))
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+            console.log(res.data)
+            return res.data
+        } catch (error) {
+            console.log(error)
+            setDefaultAppValues(dispatch)
+        }
+    }
+}
+
+export const deleteCategoriesItem = (categoryId) =>{
+    return async dispatch => {
+        try {
+            const res = await axios.delete(`/categories/${categoryId}`)
+            console.log(res)
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+            dispatch(deleteCategory(categoryId))
+        }
+        catch (error) {
+            console.log(error)
+            setDefaultAppValues(dispatch)
+
+            dispatch(logout())
+            dispatch(setInitialState())
+
+        }
+    }
+}
+export const updateCategoriesItem = (item) =>{
+    console.log(item)
+    return async dispatch => {
+        try {
+            const res = await axios.put(`/categories/${item.id}`,
+            {
+                title:item.title
+            })
+            console.log(res.data)
+            dispatch(updateCategory(res.data))
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+        }
+        catch (error) {
+            console.log(error)
+            setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
+        }
+    }
 }
 
 export const getUsers = (dispatch) => {
@@ -302,26 +362,3 @@ export const setDefaultAppValues = (dispatch) => {
     dispatch(deleteAllOwners())
     dispatch(deleteAllCategories())
 }
-
-// export const addTableOwnerItem = (dispatch) => {
-//     return axios.post(`/profiles`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
-//         .then((res) => {
-//             console.log(res.data)
-//             // dispatch(setCategoriesItems(res.data))
-//             setAuthorization(localStorage.getItem('token'))
-//             return res.data
-//         })
-//         .catch (error => console.log(error))
-// }
-
-
-
-
-
-// export const updateToken = (dispatch) => {
-//     return axios.post('/token')
-//     .then( res => {
-//         dispatch(updateTokenData(res.data))
-//         return res.data
-//     } )
-// }
