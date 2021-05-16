@@ -60,7 +60,7 @@ export const addTableItem = () => {
             return res.data
         } catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -79,7 +79,7 @@ export const deleteItem = (itemId) =>{
         }
         catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -112,7 +112,7 @@ export const updateItem = (item) =>{
         }
         catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -143,7 +143,7 @@ export const addCategoriesItem = () => {
             return res.data
         } catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
         }
     }
 }
@@ -159,7 +159,7 @@ export const deleteCategoriesItem = (categoryId) =>{
         }
         catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             dispatch(logout())
             dispatch(setInitialState())
@@ -182,7 +182,7 @@ export const updateCategoriesItem = (item) =>{
         }
         catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -211,7 +211,7 @@ export const addTableUserItem = () => {
             return res.data
         } catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -231,7 +231,7 @@ export const deleteUserItem = (userId) =>{
         }
         catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -259,7 +259,7 @@ export const updateUser = (user) =>{
         }
         catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -289,7 +289,7 @@ export const addTableOwnerItem = () => {
             return res.data
         } catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -313,7 +313,7 @@ export const updateOwner = (owner) =>{
         }
         catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
 
             // dispatch(logout())
             // dispatch(setInitialState())
@@ -332,7 +332,7 @@ export const deleteOwnerItem = (ownerId) =>{
         }
         catch (error) {
             console.log(error)
-            setDefaultAppValues(dispatch)
+            // setDefaultAppValues(dispatch)
             // dispatch(logout())
             // dispatch(setInitialState())
         }

@@ -11,13 +11,13 @@ import { setCategoriesItems } from './../../reducers/categories';
 import { setOwnersTableItems } from './../../reducers/owners';
 
 const Table = (props) => {
-  // console.log(props)
-    const dispatch = useDispatch() 
-    const [items, setItems] = useState([])
-    const [currentPage, setCurrentPage] = useState(0)
-    const [fetch, setFetch] = useState(true)
-    const [totalCount, setTotalCount] = useState(20)
-    // console.log("fetch ------------------------- ",fetch)
+  console.log(props)
+  const dispatch = useDispatch()
+  const [items, setItems] = useState([])
+  const [currentPage, setCurrentPage] = useState(0)
+  const [fetch, setFetch] = useState(true)
+  const [totalCount, setTotalCount] = useState(20)
+  // console.log("fetch ------------------------- ",fetch)
 
   useEffect(() => {
     if (fetch) {
@@ -31,9 +31,9 @@ const Table = (props) => {
           setTotalCount(res.data.total_count)
         })
         .catch((err) => {
-          setDefaultAppValues(dispatch)
+          // setDefaultAppValues(dispatch)
           console.log(err)
-        }  )
+        })
         .finally(() => {
           setFetch(false)
         })
@@ -46,112 +46,106 @@ const Table = (props) => {
         .catch((err) => {
           setDefaultAppValues(dispatch)
           console.log(err)
-        }  )
+        })
       getCategories().then(res => {
         console.log(res)
         dispatch(setCategoriesItems(res))
       })
-      .catch((err) => {
-        setDefaultAppValues(dispatch)
-        console.log(err)
-      }  )
+        .catch((err) => {
+          setDefaultAppValues(dispatch)
+          console.log(err)
+        })
       getProfiles().then(res => {
         console.log(res)
         dispatch(setOwnersTableItems(res))
       })
-      .catch((err) => {
-        setDefaultAppValues(dispatch)
-        console.log(err)
-      }  )
+        .catch((err) => {
+          setDefaultAppValues(dispatch)
+          console.log(err)
+        })
       getRooms().then(res => {
         console.log(res)
         dispatch(setRooms(res))
       })
-      .catch((err) => {
-        setDefaultAppValues(dispatch)
-        console.log(err)
-      }  )
+        .catch((err) => {
+          setDefaultAppValues(dispatch)
+          console.log(err)
+        })
     }
   }, [fetch])
 
-  
-    useEffect(() => {
-      document.addEventListener('scroll', scrollHandler)
-      return () => {
-        document.removeEventListener('scroll', scrollHandler)
-      }
-    })
 
-    const scrollHandler = (e) => {
-        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150) {
-          console.log(fetch)
-          // console.log(e.target.documentElement.scrollHeight)
-          // console.log(e.target.documentElement.scrollTop)
-          // console.log( window.innerHeight)
-          // console.log( e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight))
-          // console.log( window.innerHeight)
-            setFetch(false)
-        }
-        else {
-          // console.log('scroll error')
-        }
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler)
+    return () => {
+      document.removeEventListener('scroll', scrollHandler)
     }
+  })
+
+  const scrollHandler = (e) => {
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length < totalCount) {
+      setFetch(true)
 
 
 
-    // useEffect(() => {
-    //   document.addEventListener('scroll', scrollHandler)
-    //   return () => {
-    //     document.removeEventListener('scroll', scrollHandler)
-    //   }
-    // })
 
-    // const scrollHandler = (e) => {
-    //     if(document.scrollTop + document.clientHeight >= document.scrollHeight) {
-    //         setFetch(true)
-    //     }
-    // }
-    // document.addEventListener('scroll', scrollHandler)
-
-    
-    if(props.isAuth === false) {return <Redirect to={"/login"}/>}
+    }
+  }
 
 
-    return (
-        <section className="main-table">
-            <TableHeader/>
-            {
-                props.tableItems.map((el) => {
-                    let checkItem = item => {
-                        if (!item) item = []
-                        return item
-                    }                                       
-                    return <TableItem title = {el.title}
-                                      id = {el.id} 
-                                      count = {el.count} 
-                                      key = {el.id} 
-                                      number = {el.number} 
 
-                                      price = {el.price} 
-                                      cost = {parseInt(el.count.match(/\d+/)) * el.price} 
 
-                                      comment = {el.comment}
-                                      categoryTitle = {el.category ? el.category.title : "Не указано"}
-                                      categoryId = {el.category ? el.category.id : "Нет id"}
-                                      owner = {checkItem(el.profile)}
-                                      location = {checkItem(el.rooms)}
-                                      deleteItem = {props.deleteTableItem}
-                                      updateItem = {props.updateTableItem}
-                                      usersTableItems = {props.usersTableItems}
-                                      categoriesItems = {props.categoriesItems}
-                                      ownersTableItems = {props.ownersTableItems}
-                                      roomsItems = {props.roomsItems}
-                                      />
-            })
-            }
-            
-        </section>
-    )
+  if (props.isAuth === false) { return <Redirect to={"/login"} /> }
+
+
+  return (
+    <section className="main-table">
+      <TableHeader />
+
+
+
+      {/* <button onClick ={ () => setFetch(true) }>OOO</button> */}
+
+
+
+
+      {
+        props.tableItems.map((el) => {
+          let checkItem = item => {
+            if (!item) item = []
+            return item
+          }
+          return <TableItem title={el.title}
+            id={el.id}
+            count={el.count}
+            key={el.id}
+            number={el.number}
+
+            price={el.price}
+            // cost={el.count ? parseInt(el.count.match(/\d+/)) * el.price : el.price}
+            cost={ parseInt(el.count.match(/\d+/)) * el.price}
+
+            comment={el.comment}
+            categoryTitle={el.category ? el.category.title : "Не указано"}
+            categoryId={el.category ? el.category.id : "Нет id"}
+            owner={checkItem(el.profile)}
+            location={checkItem(el.rooms)}
+            deleteItem={props.deleteTableItem}
+            updateItem={props.updateTableItem}
+            usersTableItems={props.usersTableItems}
+            categoriesItems={props.categoriesItems}
+            ownersTableItems={props.ownersTableItems}
+            roomsItems={props.roomsItems}
+          />
+        })
+      }
+
+    </section>
+  )
 }
+
+
+
 
 export default Table

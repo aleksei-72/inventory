@@ -17,7 +17,7 @@ let initialState = {
 }
 
 const tableItemsReducer = (state = initialState, action) => {
-    console.log(action.type)
+    // console.log(action.type)
     // console.log(action)
     switch (action.type) {
         case SET_ITEMS:           

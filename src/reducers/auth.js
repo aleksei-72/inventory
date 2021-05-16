@@ -9,7 +9,7 @@ let initialState = {
 }
 
 const authReducer = (state = initialState, action) => {
-    console.log(action)
+    // console.log(action)
     switch (action.type) {
         case SET_AUTH_DATA:
             return {...state, token:action.data, isAuth:true}
