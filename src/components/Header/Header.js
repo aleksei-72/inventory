@@ -7,18 +7,20 @@ import searchIconBtn from './../../img/icons/Search_btn.svg'
 import settingsIcon from './../../img/icons/Settings.svg'
 import { useDispatch } from 'react-redux';
 import { logout } from '../../reducers/auth';
-import { getItems, getUsers } from '../../api/api';
+import { getItems, getUsers, getPreviewItems } from '../../api/api';
 // import { updateToken } from '../../api/api';
-import { setSearchTableItems } from './../../reducers/tableItems';
+import { setSearchTableItems, setPreviewTableItems } from './../../reducers/tableItems';
 // import { printItems } from './../../print';
 import { NavLink } from 'react-router-dom';
 import { setUsersTableItems } from './../../reducers/users';
-// import { getRooms } from './../../api/api';
+// import { getRooms, getPreviewItems } from './../../api/api';
+import SearchPreviewItem from './SearchPreviewItem';
 
 const Header = (props) => {
     console.log(props)
     const dispatch = useDispatch()
     const [search, setSearch] = useState(' ')
+    const [searchPreviewVisibility, setSearchPreviewVisibility] = useState(false)
     return (
         <header className={style.header}>
             <NavLink to='/'>
@@ -31,12 +33,17 @@ const Header = (props) => {
                 <input className={style.search} type="text" placeholder="Поиск" value={search} onChange={(e) => {
                     console.log(search)
                     setSearch(e.target.value)
+                    getPreviewItems(0, 0, search).then( res => {
+                        console.log(res)
+                        dispatch(setPreviewTableItems(res.data.items, res.data.total_count))
+                        setSearchPreviewVisibility(true)
+                    } )
                 }} />
                 <img src={searchIcon} alt="search" className={style.search_icon} />
-                <button onClick={() => getItems(0, 0, props.searchString).then((res) => {
+                <button onClick={() => getItems(0, 0, search).then((res) => {
                     console.log(res.data)
-                    // dispatch(setCategoryTableItems(res.data.items))
                     dispatch(setSearchTableItems(res.data.items, search))
+                    setSearchPreviewVisibility(false)
 
                 })} className={style.search_button}>
                     <img src={searchIconBtn} alt="search" className={style.search_icon} />
@@ -44,8 +51,25 @@ const Header = (props) => {
 
 
 
+                {searchPreviewVisibility && <div className={style.search_preview__container}>
+                    <div className={style.search_preview__total}>Найдено записей: {props.previewTotal} </div>
+                    {
+                        props.previewItems.map((el) => {
+                            console.log(el)
+                            return <SearchPreviewItem
+                                setSearchPreviewVisibility = {setSearchPreviewVisibility}
+                                id={el.id}
+                                title={el.title}
+                            />
+                        })
+                    }
+                </div>}
+
 
             </div>
+
+
+
             <div className={style.button_container}>
 
     

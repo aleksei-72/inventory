@@ -1,4 +1,7 @@
 const SET_ITEMS = "SET_ITEMS";
+
+const SET_PREVIEW_ITEMS = "SET_PREVIEW_ITEMS";
+
 const SET_CATEGORY_TABLE_ITEMS = "SET_CATEGORY_TABLE_ITEMS";
 const SET_SEARCH_TABLE_ITEMS = "SET_SEARCH_TABLE_ITEMS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
@@ -12,6 +15,8 @@ const SET_INITIAL_STATE = "SET_INITIAL_STATE";
 
 let initialState = {
     items: [],
+    previewItems: [],
+    previewTotal: [],
     rooms: [],
     search: ''
 }
@@ -23,6 +28,10 @@ const tableItemsReducer = (state = initialState, action) => {
         case SET_ITEMS:           
             console.log(action.items) 
             return { ...state, items: [...state.items, ...action.items] }
+
+        case SET_PREVIEW_ITEMS:
+            console.log(action.items)
+            return { ...state, previewItems: [...action.items], previewTotal: action.total }
 
         case SET_INITIAL_STATE:
             console.log(action.items)
@@ -92,19 +101,16 @@ const tableItemsReducer = (state = initialState, action) => {
 }
 
 export const setTableItems = (items, categoryId) => ({ type: SET_ITEMS, items, categoryId });
+export const setPreviewTableItems = (items, total) => ({ type: SET_PREVIEW_ITEMS, items, total });
+
+
 export const setCategoryTableItems = (items) => ({ type: SET_CATEGORY_TABLE_ITEMS, items });
-
-
 export const setSearchTableItems = (items, searchString) => ({ type: SET_SEARCH_TABLE_ITEMS, items, searchString});
-
-
 export const addTableItem = (item) => ({ type: ADD_NEW_TABLE_ITEM, item });
 export const updateTableItem = (item) => ({ type: UPDATE_TABLE_ITEM, item });
 export const deleteTableItem = (itemId) => ({ type: DELETE_TABLE_ITEM, itemId });
 export const addNewTableItem = (item) => (dispatch) => { dispatch(addTableItem(item)) };
-
 export const setInitialState = () => ({ type: SET_INITIAL_STATE });
 export const setRooms = (rooms) => ({ type: SET_ROOMS, rooms });
-
 
 export default tableItemsReducer

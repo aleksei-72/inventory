@@ -34,6 +34,17 @@ export const getItems = (currentPage, categoryId, search) => {
 }
 
 
+export const getPreviewItems = (currentPage, categoryId, search) => {
+    const res = axios.get(`/items?limit=10&skip=${currentPage}&category_id=${categoryId}&query=${search}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
+        console.log(res)
+        setAuthorization(localStorage.getItem('token'))
+        return res
+    } )
+    return res
+}
+
+
+
 export const login = (username, password) => {
     return async dispatch => {
         try {

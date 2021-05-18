@@ -13,6 +13,8 @@ class HeaderContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         tableItems: state.tableItemsReducer.items,
+        previewItems: state.tableItemsReducer.previewItems,
+        previewTotal: state.tableItemsReducer.previewTotal,
         searchString: state.tableItemsReducer.search
     }
 }
