@@ -41,6 +41,8 @@ const Table = (props) => {
         .then(res => {
           console.log(res.data)
           dispatch(setUsersTableItems(res))
+          setFetch(false)
+
           // setCurrentPage(prevVal => prevVal + 15)
         })
         .catch((err) => {
@@ -50,6 +52,7 @@ const Table = (props) => {
       getCategories().then(res => {
         console.log(res)
         dispatch(setCategoriesItems(res))
+        setFetch(false)
       })
         .catch((err) => {
           setDefaultAppValues(dispatch)
@@ -58,6 +61,7 @@ const Table = (props) => {
       getProfiles().then(res => {
         console.log(res)
         dispatch(setOwnersTableItems(res))
+        setFetch(false)        
       })
         .catch((err) => {
           setDefaultAppValues(dispatch)
@@ -66,6 +70,7 @@ const Table = (props) => {
       getRooms().then(res => {
         console.log(res)
         dispatch(setRooms(res))
+        setFetch(false)
       })
         .catch((err) => {
           setDefaultAppValues(dispatch)
@@ -75,23 +80,27 @@ const Table = (props) => {
   }, [fetch])
 
 
+//*********************************************************************************************************************************************************************************************** */
+  // useEffect(() => {
+  //   document.addEventListener('scroll', scrollHandler)
+  //   return () => {
+  //     document.removeEventListener('scroll', scrollHandler)
+  //   }
+  // })
 
-  useEffect(() => {
-    document.addEventListener('scroll', scrollHandler)
-    return () => {
-      document.removeEventListener('scroll', scrollHandler)
-    }
-  })
-
-  const scrollHandler = (e) => {
-    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length < totalCount) {
-      setFetch(true)
-
-
+  // const scrollHandler = (e) => {
+  //   if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length < totalCount) {
+  //     setFetch(true)
 
 
-    }
-  }
+
+
+  //   }
+  // }
+//*********************************************************************************************************************************************************************************************** */
+
+
+
 
 
 
@@ -104,18 +113,13 @@ const Table = (props) => {
       <TableHeader />
 
 
-
-      {/* <button onClick ={ () => setFetch(true) }>OOO</button> */}
-
-
-
-
       {
         props.tableItems.map((el) => {
           let checkItem = item => {
             if (!item) item = []
             return item
           }
+          console.log(el)
           return <TableItem title={el.title}
             id={el.id}
             count={el.count}
@@ -124,7 +128,10 @@ const Table = (props) => {
 
             price={el.price}
             // cost={el.count ? parseInt(el.count.match(/\d+/)) * el.price : el.price}
-            cost={ parseInt(el.count.match(/\d+/)) * el.price}
+            // cost={el.count && parseInt(el.count.match(/\d+/)) * el.price}
+
+            cost={parseInt(el.count, 10) * el.price}
+            test={parseInt(el.count, 10)}
 
             comment={el.comment}
             categoryTitle={el.category ? el.category.title : "Не указано"}
@@ -140,7 +147,7 @@ const Table = (props) => {
           />
         })
       }
-
+      <button className="download_items_btn" onClick = { () => setFetch(true) }>Загрузить элементы</button>
     </section>
   )
 }

@@ -13,6 +13,8 @@
     color:#282828;
     padding-left: 20px;
   /* transform: scaleY(-1); */
+    animation: newTableItem 0.75s;
+    /* z-index: -1; */
 
 }
 .item:nth-child(odd)  {
@@ -123,6 +125,20 @@ textarea {
 .category__field {
     color: #4C6FFF;
 }
+
+@keyframes newTableItem {
+    0% {
+        opacity: 0;
+    }
+    /* 50% {
+        background: rgba(237, 242, 247, 0.5);
+    } */
+
+    100% {
+        opacity: 1;        
+    }
+}
+
 
 @media print {
     * {

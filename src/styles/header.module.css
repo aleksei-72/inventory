@@ -63,6 +63,21 @@ input.search:focus {
     z-index: 999;
 }
 
+.search_preview__warning {
+    display: flex;
+    background: rgba(237, 242, 247, 0.5);
+    border-radius: 3px;
+    margin: 8px;
+    padding: 8px;
+    color: #4C6FFF;
+}
+.search_preview__warning img {
+    margin-right: 8px;
+    /* margin-top: -16px; */
+}
+.search_preview__red_text {
+    color: #FF4C4C;
+}
 
 .preview__item {
     padding: 8px 16px;

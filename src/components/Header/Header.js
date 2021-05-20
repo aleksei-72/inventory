@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import style from './../../styles/header.module.css'
-// import printIcon from './../../img/icons/Print.svg'
+import alertIcon from './../../img/icons/Alert.svg'
+import alertRedIcon from './../../img/icons/AlertRed.svg'
 import searchIcon from './../../img/icons/Search.svg'
 import searchIconBtn from './../../img/icons/Search_btn.svg'
 // import addIcon from './../../img/icons/Add.svg'
@@ -19,8 +20,10 @@ import SearchPreviewItem from './SearchPreviewItem';
 const Header = (props) => {
     console.log(props)
     const dispatch = useDispatch()
-    const [search, setSearch] = useState(' ')
+    const [search, setSearch] = useState('')
     const [searchPreviewVisibility, setSearchPreviewVisibility] = useState(false)
+
+
     return (
         <header className={style.header}>
             <NavLink to='/'>
@@ -38,7 +41,10 @@ const Header = (props) => {
                         dispatch(setPreviewTableItems(res.data.items, res.data.total_count))
                         setSearchPreviewVisibility(true)
                     } )
-                }} />
+                }}
+                
+                />
+                {/* onBlur = {() => setTimeout(setSearchPreviewVisibility(false), 1000)} */}
                 <img src={searchIcon} alt="search" className={style.search_icon} />
                 <button onClick={() => getItems(0, 0, search).then((res) => {
                     console.log(res.data)
@@ -52,17 +58,21 @@ const Header = (props) => {
 
 
                 {searchPreviewVisibility && <div className={style.search_preview__container}>
-                    <div className={style.search_preview__total}>Найдено записей: {props.previewTotal} </div>
+                    {props.previewTotal !==0 && <div className={style.search_preview__total}>Найдено записей: {props.previewTotal} </div>}
                     {
                         props.previewItems.map((el) => {
                             console.log(el)
                             return <SearchPreviewItem
-                                setSearchPreviewVisibility = {setSearchPreviewVisibility}
+                                setSearchPreviewVisibility={setSearchPreviewVisibility}
                                 id={el.id}
                                 title={el.title}
                             />
                         })
                     }
+                    <div className={style.search_preview__warning}>
+                        <img src={props.previewTotal === 0 ? alertRedIcon : alertIcon} />
+                        {props.previewTotal !== 0 ? <p>Чтобы увидеть больше вариантов — уточните запрос или нажмите кнопку “Поиск”</p> : <p className={style.search_preview__red_text}>Ваш запрос не был найден</p>}
+                    </div>
                 </div>}
 
 

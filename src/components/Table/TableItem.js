@@ -237,7 +237,7 @@ const TableItem = (props) => {
                             console.log(number)
                         }}
                         defaultValue={props.number}
-                        className={`${style.number__field} ${style.field}`} />
+                        className={`${style.number__field} ${style.field}`}  placeholder="0"/>
                 </div>
             </div>
 
@@ -258,8 +258,8 @@ const TableItem = (props) => {
                         console.log(e.currentTarget)
                         console.log(title)
                     }}
-                    defaultValue={props.title}
-                    className={`${style.title__field} ${style.field}`} />
+                    defaultValue={!props.title ? "Наименование" : props.title}
+                    className={`${style.title__field} ${style.field}`}/>
 
             </div>
 
@@ -283,6 +283,7 @@ const TableItem = (props) => {
 
                     onChange={(e) => {
                         setAmount(e.currentTarget.value)
+                        console.log(amount)
                     }}
                     defaultValue={!props.count ? '0' : props.count}
                     className={`${style.amount__field} ${style.field}`} />
