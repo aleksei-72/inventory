@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../reducers/auth';
 import { getItems, getUsers, getPreviewItems } from '../../api/api';
 // import { updateToken } from '../../api/api';
-import { setSearchTableItems, setPreviewTableItems } from './../../reducers/tableItems';
+import { setSearchTableItems, setPreviewTableItems, setFirstPageTableItems } from './../../reducers/tableItems';
 // import { printItems } from './../../print';
 import { NavLink } from 'react-router-dom';
 import { setUsersTableItems } from './../../reducers/users';
@@ -22,21 +22,28 @@ const Header = (props) => {
     const dispatch = useDispatch()
     const [search, setSearch] = useState('')
     const [searchPreviewVisibility, setSearchPreviewVisibility] = useState(false)
+    
 
 
     return (
         <header className={style.header}>
             <NavLink to='/'>
-                <div>
+                <div onClick = { () => {
+                    getItems(0, 0, '')
+                    .then(res => {
+                      console.log(res.data)
+                      dispatch(setFirstPageTableItems(res.data.items))
+                    })
+                } }>
                     <h1>Inventory.<span className={style.title}>System</span></h1>
                 </div>
             </NavLink>
 
             <div className={style.input_container}>
                 <input className={style.search} type="text" placeholder="Поиск" value={search} onChange={(e) => {
-                    console.log(search)
+                    console.log(e.currentTarget.value)
                     setSearch(e.target.value)
-                    getPreviewItems(0, 0, search).then( res => {
+                    getPreviewItems(0, 0, e.currentTarget.value).then( res => {
                         console.log(res)
                         dispatch(setPreviewTableItems(res.data.items, res.data.total_count))
                         setSearchPreviewVisibility(true)
@@ -96,6 +103,7 @@ const Header = (props) => {
                 
                 <button onClick={() => dispatch(logout())} className={style.logout_link}>Выйти из системы</button>
             </div>
+            
         </header>
 
     )

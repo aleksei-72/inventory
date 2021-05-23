@@ -37,7 +37,9 @@ const usersReducer = (state = initialState, action) => {
                 ...state.users.slice(0, deletedUserIndex),
                 ...state.users.slice(deletedUserIndex + 1, state.users.length)
             ]
+            console.log(updatedUsersWithoutDeleted)
             return { ...state, users: [...updatedUsersWithoutDeleted] }
+            // return { ...state }
 
         case UPDATE_TABLE_USER_ITEM:
             const updatedItemId = action.item.id

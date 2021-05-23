@@ -144,12 +144,12 @@ textarea {
     * {
         font-size: 10px !important;
     }
-    /* .item {
+    .item {
         border: 1px solid #D1D1D1 !important;
     }
     .cell__container {
         padding: 5px !important;
-    }*/
+    }
     .check {
         display: none !important;
     } 
@@ -157,7 +157,7 @@ textarea {
 
 
 
-    /* .number {
+    .number {
         width: 12px !important;
         max-width: 12px !important;
         justify-content: flex-start;
@@ -182,5 +182,5 @@ textarea {
     }
     .comment {
         display: none !important;
-    } */
+    }
   }

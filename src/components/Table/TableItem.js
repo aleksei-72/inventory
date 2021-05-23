@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 
 
 const TableItem = (props) => {
-    // console.log(props)
+    console.log(props)
 
     const [check, setCheck] = useState(false)
     const [number, setNumber] = useState(props.number)
@@ -286,6 +286,7 @@ const TableItem = (props) => {
                         console.log(amount)
                     }}
                     defaultValue={!props.count ? '0' : props.count}
+                    // defaultValue={ '0' }
                     className={`${style.amount__field} ${style.field}`} />
             </div>
 
@@ -312,7 +313,7 @@ const TableItem = (props) => {
                     rows={1}
 
                     disabled="disabled"
-                    defaultValue={props.cost}
+                    defaultValue={!props.cost ? "0" : props.cost}
                     className={`${style.amount__field} ${style.field}`} />
             </div>
 

@@ -14,6 +14,8 @@ const mapStateToProps = (state) => {
     return {
         tableItems: state.tableItemsReducer.items,
         categoriesItems: state.categoriesReducer.categories,
+        roomsItems: state.tableItemsReducer.rooms,
+        ownersTableItems: state.ownersReducer.owners,
         categoryId: state.categoriesReducer.currentCategoryId,
         searchString: state.tableItemsReducer.search
     }

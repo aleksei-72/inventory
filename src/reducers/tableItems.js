@@ -1,4 +1,5 @@
 const SET_ITEMS = "SET_ITEMS";
+const SET_FIRST_PAGE_ITEMS = "SET_FIRST_PAGE_ITEMS";
 
 const SET_PREVIEW_ITEMS = "SET_PREVIEW_ITEMS";
 
@@ -32,6 +33,10 @@ const tableItemsReducer = (state = initialState, action) => {
         case SET_PREVIEW_ITEMS:
             console.log(action.items)
             return { ...state, previewItems: [...action.items], previewTotal: action.total }
+
+        case SET_FIRST_PAGE_ITEMS:
+            console.log(action.items)
+            return { ...state, items: [...action.items] }
 
         case SET_INITIAL_STATE:
             console.log(action.items)
@@ -101,6 +106,7 @@ const tableItemsReducer = (state = initialState, action) => {
 }
 
 export const setTableItems = (items, categoryId) => ({ type: SET_ITEMS, items, categoryId });
+export const setFirstPageTableItems = (items) => ({ type: SET_FIRST_PAGE_ITEMS, items });
 export const setPreviewTableItems = (items, total) => ({ type: SET_PREVIEW_ITEMS, items, total });
 
 

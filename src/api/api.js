@@ -232,13 +232,14 @@ export const addTableUserItem = () => {
 }
 
 export const deleteUserItem = (userId) =>{
+    console.log(userId)
     return async dispatch => {
         try {
             const res = await axios.delete(`/users/${userId}`)
             console.log(res)
+            dispatch(deleteTableUserItem(userId))
             updateToken(dispatch)
             setAuthorization(localStorage.getItem('token'))
-            dispatch(deleteTableUserItem(userId))
         }
         catch (error) {
             console.log(error)
@@ -363,6 +364,57 @@ export const getRooms = (dispatch) => {
             setAuthorization(localStorage.getItem('token'))
             return res.data
         })
+}
+
+
+// export const createReport = () => {
+//     return async dispatch => {
+//         try {
+//             const res = await axios.post('/items/report')
+//             dispatch(addNewTableItem(res.data))
+//             updateToken(dispatch)
+//             setAuthorization(localStorage.getItem('token'))
+//             console.log(res.data)
+//             return res.data
+//         } catch (error) {
+//             console.log(error)
+//             // setDefaultAppValues(dispatch)
+
+//             // dispatch(logout())
+//             // dispatch(setInitialState())
+//         }
+//     }
+// }
+
+
+export const createReport = (item) => {
+    console.log(item)
+    const res = axios.post(`/items/report`,
+
+        {
+            filters: {
+                room_id: item.filters.room_id,
+                profile_id: item.filters.profile_id,
+                category_id: item.filters.category_id,
+                department_id: item.filters.department_id
+            },
+            sort: "updated_at",
+            order: "ASC",
+            columns: ["room", "profile", "category", "department", "count", "number", "title", "price", "comment", "created_at", "updatedAt"]
+        },
+        {responseType: 'blob'}
+
+
+    )
+    .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'file.xlsx');
+        document.body.appendChild(link);
+        link.click();
+      });
+    return res
 }
 
 
