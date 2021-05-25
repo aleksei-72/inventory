@@ -122,7 +122,12 @@ color: #828282;
 .delete_btn {
     padding: 0;
 }
-
+.import_file_input {
+    display: none;
+}
+.import_file_button {
+    padding: 10px 8px;
+}
 @media print {
     .title__container {
         display: none !important;

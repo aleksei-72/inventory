@@ -400,7 +400,7 @@ export const createReport = (item) => {
             },
             sort: "updated_at",
             order: "ASC",
-            columns: ["room", "profile", "category", "department", "count", "number", "title", "price", "comment", "created_at", "updatedAt"]
+            columns: item.columns
         },
         {responseType: 'blob'}
 
@@ -413,6 +413,28 @@ export const createReport = (item) => {
         link.setAttribute('download', 'file.xlsx');
         document.body.appendChild(link);
         link.click();
+      });
+    return res
+}
+
+
+export const importFiles = (items) => {
+    console.log(items)
+
+
+    let formData = new FormData();
+    console.log(formData)
+    let files = [...items]
+    let count = 0
+    files.forEach( item => {
+        // console.log(item)
+        formData.append(`file_${count}`, item)
+        count++
+    })
+    console.log(files)
+    const res = axios.post(`/items/imports`, formData, {headers: {'Content-Type': 'multipart/form-data'}})
+    .then((res) => {
+        console.log(res)
       });
     return res
 }

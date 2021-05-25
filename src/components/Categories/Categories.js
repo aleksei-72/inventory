@@ -5,6 +5,7 @@ import { printItems } from './../../print';
 import printIcon from './../../img/icons/Print.svg'
 import addIcon from './../../img/icons/Add.svg'
 import PrintModal from '../Modal/ReportModal';
+import { importFiles } from '../../api/api';
 
 const Categories = (props) => {
     console.log(props)
@@ -31,19 +32,42 @@ const Categories = (props) => {
                     <img src={printIcon} alt="print" className={style.button_icon} />
                 </button>
 
+
+
                 <button onClick={() => setPrintVisibility(!printVisibility)} className={style.add_item_button}>
                     Сформировать отчет
                 </button>
 
-                
-                <form method = "POST">
-                    <input type='file'/>
-                </form>
-                
 
-                <button onClick={() => setPrintVisibility(!printVisibility)} className={style.add_item_button}>
-                    Загрузить файл
-                </button>
+                <input id = "uploadFile" type='file' multiple required 
+                onClick={() => {
+                    console.log('111')
+
+                }}
+                onChange = { (e) => {
+                    console.log(e.target.files)
+                    // let formData = new FormData();
+                    // console.log(formData)
+                    // let files = [...e.target.files]
+                    // files.forEach( item => {
+                    //     // console.log(item)
+                    //     formData.append("file", item)
+                        
+                    // })
+                    // formData.append("file", files[0])
+                    // console.log(formData)
+                    importFiles(e.target.files)
+                } }
+                className={style.import_file_input}
+                />
+                <label className={`${style.add_item_button} ${style.import_file_button}`} for = 'uploadFile'>Загрузить файл</label>
+
+
+
+
+
+
+
 
 
 
@@ -53,7 +77,7 @@ const Categories = (props) => {
             </div>
 
             <PrintModal active = {printVisibility} setActive = {setPrintVisibility} ownersTableItems = {props.ownersTableItems} categoriesItems = {props.categoriesItems} roomsItems = {props.roomsItems}/>
-
+            
 
 
         </div>

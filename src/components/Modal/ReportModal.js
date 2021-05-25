@@ -5,7 +5,6 @@ import Select from 'react-select';
 import { createReport } from '../../api/api';
 
 
-
 const PrintModal = (props) => {
     console.log(props)
 
@@ -19,7 +18,7 @@ const PrintModal = (props) => {
         },
         sort: "updated_at",
         order: "ASC",
-        columns: ["room", "profile", "category", "department", "count", "number", "title", "price", "comment", "created_at", "updatedAt"]
+        columns: ["room", "profile", "category", "department", "count", "number", "title", "price", "comment", "created_at", "updated_at"]
     }
 
 
@@ -77,8 +76,6 @@ const PrintModal = (props) => {
         console.log(e)
         dataItem.filters.profile_id = e.id
         console.log(dataItem)
-
-        // props.updateItem(dataItem)
     }} />
 
 
@@ -86,8 +83,6 @@ const PrintModal = (props) => {
     const categoriesOption = props.categoriesItems.map( el => {
         return {value: el.title, label: el.title, id:el.id}
     } )
-    // console.log(categoriesOption)
-
 
     const customCategoriesSelectStyles = {
         menu: (provided, state) => ({
@@ -131,24 +126,12 @@ const PrintModal = (props) => {
         //     return { ...provided, opacity, transition };
         // }
     }
-
-
-    // const CategoriesSelect = () => <Select placeholder={props.categoryTitle} defaultValue={props.categoryTitle} styles={customCategoriesSelectStyles} options={categoriesOption} 
-    // onChange={(e) => {
-    //     dataItem.category = e.id    
-    //     props.updateItem(dataItem)
-    // }}     
-    // />
-
     
     const CategoriesSelect = () => <Select placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customCategoriesSelectStyles} options={categoriesOption} 
     onChange={(e) => {
         console.log(e)
-
         dataItem.filters.category_id = e.id  
         console.log(dataItem)
-
-        // props.updateItem(dataItem)
     }}     
     />
 
@@ -198,24 +181,95 @@ const PrintModal = (props) => {
         // }
     }
 
-    // const LocationSelect = () => <Select placeholder={`${locationVal[0].department.title} (${locationVal[0].number})`} 
-    //                                      defaultValue={`${locationVal[0].department.title} (${locationVal[0].number})`} 
-    //                                      styles={customRoomsSelectStyles} options={roomsOption} 
-    // onChange={(e) => {
-    //     dataItem.location = e.id
-    //     props.updateItem(dataItem)
-    // }} />
     const LocationSelect = () => <Select placeholder={`Выбрать`} 
                                          defaultValue={`Выбрать`} 
                                          styles={customRoomsSelectStyles} options={roomsOption} 
     onChange={(e) => {
         console.log(e)
-
         dataItem.filters.room_id = e.id 
+        console.log(dataItem)
+    }} />
+
+
+
+
+    // columns: ["room", "profile", "category", "department", "count", "number", "title", "price", "comment", "created_at", "updatedAt"]
+
+
+    const columnsOption  = [
+        { value: 'room', label: 'Кабинеты' },
+        { value: 'profile', label: 'Ответсвенный' },
+        { value: 'category', label: 'Категория' },
+        { value: 'department', label: 'Место' },
+        { value: 'count', label: 'Количество' },
+        { value: 'number', label: 'Номер' },
+        { value: 'title', label: 'Наименование' },
+        { value: 'price', label: 'Цена' },
+        { value: 'comment', label: 'Комментарий' },        
+        { value: 'created_at', label: 'Дата создания' },
+        { value: 'updated_at', label: 'Дата обновления' },
+      ];
+    // console.log(categoriesOption)
+
+
+    const customColumnsSelectStyles = {
+        menu: (provided, state) => ({
+            ...provided,
+            width: state.selectProps.width,
+            borderBottom: '1px dotted pink',
+            color: state.selectProps.menuColor,
+            padding: 2,
+            position: 'absolute',
+            right: 20,
+            top: 35
+        }),
+        placeholder: () => ({
+            color:'#282828',
+            fontSize: 14
+        }),
+
+        singleValue: () => ({
+            fontSize: 14
+        }),
+        dropdownIndicator: () => ({
+            color:'#282828',
+            position: 'absolute',
+            top: 7,
+            right: 20
+        }),
+
+        control: (_, { selectProps: { width } }) => ({
+            width: 145,
+            height: 35,
+            marginLeft: -10,
+            hyphens: 'auto'
+
+            // border: '1px solid #000'
+        }),
+
+    }
+
+    
+    const ColumnsSelect = () => <Select isMulti={true} placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customColumnsSelectStyles} options={columnsOption} 
+    onChange={(e) => {
+        console.log(e)
+        let selectedColumns = []
+        e.forEach( item => {
+            console.log(item)
+            selectedColumns.push(item.value)  
+        } )
+
+        console.log(selectedColumns)
+        dataItem.columns = selectedColumns
         console.log(dataItem)
 
         // props.updateItem(dataItem)
-    }} />
+    }}     
+    />
+
+
+
+
 
 
     return (
@@ -236,6 +290,9 @@ const PrintModal = (props) => {
                 <div className={`${style.warning__container}`}>
                     <LocationSelect />
                 </div>
+
+                    {/* <MultiSelectSort/> */}
+                    <ColumnsSelect/>
                 <div className={`${style.button__container}`}>                    
                     <button onClick={() => props.setActive(false)} className={style.cancel_btn}>Отмена</button>
                     <button onClick={() => {

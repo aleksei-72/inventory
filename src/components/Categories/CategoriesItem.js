@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { deleteCategoriesItem, getItems } from '../../api/api';
+import React from 'react';
+import { getItems } from '../../api/api';
 import style from './../../styles/categories.module.css';
 // import { getCategoriesItems } from './../../api/api';
 import { useDispatch } from 'react-redux';
