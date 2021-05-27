@@ -14,12 +14,19 @@ const CategoriesItems = (props) => {
     const dispatch = useDispatch()
 
 
+    // useEffect(() => {
+    //     getCategories().then(res => {
+    //         console.log(res)
+    //         dispatch(setCategoriesItems(res))
+    //     })
+    // }, [])
+
     useEffect(() => {
         getCategories().then(res => {
             console.log(res)
             dispatch(setCategoriesItems(res))
         })
-    }, [])
+    })
 
 
 

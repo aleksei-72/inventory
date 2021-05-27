@@ -16,6 +16,7 @@ import { NavLink } from 'react-router-dom';
 import { setUsersTableItems } from './../../reducers/users';
 // import { getRooms, getPreviewItems } from './../../api/api';
 import SearchPreviewItem from './SearchPreviewItem';
+// import Select from 'react-select';
 
 const Header = (props) => {
     console.log(props)
@@ -23,6 +24,56 @@ const Header = (props) => {
     const [search, setSearch] = useState('')
     const [searchPreviewVisibility, setSearchPreviewVisibility] = useState(false)
     
+
+
+
+    // const authOption  = [
+    //     { value: 'logout', label: 'Выход' }
+    //   ];
+    // // console.log(categoriesOption)
+
+
+    // const customAuthsSelectStyles = {
+    //     menu: (provided, state) => ({
+    //         ...provided,
+    //         width: state.selectProps.width,
+    //         borderBottom: '1px dotted pink',
+    //         color: state.selectProps.menuColor,
+    //         padding: 2,
+    //         position: 'absolute',
+    //         right: 20,
+    //         top: 35
+    //     }),
+    //     placeholder: () => ({
+    //         color:'#282828',
+    //         fontSize: 14
+    //     }),
+
+    //     singleValue: () => ({
+    //         fontSize: 14
+    //     }),
+    //     dropdownIndicator: () => ({
+    //         color:'#282828',
+    //         position: 'absolute',
+    //         top: 7,
+    //         right: 20
+    //     }),
+
+    //     control: (_, { selectProps: { width } }) => ({
+    //         width: 145,
+    //         height: 35,
+    //         marginLeft: -10,
+    //         hyphens: 'auto'
+
+    //         // border: '1px solid #000'
+    //     }),
+
+    // }
+
+    
+    // const AuthSelect = () => <Select placeholder={`${props.currentUser.username}`} defaultValue={`${props.currentUser.username}`} styles={customAuthsSelectStyles} options={authOption}  />
+
+
 
 
     return (
@@ -64,7 +115,7 @@ const Header = (props) => {
 
 
 
-                {searchPreviewVisibility && <div className={style.search_preview__container}>
+                {/* {searchPreviewVisibility && <div className={style.search_preview__container}>
                     {props.previewTotal !==0 && <div className={style.search_preview__total}>Найдено записей: {props.previewTotal} </div>}
                     {
                         props.previewItems.map((el) => {
@@ -80,8 +131,26 @@ const Header = (props) => {
                         <img src={props.previewTotal === 0 ? alertRedIcon : alertIcon} />
                         {props.previewTotal !== 0 ? <p>Чтобы увидеть больше вариантов — уточните запрос или нажмите кнопку “Поиск”</p> : <p className={style.search_preview__red_text}>Ваш запрос не был найден</p>}
                     </div>
+                </div>} */}
+                {searchPreviewVisibility && <div className={style.search_preview__wrapper} onClick = { () => setSearchPreviewVisibility(false)}>
+                    <div className={style.search_preview__container}>
+                        {props.previewTotal !== 0 && <div className={style.search_preview__total}>Найдено записей: {props.previewTotal} </div>}
+                        {
+                            props.previewItems.map((el) => {
+                                console.log(el)
+                                return <SearchPreviewItem
+                                    setSearchPreviewVisibility={setSearchPreviewVisibility}
+                                    id={el.id}
+                                    title={el.title}
+                                />
+                            })
+                        }
+                        <div className={style.search_preview__warning}>
+                            <img src={props.previewTotal === 0 ? alertRedIcon : alertIcon} alt="alert"/>
+                            {props.previewTotal !== 0 ? <p>Чтобы увидеть больше вариантов — уточните запрос или нажмите кнопку “Поиск”</p> : <p className={style.search_preview__red_text}>Ваш запрос не был найден</p>}
+                        </div>
+                    </div>
                 </div>}
-
 
             </div>
 
@@ -89,18 +158,27 @@ const Header = (props) => {
 
             <div className={style.button_container}>
 
-    
-                <NavLink to = "/users">
+                
+                { props.currentUser.role === "admin" && <NavLink to = "/users">
                     <button onClick = { () => getUsers().then( res => {
                         console.log(res)
                         dispatch(setUsersTableItems(res))
                     } ) } className={style.settings_button}> Настройки
                         <img src={settingsIcon} alt="settings" className={style.settings_icon}/>
                      </button>
-                </NavLink>
+                </NavLink>}
 
 
-                
+
+
+
+
+
+
+
+
+
+                {/* <AuthSelect /> */}
                 <button onClick={() => dispatch(logout())} className={style.logout_link}>Выйти из системы</button>
             </div>
             

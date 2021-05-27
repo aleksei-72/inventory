@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 
 
 const TableItem = (props) => {
-    console.log(props)
+    // console.log(props)
 
     const [check, setCheck] = useState(false)
     const [number, setNumber] = useState(props.number)
@@ -14,7 +14,7 @@ const TableItem = (props) => {
     const [title, setTitle] = useState(props.title)
     const owner = props.owner.name
     // const [location, setLocation] = useState('')
-    const [amount, setAmount] = useState(props.count)
+    const [amount, setAmount] = useState(`${props.count}`)
     const [comment, setComment] = useState(props.comment)
     const [price, setPrice] = useState(props.price)
     const [modalActive, setModalActive] = useState(false)
@@ -226,7 +226,8 @@ const TableItem = (props) => {
 
             <div className={`${style.cell__container}  ${style.number}`}>
                 <div className={`${style.cell}`}>
-                    <textarea
+
+                    {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                         onKeyPress={(e) => auto_grow(e.currentTarget)}
                         rows={1}
                         cols={8}
@@ -237,19 +238,20 @@ const TableItem = (props) => {
                             console.log(number)
                         }}
                         defaultValue={props.number}
-                        className={`${style.number__field} ${style.field}`}  placeholder="0"/>
+                        className={`${style.number__field} ${style.field}`}  placeholder="0"/> : <p>{props.number}</p>}
+                    
                 </div>
             </div>
 
 
             <div className={`${style.cell__container} ${style.category}`}>
-                <CategoriesSelect />
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <CategoriesSelect /> : <p>{props.categoryTitle}</p>}
+                
             </div>
 
 
             <div className={`${style.cell__container} ${style.name}`}>
-
-                <textarea
+            {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
                     cols={26}
                     onBlur={(e) => props.updateItem(dataItem)}
@@ -259,20 +261,24 @@ const TableItem = (props) => {
                         console.log(title)
                     }}
                     defaultValue={!props.title ? "Наименование" : props.title}
-                    className={`${style.title__field} ${style.field}`}/>
+                    className={`${style.title__field} ${style.field}`}/> : <p>{!props.title ? "Наименование" : props.title}</p>}
+               
 
             </div>
 
             <div className={`${style.cell__container} ${style.owner}`}>
-                <OwnersSelect/>
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <OwnersSelect/> : <p>{!props.owner.name ? 'Не указано' : props.owner.name}</p>}
+                {/* <OwnersSelect/> */}
             </div>
 
             <div className={`${style.cell__container} ${style.location}`}>
-                <LocationSelect/>
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <LocationSelect/> : <p>{`${locationVal[0].department.title} (${locationVal[0].number})`}</p>}
+                {/* <LocationSelect/> */}
             </div>
 
+
             <div className={`${style.cell__container} ${style.amount}`}>
-                <textarea
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
                     rows={1}
                     cols={5}
@@ -285,17 +291,15 @@ const TableItem = (props) => {
                         setAmount(e.currentTarget.value)
                         console.log(amount)
                     }}
-                    defaultValue={!props.count ? '0' : props.count}
+                    defaultValue={!props.count ? '0 шт' : props.count}
                     // defaultValue={ '0' }
-                    className={`${style.amount__field} ${style.field}`} />
+                    className={`${style.amount__field} ${style.field}`} /> : <p>{!props.count ? '0 шт' : props.count}</p>}
+                
             </div>
 
 
-
-
-
             <div className={`${style.cell__container} ${style.price}`}>
-                <textarea
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     rows={1}
 
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
@@ -305,21 +309,26 @@ const TableItem = (props) => {
                         console.log(price)
                     }}
                     defaultValue={!props.price? 0 : props.price}
-                    className={`${style.amount__field} ${style.field}`} />
+                    className={`${style.amount__field} ${style.field}`} /> : <p>{!props.price? 0 : props.price}</p>}
+                
             </div>
 
+
+
             <div className={`${style.cell__container} ${style.cost}`}>
-                <textarea
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     rows={1}
 
                     disabled="disabled"
-                    defaultValue={!props.cost ? "0" : props.cost}
-                    className={`${style.amount__field} ${style.field}`} />
+                    defaultValue={!NaN ? props.price * parseInt(props.count, 10) : 0}
+                    // defaultValue={!props.cost ? "0" : props.cost}
+                    className={`${style.amount__field} ${style.field}`} /> : <p>{!NaN ? props.price * parseInt(props.count, 10) : 0}</p>}
+               
             </div>
 
 
             <div className={`${style.cell__container} ${style.comment}`}>
-                <textarea
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
                     rows={1}
                     cols={25}
@@ -330,19 +339,16 @@ const TableItem = (props) => {
                         console.log(comment)
                     }}
                     defaultValue={!props.comment ? 'Исправно' : props.comment}
-                    className={`${style.commemt__field} ${style.field}`} />
+                    className={`${style.commemt__field} ${style.field}`} /> : <p>{!props.comment ? 'Исправно' : props.comment}</p>}
+               
             </div>
 
-            <button onClick={() => setModalActive(true)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>
+            {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <button onClick={() => setModalActive(true)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>}
 
             <Modal active = {modalActive} setActive = {setModalActive} deleteItem = {props.deleteItem} id = {props.id}/>
         </div>
     )
 }
-
-
-
-
 
 
 export default TableItem

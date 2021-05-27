@@ -1,6 +1,7 @@
 const SET_AUTH_DATA = "SET_AUTH_DATA";
 const LOGOUT = "LOGOUT";
 const UPDATE_TOKEN = "UPDATE_TOKEN";
+const SET_USER_DATA = "SET_USER_DATA";
 
 let initialState = {
     currentUser: {},
@@ -13,6 +14,9 @@ const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_DATA:
             return {...state, token:action.data, isAuth:true}
+
+        case SET_USER_DATA:
+            return {...state, currentUser: action.data}
 
         case LOGOUT:
                 console.log(action)
@@ -32,6 +36,7 @@ const authReducer = (state = initialState, action) => {
 
 
 export const setAuthData = (data) => ({type:SET_AUTH_DATA, data})
+export const setUserData = (data) => ({type:SET_USER_DATA, data})
 export const updateTokenData = (token) => ({type:UPDATE_TOKEN, token})
 export const logout = () => ({type:LOGOUT})
 

@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
         tableItems: state.tableItemsReducer.items,
         previewItems: state.tableItemsReducer.previewItems,
         previewTotal: state.tableItemsReducer.previewTotal,
+        currentUser: state.authReducer.currentUser,
         searchString: state.tableItemsReducer.search
     }
 }

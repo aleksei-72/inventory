@@ -32,7 +32,7 @@ const UsersTableItem = (props) => {
     const roleOptions = [
         { value: 'admin', label: 'admin' },
         { value: 'reader', label: 'reader' },
-        { value: 'view', label: 'view' }
+        { value: 'user', label: 'user' }
     ]
 
     const statusOptions = [
@@ -95,6 +95,7 @@ const UsersTableItem = (props) => {
     const RoleComponent = () => <Select placeholder={props.role} defaultValue={`${props.role}`} styles={customStyles} options={roleOptions} onChange={(e) => {
         console.log(props)
         console.log(e)
+        dataItem.role = e.value
         setRole(e.value)
         props.updateUser(dataItem)
     }} />
@@ -106,6 +107,8 @@ const UsersTableItem = (props) => {
         setBlockedStatus(e.value)
         props.updateUser(dataItem)
     }} />
+
+
 
 
     return (

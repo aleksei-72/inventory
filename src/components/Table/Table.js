@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import TableItem from './TableItem';
 import TableHeader from './TableHeader';
 import { Redirect } from 'react-router-dom';
-import { getItems, getProfiles, getUsers, setDefaultAppValues } from '../../api/api';
+import { getItems, getMe, getProfiles, getUsers, setDefaultAppValues } from '../../api/api';
 import { useDispatch } from 'react-redux';
 import { setRooms, setTableItems } from './../../reducers/tableItems';
 import { setUsersTableItems } from './../../reducers/users';
 import { getCategories, getRooms } from './../../api/api';
 import { setCategoriesItems } from './../../reducers/categories';
 import { setOwnersTableItems } from './../../reducers/owners';
+import { setUserData } from '../../reducers/auth';
 
 const Table = (props) => {
-  console.log(props)
+  // console.log(props)
   const dispatch = useDispatch()
   const [items, setItems] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
@@ -79,6 +80,12 @@ const Table = (props) => {
     }
   }, [fetch])
 
+    useEffect( () => {
+      getMe().then( res => {
+        dispatch(setUserData(res.data))
+        console.log(res.data)
+      } )
+    }, [] )
 
 //*********************************************************************************************************************************************************************************************** */
   // useEffect(() => {
@@ -119,19 +126,28 @@ const Table = (props) => {
             if (!item) item = []
             return item
           }
+
+          let checkNumber= item => {
+            if (!item) item = 0
+            return item
+          }
+
           console.log(el)
-          return <TableItem title={el.title}
+          return <TableItem 
+            title={el.title}
             id={el.id}
-            count={el.count}
+            count={checkNumber(el.count)}
+            price={checkNumber(el.price)}
+
             key={el.id}
             number={el.number}
 
-            price={el.price}
+            
             // cost={el.count ? parseInt(el.count.match(/\d+/)) * el.price : el.price}
             // cost={el.count && parseInt(el.count.match(/\d+/)) * el.price}
 
-            cost={parseInt(el.count, 10) * el.price}
-            test={parseInt(el.count, 10)}
+            // cost={parseInt(el.count, 10) * el.price}
+            // test={parseInt(el.count, 10)}
 
             comment={el.comment}
             categoryTitle={el.category ? el.category.title : "Не указано"}
@@ -144,6 +160,7 @@ const Table = (props) => {
             categoriesItems={props.categoriesItems}
             ownersTableItems={props.ownersTableItems}
             roomsItems={props.roomsItems}
+            currentUser = {props.currentUser}
           />
         })
       }

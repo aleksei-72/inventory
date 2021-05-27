@@ -439,6 +439,15 @@ export const importFiles = (items) => {
     return res
 }
 
+export const getMe = () => {
+    const res = axios.get(`/me`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then( (res) => {
+        console.log(res)
+        setAuthorization(localStorage.getItem('token'))
+        return res
+    } )
+    return res
+}
+
 
 export const setDefaultAppValues = (dispatch) => {
     dispatch(logout())

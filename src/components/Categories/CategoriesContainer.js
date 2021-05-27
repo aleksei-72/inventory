@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
         roomsItems: state.tableItemsReducer.rooms,
         ownersTableItems: state.ownersReducer.owners,
         categoryId: state.categoriesReducer.currentCategoryId,
+        currentUser: state.authReducer.currentUser,
         searchString: state.tableItemsReducer.search
     }
 }

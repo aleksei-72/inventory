@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
         ownersTableItems: state.ownersReducer.owners,
 
         roomsItems: state.tableItemsReducer.rooms,
-
+        currentUser: state.authReducer.currentUser,
 
         usersTableItems: state.usersReducer.users,
         currentPage: state.tableItemsReducer.currentPage,
