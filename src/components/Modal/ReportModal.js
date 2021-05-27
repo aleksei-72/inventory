@@ -5,7 +5,7 @@ import Select from 'react-select';
 import { createReport } from '../../api/api';
 
 
-const PrintModal = (props) => {
+const ReportModal = (props) => {
     console.log(props)
 
 
@@ -27,44 +27,42 @@ const PrintModal = (props) => {
             ...provided,
             width: state.selectProps.width,
             borderBottom: '1px dotted pink',
-            color: state.selectProps.menuColor,
+            // color: state.selectProps.menuColor,
+            color: '#282828',
             padding: 2,
             position: 'absolute',
-            right: 20,
-            top: 35
+            width: 230,
+            // right: 20,
+            // top: 35
         }),
         placeholder: () => ({
-            color:'#282828',
+            color: '#282828',
             fontSize: 14
         }),
 
         singleValue: () => ({
+            color: '#282828',
             fontSize: 14
         }),
         dropdownIndicator: () => ({
-            color:'#282828',
+            color: '#282828',
             position: 'absolute',
-            top: 17,
-            right: 20
+            top: 6,
+            right: 10
         }),
 
         control: (_, { selectProps: { width } }) => ({
-            width: 165,
+            width: 230,
             height: 35,
-            margin: 10,
-        }),
-
-        // singleValue: (provided, state) => {
-        //     const opacity = state.isDisabled ? 0.5 : 1;
-        //     const transition = 'opacity 300ms';
-
-        //     return { ...provided, opacity, transition };
-        // }
+            // marginRight: 8,
+            border: "1px solid #D1D1D1",
+            borderRadius: "3px"
+        })
     }
 
-    const ownersOption = props.ownersTableItems.map( el => {
-        return {value: el.name, label: el.name, id:el.id}
-    } )
+    const ownersOption = props.ownersTableItems.map(el => {
+        return { value: el.name, label: el.name, id: el.id }
+    })
 
 
     // const OwnersSelect = () => <Select placeholder={!props.owner.name ? 'Не указано' : props.owner.name} defaultValue={props.owner.name} styles={customUsersSelectStyles} options={ownersOption} onChange={(e) => {
@@ -79,66 +77,63 @@ const PrintModal = (props) => {
     }} />
 
 
-    
-    const categoriesOption = props.categoriesItems.map( el => {
-        return {value: el.title, label: el.title, id:el.id}
-    } )
+
+    const categoriesOption = props.categoriesItems.map(el => {
+        return { value: el.title, label: el.title, id: el.id }
+    })
 
     const customCategoriesSelectStyles = {
         menu: (provided, state) => ({
             ...provided,
             width: state.selectProps.width,
             borderBottom: '1px dotted pink',
-            color: state.selectProps.menuColor,
+            color: '#282828',
             padding: 2,
             position: 'absolute',
-            right: 20,
-            top: 35
+            width: 145,
+            // left: -9
+            // right: -20,
+            // top: 35
         }),
         placeholder: () => ({
-            color:'#282828',
+            color: '#282828',
             fontSize: 14
         }),
 
         singleValue: () => ({
+            color: '#282828',
             fontSize: 14
         }),
         dropdownIndicator: () => ({
-            color:'#282828',
+            color: '#282828',
             position: 'absolute',
-            top: 7,
-            right: 20
+            top: 6,
+            right: 10
         }),
 
         control: (_, { selectProps: { width } }) => ({
             width: 145,
             height: 35,
-            marginLeft: -10,
-            hyphens: 'auto'
-
+            // marginLeft: -10,
+            hyphens: 'auto',
+            border: "1px solid #D1D1D1",
+            borderRadius: "3px"
             // border: '1px solid #000'
-        }),
-
-        // singleValue: (provided, state) => {
-        //     const opacity = state.isDisabled ? 0.5 : 1;
-        //     const transition = 'opacity 300ms';
-
-        //     return { ...provided, opacity, transition };
-        // }
+        })
     }
-    
-    const CategoriesSelect = () => <Select placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customCategoriesSelectStyles} options={categoriesOption} 
-    onChange={(e) => {
-        console.log(e)
-        dataItem.filters.category_id = e.id  
-        console.log(dataItem)
-    }}     
+
+    const CategoriesSelect = () => <Select placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customCategoriesSelectStyles} options={categoriesOption}
+        onChange={(e) => {
+            console.log(e)
+            dataItem.filters.category_id = e.id
+            console.log(dataItem)
+        }}
     />
 
 
-    const roomsOption = props.roomsItems.map( el => {
-        return {value: `${el.number}`, label: `${el.number}`, id:el.id}
-    } )
+    const roomsOption = props.roomsItems.map(el => {
+        return { value: `${el.number}`, label: `${el.number}`, id: el.id }
+    })
 
 
     const customRoomsSelectStyles = {
@@ -146,49 +141,46 @@ const PrintModal = (props) => {
             ...provided,
             width: state.selectProps.width,
             borderBottom: '1px dotted pink',
-            color: state.selectProps.menuColor,
+            color: '#282828',
             padding: 2,
             position: 'absolute',
-            right: 20,
-            top: 35
+            width: 115,
+            // right: 20,
+            // top: 35
         }),
         placeholder: () => ({
-            color:'#282828',
+            color: '#282828',
             fontSize: 14
         }),
 
         singleValue: () => ({
+            color: '#282828',
             fontSize: 14
         }),
         dropdownIndicator: () => ({
-            color:'#282828',
+            color: '#282828',
             position: 'absolute',
-            top: 17,
-            right: 20
+            top: 6,
+            right: 10
         }),
 
         control: (_, { selectProps: { width } }) => ({
-            width: 175,
+            width: 115,
             height: 35,
-            margin: 10,
+            // marginRight: 8,
+            border: "1px solid #D1D1D1",
+            borderRadius: "3px"
         }),
-
-        // singleValue: (provided, state) => {
-        //     const opacity = state.isDisabled ? 0.5 : 1;
-        //     const transition = 'opacity 300ms';
-
-        //     return { ...provided, opacity, transition };
-        // }
     }
 
-    const LocationSelect = () => <Select placeholder={`Выбрать`} 
-                                         defaultValue={`Выбрать`} 
-                                         styles={customRoomsSelectStyles} options={roomsOption} 
-    onChange={(e) => {
-        console.log(e)
-        dataItem.filters.room_id = e.id 
-        console.log(dataItem)
-    }} />
+    const LocationSelect = () => <Select placeholder={`Выбрать`}
+        defaultValue={`Выбрать`}
+        styles={customRoomsSelectStyles} options={roomsOption}
+        onChange={(e) => {
+            console.log(e)
+            dataItem.filters.room_id = e.id
+            console.log(dataItem)
+        }} />
 
 
 
@@ -196,7 +188,7 @@ const PrintModal = (props) => {
     // columns: ["room", "profile", "category", "department", "count", "number", "title", "price", "comment", "created_at", "updatedAt"]
 
 
-    const columnsOption  = [
+    const columnsOption = [
         { value: 'room', label: 'Кабинеты' },
         { value: 'profile', label: 'Ответсвенный' },
         { value: 'category', label: 'Категория' },
@@ -205,10 +197,10 @@ const PrintModal = (props) => {
         { value: 'number', label: 'Номер' },
         { value: 'title', label: 'Наименование' },
         { value: 'price', label: 'Цена' },
-        { value: 'comment', label: 'Комментарий' },        
+        { value: 'comment', label: 'Комментарий' },
         { value: 'created_at', label: 'Дата создания' },
         { value: 'updated_at', label: 'Дата обновления' },
-      ];
+    ];
     // console.log(categoriesOption)
 
 
@@ -217,54 +209,67 @@ const PrintModal = (props) => {
             ...provided,
             width: state.selectProps.width,
             borderBottom: '1px dotted pink',
-            color: state.selectProps.menuColor,
+            color: '#282828',
             padding: 2,
             position: 'absolute',
-            right: 20,
-            top: 35
+            width: "500px",
+            // right: 20,
+            // top: 35
         }),
         placeholder: () => ({
-            color:'#282828',
+            color: '#282828',
             fontSize: 14
         }),
 
         singleValue: () => ({
+            color: '#282828',
             fontSize: 14
         }),
         dropdownIndicator: () => ({
-            color:'#282828',
+            color: '#282828',
             position: 'absolute',
-            top: 7,
-            right: 20
+            top: 8,
+            right: 10
         }),
-
+        indicatorContainer: () => ({
+            color: '#282828'
+        }),
         control: (_, { selectProps: { width } }) => ({
-            width: 145,
+            width: "500px",
             height: 35,
-            marginLeft: -10,
-            hyphens: 'auto'
+            margin: "0px auto",
+            hyphens: 'auto',
+            border: "1px solid #D1D1D1",
+            borderRadius: "3px"
 
             // border: '1px solid #000'
         }),
-
+        indicatorsContainer: () => ({
+            position: "absolute",
+            width: 66,
+            display: "flex",
+            justifyContent: "space-between",
+            right: 0,
+            top: 0
+        })
     }
 
-    
-    const ColumnsSelect = () => <Select isMulti={true} placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customColumnsSelectStyles} options={columnsOption} 
-    onChange={(e) => {
-        console.log(e)
-        let selectedColumns = []
-        e.forEach( item => {
-            console.log(item)
-            selectedColumns.push(item.value)  
-        } )
 
-        console.log(selectedColumns)
-        dataItem.columns = selectedColumns
-        console.log(dataItem)
+    const ColumnsSelect = () => <Select isMulti={true} placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customColumnsSelectStyles} options={columnsOption}
+        onChange={(e) => {
+            console.log(e)
+            let selectedColumns = []
+            e.forEach(item => {
+                console.log(item)
+                selectedColumns.push(item.value)
+            })
 
-        // props.updateItem(dataItem)
-    }}     
+            console.log(selectedColumns)
+            dataItem.columns = selectedColumns
+            console.log(dataItem)
+
+            // props.updateItem(dataItem)
+        }}
     />
 
 
@@ -273,39 +278,47 @@ const PrintModal = (props) => {
 
 
     return (
-        <div className={ props.active ? `${style.modal} ${style.active}` : `${style.modal}`} onClick = { () => props.setActive(false) }>
-            <div className={`${style.modal__content}`} onClick = { e => e.stopPropagation() }>
+        <div className={props.active ? `${style.modal} ${style.active} ${style.reportModal}` : `${style.modal} ${style.reportModal}`} onClick={() => props.setActive(false)}>
+            <div className={`${style.modal__content} ${style.reportModal__content}`} onClick={e => e.stopPropagation()}>
 
 
                 <div className={`${style.title__container}`}>
                     <h2 className={`${style.title}`}>Формирование отчета</h2>
-                    <button className={style.close_btn} onClick={() => props.setActive(false)}><img src={closeIcon} alt="close" /></button> 
-                </div>
-                <div className={`${style.warning__container}`}>
-                    <OwnersSelect />
-                </div>
-                <div className={`${style.warning__container}`}>
-                    <CategoriesSelect />
-                </div>
-                <div className={`${style.warning__container}`}>
-                    <LocationSelect />
+                    <button className={style.close_btn} onClick={() => props.setActive(false)}><img src={closeIcon} alt="close" /></button>
                 </div>
 
-                    {/* <MultiSelectSort/> */}
-                    <ColumnsSelect/>
-                <div className={`${style.button__container}`}>                    
+                <div className={`${style.reportParams__container}`}>
+                    <div className={`${style.reportParams__item}`}>
+                        <div className={`${style.reportParams__title}`}>Кабинет</div>
+                        <LocationSelect />
+                    </div>
+                    <div className={`${style.reportParams__item}`}>
+                        <div className={`${style.reportParams__title}`}>Ответственный</div>
+                        <OwnersSelect />
+                    </div>
+                    <div className={`${style.reportParams__item}`}>
+                        <div className={`${style.reportParams__title}`}>Категория</div>
+                        <CategoriesSelect />
+                    </div>
+                </div>
+
+                <div className={`${style.reportColumns__container}`}>
+                    <div className={`${style.reportColumns__item}`}>
+                        <div className={`${style.reportColumns__title}`}>Выбранные колонки</div>
+                        <ColumnsSelect />
+                    </div>
+                </div>
+
+                <div className={`${style.button__container}`}>
                     <button onClick={() => props.setActive(false)} className={style.cancel_btn}>Отмена</button>
                     <button onClick={() => {
                         console.log('1')
                         createReport(dataItem)
                     }} className={style.delete_btn}>Сформировать</button>
-                </div>  
-
-
-
+                </div>
             </div>
         </div>
     )
 }
 
-export default PrintModal
+export default ReportModal

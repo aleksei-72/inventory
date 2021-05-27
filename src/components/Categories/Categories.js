@@ -4,13 +4,13 @@ import CategoriesItems from './CategoriesItems';
 import { printItems } from './../../print';
 import printIcon from './../../img/icons/Print.svg'
 import addIcon from './../../img/icons/Add.svg'
-import PrintModal from '../Modal/ReportModal';
+import ReportModal from '../Modal/ReportModal';
 import { importFiles } from '../../api/api';
 
 const Categories = (props) => {
     console.log(props)
     const [visibility, setVisibility] = useState(false)
-    const [printVisibility, setPrintVisibility] = useState(false)
+    const [reportVisibility, setReportVisibility] = useState(false)
 
 
     return (
@@ -23,13 +23,13 @@ const Categories = (props) => {
 
 
             {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <div className={style.button__container}>
-                <button onClick={() => printItems()} className={style.print_button}>
+                {/* <button onClick={() => printItems()} className={style.print_button}>
                     <img src={printIcon} alt="print" className={style.button_icon} />
-                </button>
+                </button> */}
 
 
 
-                <button onClick={() => setPrintVisibility(!printVisibility)} className={style.add_item_button}>
+                <button onClick={() => setReportVisibility(!reportVisibility)} className={style.add_item_button}>
                     Сформировать отчет
                 </button>
 
@@ -53,7 +53,7 @@ const Categories = (props) => {
                 </button>
             </div>}
 
-            <PrintModal active = {printVisibility} setActive = {setPrintVisibility} ownersTableItems = {props.ownersTableItems} categoriesItems = {props.categoriesItems} roomsItems = {props.roomsItems}/>
+            <ReportModal active = {reportVisibility} setActive = {setReportVisibility} ownersTableItems = {props.ownersTableItems} categoriesItems = {props.categoriesItems} roomsItems = {props.roomsItems}/>
             
 
 
