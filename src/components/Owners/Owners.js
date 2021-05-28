@@ -72,6 +72,7 @@ const Owners = (props) => {
           <div className={`${style.links__container}`}>
             <div className={`${style.links__containerItem}`}>          <NavLink to='/users' > <div>Пользователи</div> </NavLink>          </div>
             <div className={`${style.links__containerItem}`}>          <NavLink to='/owners' > <div>Ответственные</div> </NavLink>          </div>
+            <div className={`${style.links__containerItem}`}>          <NavLink to='/imports' > <div>Импорт</div> </NavLink>          </div>
           </div>
           <button onClick={() => props.addTableOwnerItem()} className={style.add_item_button}>Добавить ответственного
                     <img src={addIcon} alt="add" className={style.button_icon} />

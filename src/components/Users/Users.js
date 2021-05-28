@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HeaderContainer from './../Header/HeaderContainer';
 import style from './../../styles/users.module.css'
-import { getUsers } from '../../api/api';
+import { getImportList, getUsers } from '../../api/api';
 import { useDispatch } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
 import UsersTableItem from './UsersTableItem';
@@ -34,6 +34,11 @@ const Users = (props) => {
     }
   }, [fetch])
 
+  useEffect( () => {
+    getImportList().then( res => {
+      console.log(res)
+    } )
+  } )
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler)
@@ -59,6 +64,7 @@ const Users = (props) => {
           <div className={`${style.links__container}`}>
             <div className={`${style.links__containerItem}`}>          <NavLink to='/users' > <div>Пользователи</div> </NavLink>          </div>
             <div className={`${style.links__containerItem}`}>          <NavLink to='/owners' > <div>Ответственные</div> </NavLink>          </div>
+            <div className={`${style.links__containerItem}`}>          <NavLink to='/imports' > <div>Импорт</div> </NavLink>          </div>
           </div>
           <button onClick={props.addTableUserItem} className={style.add_item_button}>Добавить пользователя
                     <img src={addIcon} alt="add" className={style.button_icon} />

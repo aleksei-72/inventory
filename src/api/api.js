@@ -6,6 +6,7 @@ import {stopSubmit} from 'redux-form'
 import axios from './../axios';
 import { setAuthorization } from './../axios';
 import { deleteAllCategories, deleteCategory, addCategory, updateCategory } from '../reducers/categories'
+import { setImporthData } from '../reducers/imports'
 // import { setCategoriesItems, deleteAllCategories, addCategory } from './../reducers/categories';
 
 
@@ -366,27 +367,6 @@ export const getRooms = (dispatch) => {
         })
 }
 
-
-// export const createReport = () => {
-//     return async dispatch => {
-//         try {
-//             const res = await axios.post('/items/report')
-//             dispatch(addNewTableItem(res.data))
-//             updateToken(dispatch)
-//             setAuthorization(localStorage.getItem('token'))
-//             console.log(res.data)
-//             return res.data
-//         } catch (error) {
-//             console.log(error)
-//             // setDefaultAppValues(dispatch)
-
-//             // dispatch(logout())
-//             // dispatch(setInitialState())
-//         }
-//     }
-// }
-
-
 export const createReport = (item) => {
     console.log(item)
     const res = axios.post(`/items/report`,
@@ -448,6 +428,15 @@ export const getMe = () => {
     return res
 }
 
+export const getImportList = (dispatch) => {
+    return axios.get(`/items/imports`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+        .then((res) => {
+            console.log(res.data)
+            // dispatch(setImporthData(res.data))
+            setAuthorization(localStorage.getItem('token'))
+            return res.data
+        })
+}
 
 export const setDefaultAppValues = (dispatch) => {
     dispatch(logout())

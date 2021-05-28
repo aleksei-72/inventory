@@ -1,15 +1,13 @@
-.users__wrapper,
-.imports__wrapper {
+.users__wrapper {
     margin-top: 60px;
     padding-left: 40px;
-    
-}
-
-.imports__wrapper {
     max-width: 955px;
 }
 
 
+.users__table {    
+    /* padding: 0px 40px; */
+}
 .cell {
     font-weight: 400;
     font-size: 14px;
@@ -62,24 +60,7 @@
 .title {
     margin-bottom: 30px;
 }
-/* .item:nth-child(odd) > .name,
-.item:nth-child(odd) > .owner, 
-.item:nth-child(odd) > .category, 
-.item:nth-child(odd) > .name, 
-.item:nth-child(odd) > .name {
-    background: rgba(237, 242, 247, 0.5);
-} */
-/* .check {
-    height: 100px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    border-right: none !important;
-    width: 20px;
-    min-width: 20px;
-    padding-left: 20px;
-} */
+
 .delete_btn {
     padding: 0px 16px;
 }
@@ -110,14 +91,7 @@ textarea, input {
     resize: none !important;
     overflow: hidden;
 }
-/* .title__field,
-.location__field,
-.commemt__field {
-    text-align: left
-} */
-/* .amount__field {
-    text-align: right;
-} */
+
 .category__field {
     color: #4C6FFF;
 }
@@ -149,51 +123,15 @@ textarea, input {
 .password {
     width: 135px;
 }
-
-
-
-
-@media print {
-    * {
-        font-size: 10px !important;
-    }
-    /* .item {
-        border: 1px solid #D1D1D1 !important;
-    }
-    .cell__container {
-        padding: 5px !important;
-    }*/
-    .check {
-        display: none !important;
-    } 
-
-
-
-
-    /* .number {
-        width: 12px !important;
-        max-width: 12px !important;
-        justify-content: flex-start;
-    }
-    .category {
-        width: 113px !important;
-    }
-    .name {
-        width: 153px !important;
-        max-width: 103px !important;
-    }
-    .owner {
-        width: 190px !important;
-    }
-    .location {
-        width: 132px !important;
-    }
-    .amount {
-        padding-right: 25px;
-        justify-content: flex-end;
-        width: 101px !important;
-    }
-    .comment {
-        display: none !important;
-    } */
-  }
+.status {
+    /* display: flex;
+    justify-content: start; */
+    width: 600px;
+    border: none;
+}
+.succesfully__text {
+    color: #15A01B;
+}
+.error__text {
+    color: #FF4C4C;
+}

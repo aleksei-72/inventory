@@ -4,6 +4,7 @@ import authReducer from './reducers/auth';
 import categoriesReducer from './reducers/categories';
 import usersReducer from './reducers/users';
 import ownersReducer from './reducers/owners';
+import importsReducer from './reducers/imports';
 import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
 
@@ -13,6 +14,7 @@ let reducers = combineReducers({
     categoriesReducer,
     usersReducer,
     ownersReducer,
+    importsReducer,
     form: formReducer
 })
 

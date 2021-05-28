@@ -4,7 +4,9 @@ import LoginContainer from './components/Login/LoginContainer';
 import store from './store';
 import UsersContainer from './components/Users/UsersContainer';
 import OwnersContainer from './components/Owners/OwnersContainer';
+import ImportsListContainer from './components/ImportsList/ImportsListContainer';
 // import Modal from './components/Modal/Modal';
+// import ImportsListContainer from './components/ImportsList/ImportsListContainer';
 
 function App() {
 	if ( localStorage.getItem('token') ) { 
@@ -18,6 +20,7 @@ function App() {
 				<Route path='/login' exact render={() => <LoginContainer />} />
 				<Route path='/users' exact render={() => <UsersContainer />} />
 				<Route path='/owners' exact render={() => <OwnersContainer />} />
+				<Route path='/imports' exact render={() => <ImportsListContainer />} />
 			</Switch>
 		</BrowserRouter>
 		
