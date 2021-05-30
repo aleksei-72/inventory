@@ -10,18 +10,19 @@ import { getCategories, getRooms } from './../../api/api';
 import { setCategoriesItems } from './../../reducers/categories';
 import { setOwnersTableItems } from './../../reducers/owners';
 import { setUserData } from '../../reducers/auth';
+import dragScroll from './../../dragScroll';
 
 const Table = (props) => {
-  // console.log(props)
+  console.log(props)
   const dispatch = useDispatch()
   const [items, setItems] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
-  const [fetch, setFetch] = useState(true)
+  // const [fetch, setFetch] = useState(true)
   const [totalCount, setTotalCount] = useState(20)
   // console.log("fetch ------------------------- ",fetch)
 
   useEffect(() => {
-    if (fetch) {
+    if (props.fetch) {
       getItems(currentPage, props.categoryId, props.searchString)
         .then(res => {
           console.log(res.data)
@@ -30,19 +31,22 @@ const Table = (props) => {
           setItems([...items, ...res.data.items])
           setCurrentPage(prevVal => prevVal + 15)
           setTotalCount(res.data.total_count)
+
+          dragScroll()
+          
         })
         .catch((err) => {
           // setDefaultAppValues(dispatch)
           console.log(err)
         })
         .finally(() => {
-          setFetch(false)
+          props.setFetch(false)
         })
       getUsers()
         .then(res => {
           console.log(res.data)
           dispatch(setUsersTableItems(res))
-          setFetch(false)
+          props.setFetch(false)
 
           // setCurrentPage(prevVal => prevVal + 15)
         })
@@ -53,7 +57,7 @@ const Table = (props) => {
       getCategories().then(res => {
         console.log(res)
         dispatch(setCategoriesItems(res))
-        setFetch(false)
+        props.setFetch(false)
       })
         .catch((err) => {
           setDefaultAppValues(dispatch)
@@ -62,7 +66,7 @@ const Table = (props) => {
       getProfiles().then(res => {
         console.log(res)
         dispatch(setOwnersTableItems(res))
-        setFetch(false)        
+        props.setFetch(false)        
       })
         .catch((err) => {
           setDefaultAppValues(dispatch)
@@ -71,14 +75,14 @@ const Table = (props) => {
       getRooms().then(res => {
         console.log(res)
         dispatch(setRooms(res))
-        setFetch(false)
+        props.setFetch(false)
       })
         .catch((err) => {
           setDefaultAppValues(dispatch)
           console.log(err)
         })
     }
-  }, [fetch])
+  }, [props.fetch])
 
     useEffect( () => {
       getMe().then( res => {
@@ -108,18 +112,11 @@ const Table = (props) => {
 
 
 
-
-
-
-
   if (props.isAuth === false) { return <Redirect to={"/login"} /> }
 
-
-  return (
+  return ( 
     <section className="main-table">
       <TableHeader />
-
-
       {
         props.tableItems.map((el) => {
           let checkItem = item => {
@@ -164,7 +161,7 @@ const Table = (props) => {
           />
         })
       }
-      <button className="download_items_btn" onClick = { () => setFetch(true) }>Загрузить элементы</button>
+      {/* <button className="download_items_btn" onClick = { () => setFetch(true) }>Загрузить элементы</button> */}
     </section>
   )
 }
