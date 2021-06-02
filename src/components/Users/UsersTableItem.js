@@ -3,6 +3,7 @@ import style from './../../styles/users.module.css';
 import deleteIcon from './../../img/icons/Delete.svg';
 // import { NavLink } from 'react-router-dom';
 import Select from 'react-select'
+// import { updateUserPassword } from '../../api/api';
 
 
 
@@ -24,6 +25,11 @@ const UsersTableItem = (props) => {
         blocked: blocked
     }
 
+    let itemPassword = {
+        id: props.id,
+        password: ''
+    }
+
     function auto_grow(element) {
         element.style.height = "5px";
         element.style.height = (element.scrollHeight) + "px";
@@ -36,8 +42,8 @@ const UsersTableItem = (props) => {
     ]
 
     const statusOptions = [
-        { value: true, label: 'active' },
-        { value: false, label: 'blocked' }
+        { value: false, label: 'Активен' },
+        { value: true, label: 'Заблокирован' }
     ]
 
     const statusStyles = {
@@ -54,12 +60,29 @@ const UsersTableItem = (props) => {
             color: state.selectProps.menuColor,
             padding: 2,
             position: 'absolute',
-            right: 20,
-            top: 35
+            right: 15,
+            top: 35,
+            width: 85,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
+        menuList: () => ({
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
         placeholder: () => ({
             color:'#282828',
-            fontSize: 14
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
 
         singleValue: () => ({
@@ -81,6 +104,7 @@ const UsersTableItem = (props) => {
             width: 90,
             height: 35,
             margin: 10,
+            marginLeft: -7,
             // border: '1px solid #000'
         }),
 
@@ -92,6 +116,33 @@ const UsersTableItem = (props) => {
         // }
     }
 
+
+    const customStatusStyles = {
+        ...customStyles,
+        menu: (provided, state) => ({
+            ...provided,
+            width: state.selectProps.width,
+            borderBottom: '1px dotted pink',
+            color: state.selectProps.menuColor,
+            padding: 2,
+            position: 'absolute',
+            right: 15,
+            top: 35,
+            width: 140,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
+        control: (_, { selectProps: { width } }) => ({
+            width: 140,
+            height: 35,
+            margin: 10,
+            marginLeft: -7,
+            // border: '1px solid #000'
+        }),
+    }
+
     const RoleComponent = () => <Select placeholder={props.role} defaultValue={`${props.role}`} styles={customStyles} options={roleOptions} onChange={(e) => {
         console.log(props)
         console.log(e)
@@ -99,12 +150,13 @@ const UsersTableItem = (props) => {
         setRole(e.value)
         props.updateUser(dataItem)
     }} />
-    const StatusComponent = () => <Select placeholder={!props.status ? 'active' : 'blocked'} styles={customStyles} options={statusOptions} onChange={(e) => {
+    const StatusComponent = () => <Select placeholder={!props.blocked ? 'Активен' : 'Заблокирован'} styles={customStatusStyles} options={statusOptions} onChange={(e) => {
         console.log(e)
         console.log(props)
         console.log(e.value)
         // console.log(props)
-        setBlockedStatus(e.value)
+        dataItem.blocked = e.value
+        // setBlockedStatus(e.value)
         props.updateUser(dataItem)
     }} />
 
@@ -112,12 +164,12 @@ const UsersTableItem = (props) => {
 
 
     return (
-        <div>
+        
             <div className={style.item}>
                 <div className={`${style.cell__container}  ${style.name}`}>
                     <div className={`${style.cell}`}>
                         <input
-                            onKeyPress={(e) => auto_grow(e.currentTarget)}
+                            // onKeyPress={(e) => auto_grow(e.currentTarget)}
                             onBlur={(e) => {
                                 console.log(dataItem)
                                 props.updateUser(dataItem)
@@ -128,13 +180,13 @@ const UsersTableItem = (props) => {
                                 console.log(name)
                             }}
                             defaultValue={props.name}
-                            className={`${style.name__field}`} />
+                            className={`${style.name__field} ${style.field}`} />
                     </div>
                 </div>
 
                 <div className={`${style.cell__container} ${style.username}`}>
                     <input
-                        onKeyPress={(e) => auto_grow(e.currentTarget)}
+                        // onKeyPress={(e) => auto_grow(e.currentTarget)}
                         onBlur={(e) => props.updateUser(dataItem)}
                         onChange={(e) => {
                             setUsername(e.target.value)
@@ -142,7 +194,7 @@ const UsersTableItem = (props) => {
                             console.log(username)
                         }}
                         defaultValue={props.username}
-                        className={`${style.username__field}`} />
+                        className={`${style.username__field} ${style.field}`} />
                 </div>
 
 
@@ -151,9 +203,12 @@ const UsersTableItem = (props) => {
                 </div>
 
 
+
+
+
                 <div className={`${style.cell__container} ${style.lastVisit}`}>
                     <input
-                        onKeyPress={(e) => auto_grow(e.currentTarget)}
+                        // onKeyPress={(e) => auto_grow(e.currentTarget)}
                         onBlur={(e) => props.updateUser(dataItem)}
                         onChange={(e) => {
                             // setAmount(e.currentTarget.value)
@@ -164,18 +219,23 @@ const UsersTableItem = (props) => {
                         className={`${style.role__field}`} />
                 </div>
 
+
+
+
+
                 <div className={`${style.cell__container} ${style.password}`}>
                     <input
                         type='password'
-                        onKeyPress={(e) => auto_grow(e.currentTarget)}
-                        onBlur={(e) => props.updateUser(dataItem)}
+                        // onKeyPress={(e) => auto_grow(e.currentTarget)}
+                        onBlur={(e) => props.updateUserPassword(itemPassword)}
                         onChange={(e) => {
                             // setAmount(e.currentTarget.value)
+                            itemPassword.password = e.currentTarget.value
                             console.log(e.currentTarget.value)
                             // console.log(amount)
                         }}
                         placeholder={`Пароль`}
-                        className={`${style.password__field}`} />
+                        className={`${style.password__field} ${style.field}`} />
                 </div>
                 <div className={`${style.cell__container} ${style.status__container}`}>
                     <StatusComponent style={statusStyles.selectContainer} />
@@ -184,7 +244,7 @@ const UsersTableItem = (props) => {
                 <button onClick={() => props.deleteTableItem(props.id)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>
             </div>
 
-        </div>
+        
 
 
     )

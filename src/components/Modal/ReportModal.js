@@ -35,9 +35,21 @@ const ReportModal = (props) => {
             // right: 20,
             // top: 35
         }),
+        menuList: () => ({
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
         placeholder: () => ({
-            color: '#282828',
-            fontSize: 14
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
 
         singleValue: () => ({
@@ -95,9 +107,21 @@ const ReportModal = (props) => {
             // right: -20,
             // top: 35
         }),
+        menuList: () => ({
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
         placeholder: () => ({
-            color: '#282828',
-            fontSize: 14
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
 
         singleValue: () => ({
@@ -148,9 +172,21 @@ const ReportModal = (props) => {
             // right: 20,
             // top: 35
         }),
+        menuList: () => ({
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
         placeholder: () => ({
-            color: '#282828',
-            fontSize: 14
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
 
         singleValue: () => ({
@@ -216,9 +252,21 @@ const ReportModal = (props) => {
             // right: 20,
             // top: 35
         }),
+        menuList: () => ({
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
         placeholder: () => ({
-            color: '#282828',
-            fontSize: 14
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
 
         singleValue: () => ({

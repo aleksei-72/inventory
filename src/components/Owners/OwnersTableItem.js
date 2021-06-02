@@ -34,12 +34,11 @@ const OwnersTableItem = (props) => {
 
 
     return (
-        <div>
             <div className={style.item}>
-                <div className={`${style.cell__container}  ${style.name}`}>
+                <div className={`${style.cell__container}  ${style.name} ${style.owners__name}`}>
                     <div className={`${style.cell}`}>
                         <input
-                            onKeyPress={(e) => auto_grow(e.currentTarget)}
+                            // onKeyPress={(e) => auto_grow(e.currentTarget)}
                             onBlur={(e) => {
                                 console.log(dataItem)
                                 props.updateOwner(dataItem)
@@ -50,7 +49,7 @@ const OwnersTableItem = (props) => {
                                 console.log(name)
                             }}
                             defaultValue={props.name}
-                            className={`${style.name__field}`} />
+                            className={`${style.field} ${style.name__field}`} />
                     </div>
                 </div>
 
@@ -74,7 +73,6 @@ const OwnersTableItem = (props) => {
                 <button onClick={() => props.deleteTableOwnerItem(props.id)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>
             </div>
 
-        </div>
 
 
     )

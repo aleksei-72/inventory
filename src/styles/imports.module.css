@@ -71,7 +71,7 @@
 }
 
 .cell__container {
-    padding: 13px 17px;
+    padding: 5px 17px;
     display: flex;
     align-items: center;
     border-right: 1px solid #BDBDBD;

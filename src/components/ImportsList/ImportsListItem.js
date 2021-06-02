@@ -8,7 +8,6 @@ const ImportsListItem = (props) => {
     console.log(props)
 
     return (
-        <div>
             <div className={style.item}>
                 <div className={`${style.cell__container}  ${style.name}`}>
                     <div className={`${style.cell}`}>
@@ -20,8 +19,6 @@ const ImportsListItem = (props) => {
                     <p className={props.status ? `${style.succesfully__text}` : `${style.error__text}`}>{!props.status ? props.description : "Успешно"}</p>
                 </div>
             </div>
-
-        </div>
 
 
     )

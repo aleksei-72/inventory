@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react';
 import Users from './Users';
-import { addTableUserItem, deleteUserItem, updateUser } from './../../api/api';
+import { addTableUserItem, deleteUserItem, updateUser, updateUserPassword } from './../../api/api';
 
 
 
@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         deleteTableItem: (id) => dispatch(deleteUserItem(id)),
         updateTableUserItem: (user) => dispatch(updateUser(user)),
+        updateTableUserPassword: (user) => dispatch(updateUserPassword(user)),
         addTableUserItem: (item) => dispatch(addTableUserItem())
     }
 }

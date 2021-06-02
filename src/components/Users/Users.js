@@ -85,6 +85,7 @@ const Users = (props) => {
                 lastActiveAt={el.lastActiveAt}
                 deleteTableItem={props.deleteTableItem}
                 updateUser={props.updateTableUserItem}
+                updateUserPassword={props.updateTableUserPassword}
               />
             })
           }

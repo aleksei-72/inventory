@@ -16,57 +16,14 @@ import OwnersTableItem from './OwnersTableItem';
 
 const Owners = (props) => {
   console.log(props)
-  // const dispatch = useDispatch()
-  // const [items, setItems] = useState([])
-  // const [currentPage, setCurrentPage] = useState(0)
-  // const [fetch, setFetch] = useState(true)
-  // console.log("fetch users ------------------------- ", fetch)
-
-  // useEffect(() => {
-  //   if (fetch) {
-  //     getUsers()
-  //       .then(res => {
-  //         console.log(res.data)
-  //         dispatch(setUsersTableItems(res))
-  //         setCurrentPage(prevVal => prevVal + 15)
-  //       })
-  //       .finally(() => {
-  //         setFetch(false)
-  //       })
-  //   }
-  // }, [fetch])
-
-
-  // useEffect(() => {
-  //   document.addEventListener('scroll', scrollHandler)
-  //   return () => {
-  //     document.removeEventListener('scroll', scrollHandler)
-  //   }
-  // })
-
-  // const scrollHandler = (e) => {
-  //   if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length) {
-  //     setFetch(true)
-  //   }
-  // }
   if (props.isAuth === false) { return <Redirect to={"/login"} /> }
 
   return (
     <div className={`wrapper`}>
       <HeaderContainer />
-      <div className={`${style.users__wrapper}`}>
+      <div className={`${style.users__wrapper} ${style.owners__wrapper}`}>
         <h2 className={`${style.title}`}>Панель настроек</h2>
-        {/* <div className={`${style.links__container}`}>
-          <div>          <NavLink to='/users'> <div>Пользователи</div> </NavLink>          </div>
-          <div>          <NavLink to='/owners'> <div>Ответственные</div> </NavLink>          </div>
-        </div>
-        {/* <button onClick={props.addTableUserItem} className={style.add_item_button}>Добавить пользователя
-                    <img src={addIcon} alt="add" className={style.button_icon} />
-                </button> */}
 
-        {/* <button onClick={() => props.addTableOwnerItem()} className={style.add_item_button}>Добавить ответственного
-          <img src={addIcon} alt="add" className={style.button_icon} />
-        </button>  */}
 
         <div className={`${style.button__container}`}>
           <div className={`${style.links__container}`}>
@@ -81,7 +38,7 @@ const Owners = (props) => {
 
 
         
-        <section className={`${style.users__table}`}>
+        <section className={`${style.users__table} ${style.owners__table}`}>
           <OwnersTableHeader />
           {
             props.ownersTableItems.map((el) => {

@@ -281,6 +281,31 @@ export const updateUser = (user) =>{
     }
 }
 
+export const updateUserPassword = (user) =>{
+    console.log(user)
+    return async dispatch => {
+        try {
+            const res = await axios.put(`/users/${user.id}`,
+            {
+                id: user.id,
+                password:user.password
+            })
+            console.log(res)
+            dispatch(updateTableUserItem(user))
+            updateToken(dispatch)
+            setAuthorization(localStorage.getItem('token'))
+        }
+        catch (error) {
+            console.log(error)
+            // setDefaultAppValues(dispatch)
+
+            // dispatch(logout())
+            // dispatch(setInitialState())
+
+        }
+    }
+}
+
 export const getProfiles = (dispatch) => {
     return axios.get(`/profiles`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
         .then((res) => {

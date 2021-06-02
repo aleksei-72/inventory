@@ -61,13 +61,28 @@ const TableItem = (props) => {
             padding: 2,
             position: 'absolute',
             right: 20,
-            top: 35
+            top: 35,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
         placeholder: () => ({
             color:'#282828',
-            fontSize: 14
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
-
+        menuList: () => ({
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
         singleValue: () => ({
             fontSize: 14
         }),
@@ -118,11 +133,27 @@ const TableItem = (props) => {
             padding: 2,
             position: 'absolute',
             right: 20,
-            top: 35
+            top: 35,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
+        menuList: () => ({
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
         placeholder: () => ({
             color:'#282828',
-            fontSize: 14
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
 
         singleValue: () => ({
@@ -177,9 +208,20 @@ const TableItem = (props) => {
         }),
         placeholder: () => ({
             color:'#282828',
-            fontSize: 14
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
         }),
-
+        menuList: () => ({
+            color:'#282828',
+            fontSize: 14,
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            lineHeight: "19px"
+        }),
         singleValue: () => ({
             fontSize: 14
         }),
@@ -230,7 +272,7 @@ const TableItem = (props) => {
                     {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                         onKeyPress={(e) => auto_grow(e.currentTarget)}
                         rows={1}
-                        cols={8}
+                        cols={10}
                         onBlur={() => props.updateItem(dataItem)}
                         onChange={(e) => {
                             setNumber(e.target.value)
@@ -330,7 +372,8 @@ const TableItem = (props) => {
             <div className={`${style.cell__container} ${style.comment}`}>
                 {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
-                    rows={1}
+                    // rows={1}
+                    // contenteditable="true"
                     cols={25}
                     onBlur={(e) => props.updateItem(dataItem)}
                     onChange={(e) => {
