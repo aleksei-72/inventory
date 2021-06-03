@@ -80,7 +80,7 @@ const Header = (props) => {
         <header className={style.header}>
             <NavLink to='/'>
                 <div onClick = { () => {
-                    getItems(0, 0, '')
+                    getItems(0, null, '')
                     .then(res => {
                       console.log(res.data)
                       dispatch(setFirstPageTableItems(res.data.items))
@@ -94,6 +94,7 @@ const Header = (props) => {
                 <input className={style.search} type="text" placeholder="Поиск" value={search} onChange={(e) => {
                     console.log(e.currentTarget.value)
                     setSearch(e.target.value)
+                    console.log(search)
                     getPreviewItems(0, 0, e.currentTarget.value).then( res => {
                         console.log(res)
                         dispatch(setPreviewTableItems(res.data.items, res.data.total_count))

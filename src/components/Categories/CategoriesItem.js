@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getItems } from '../../api/api';
 import style from './../../styles/categories.module.css';
 // import { getCategoriesItems } from './../../api/api';
@@ -19,19 +19,43 @@ const CategoriesItem = (props) => {
 
 
     return (
-        <div onClick={(e) => {
-            if (!props.visibilityButtons) {
-                getItems(0, props.id, props.searchString).then((res) => {
-                    console.log(res.data)
-                    dispatch(setCategoryTableItems(res.data.items))
-                })
-                dispatch(setCategoryId(props.id))
-            }
-        }} className={`${style.item}`}>
+        <div 
+        // onClick={(e) => {
+        //     console.log(props)
+        //     !props.visibilityButtons && getItems(0, props.id, props.searchString).then( res => {
+        //         console.log(res)
+        //         dispatch(setCategoryTableItems(res.data.items))
+        //     })
+        //     dispatch(setCategoryId(props.id))
+            
+        //     }} 
+
+        onClick={(e) => {
+            console.log(props)
+            !props.visibilityButtons && getItems(0, props.id, '').then( res => {
+                console.log(res)
+                dispatch(setCategoryTableItems(res.data.items))
+            })
+            dispatch(setCategoryId(props.id))
+            
+            }} 
+
+            // onClick={(e) => {
+            // if (!props.visibilityButtons) {
+            //     setloadingCategories(true)
+            //     getItems(0, props.id, props.searchString).then((res) => {
+            //         console.log(res.data)
+            //         dispatch(setCategoryTableItems(res.data.items))
+            //     })
+            //     dispatch(setCategoryId(props.id))
+            // }
+            // }} 
+            
+            className={`${style.item}`}>
 
             <input
                 onBlur={(e) => {
-                    
+
                     dataItem.title = e.target.value
                     console.log(dataItem)
                     props.updateCategoriesItem(dataItem)

@@ -6,7 +6,7 @@ import { createReport } from '../../api/api';
 
 
 const ReportModal = (props) => {
-    console.log(props)
+    // console.log(props)
 
 
     let dataItem = {

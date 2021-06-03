@@ -371,7 +371,7 @@ const TableItem = (props) => {
 
             <div className={`${style.cell__container} ${style.comment}`}>
                 {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
-                    onKeyPress={(e) => auto_grow(e.currentTarget)}
+                    // onKeyPress={(e) => auto_grow(e.currentTarget)}
                     // rows={1}
                     // contenteditable="true"
                     cols={25}

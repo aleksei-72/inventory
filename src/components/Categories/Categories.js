@@ -19,7 +19,7 @@ const Categories = (props) => {
                 <h2 className={style.title}>Категории</h2>
                 <button className={`${style.link}`} onClick={() => setVisibility(!visibility)}>Открыть категории</button>
             </div>
-            {visibility ? <CategoriesItems addCategoriesItem = {props.addCategory} deleteCategoriesItem = {props.deleteCategory} updateCategoriesItem = {props.updateCategory} searchString={props.searchString} categoriesItems={props.categoriesItems} /> : null}
+            {visibility ? <CategoriesItems  addCategoriesItem = {props.addCategory} deleteCategoriesItem = {props.deleteCategory} updateCategoriesItem = {props.updateCategory} searchString={props.searchString} categoriesItems={props.categoriesItems} /> : null}
 
 
             {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <div className={style.button__container}>
@@ -45,7 +45,7 @@ const Categories = (props) => {
                 } }
                 className={style.import_file_input}
                 />
-                <label className={`${style.add_item_button} ${style.import_file_button}`} for = 'uploadFile'>Загрузить файл</label>
+                <label className={`${style.add_item_button} ${style.import_file_button}`} htmlFor = 'uploadFile'>Загрузить файл</label>
 
 
                 <button onClick={props.addTableItem} className={style.add_item_button}>Добавить поле

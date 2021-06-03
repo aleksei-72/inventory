@@ -22,18 +22,21 @@ const Table = (props) => {
   // console.log("fetch ------------------------- ",fetch)
 
   useEffect(() => {
+    let cleanupFunction = false;
     if (props.fetch) {
       getItems(currentPage, props.categoryId, props.searchString)
         .then(res => {
           console.log(res.data)
-          console.log(currentPage)
+          // console.log(currentPage)
           dispatch(setTableItems(res.data.items, props.categoryId))
           setItems([...items, ...res.data.items])
-          setCurrentPage(prevVal => prevVal + 15)
+          setCurrentPage(prevVal => prevVal + 50)
+          console.log('currentPage----',currentPage)
+
           setTotalCount(res.data.total_count)
 
           dragScroll()
-          
+
         })
         .catch((err) => {
           // setDefaultAppValues(dispatch)
@@ -42,18 +45,18 @@ const Table = (props) => {
         .finally(() => {
           props.setFetch(false)
         })
-      getUsers()
-        .then(res => {
-          console.log(res.data)
-          dispatch(setUsersTableItems(res))
-          props.setFetch(false)
+      // getUsers()
+      //   .then(res => {
+      //     console.log(res.data)
+      //     dispatch(setUsersTableItems(res))
+      //     props.setFetch(false)
 
-          // setCurrentPage(prevVal => prevVal + 15)
-        })
-        .catch((err) => {
-          setDefaultAppValues(dispatch)
-          console.log(err)
-        })
+      //     // setCurrentPage(prevVal => prevVal + 15)
+      //   })
+      //   .catch((err) => {
+      //     setDefaultAppValues(dispatch)
+      //     console.log(err)
+      //   })
       getCategories().then(res => {
         console.log(res)
         dispatch(setCategoriesItems(res))
@@ -82,13 +85,16 @@ const Table = (props) => {
           console.log(err)
         })
     }
+    return () => cleanupFunction = true;
   }, [props.fetch])
 
     useEffect( () => {
+      let cleanupFunction = false;
       getMe().then( res => {
         dispatch(setUserData(res.data))
         console.log(res.data)
       } )
+      return () => cleanupFunction = true;
     }, [] )
 
 //*********************************************************************************************************************************************************************************************** */
@@ -129,7 +135,7 @@ const Table = (props) => {
             return item
           }
 
-          console.log(el)
+          // console.log(el)
           return <TableItem 
             title={el.title}
             id={el.id}

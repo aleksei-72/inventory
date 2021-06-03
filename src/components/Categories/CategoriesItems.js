@@ -21,12 +21,12 @@ const CategoriesItems = (props) => {
     //     })
     // }, [])
 
-    useEffect(() => {
-        getCategories().then(res => {
-            console.log(res)
-            dispatch(setCategoriesItems(res))
-        })
-    })
+    // useEffect(() => {
+    //     getCategories().then(res => {
+    //         console.log(res)
+    //         dispatch(setCategoriesItems(res))
+    //     })
+    // }, [])
 
 
 
@@ -35,7 +35,7 @@ const CategoriesItems = (props) => {
             {
                 props.categoriesItems.map((el) => {
                     // console.log(el)
-                    return <CategoriesItem  visibilityButtons ={visibilityButtons} deleteCategoriesItem = {props.deleteCategoriesItem} updateCategoriesItem = {props.updateCategoriesItem} searchString = {props.searchString} title = {el.title} key= {el.id} id = {el.id}/>
+                    return <CategoriesItem visibilityButtons ={visibilityButtons} setVisibilityButtons = {setVisibilityButtons} deleteCategoriesItem = {props.deleteCategoriesItem} updateCategoriesItem = {props.updateCategoriesItem} searchString = {props.searchString} title = {el.title} key= {el.id} id = {el.id}/>
                 })
             }
             <button onClick = { (e) => {

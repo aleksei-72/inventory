@@ -46,18 +46,53 @@ export const getPreviewItems = (currentPage, categoryId, search) => {
 
 
 
+// export const login = (username, password) => {
+//     return async dispatch => {
+//         try {
+//             const res = await axios.post('/auth', { username, password })
+//             localStorage.setItem('token', res.data)
+//             setAuthorization(res.data)
+//             dispatch(setAuthData(res.data))
+//             console.log(res)
+//         } catch (error) {
+//             console.log(error)            
+//             dispatch(stopSubmit("login", {_error: "Пользователь не был найден в системе"}))
+//         }
+//     }
+// }
+
 export const login = (username, password) => {
     return async dispatch => {
-        try {
-            const res = await axios.post('/auth', { username, password })
-            localStorage.setItem('token', res.data)
-            setAuthorization(res.data)
-            dispatch(setAuthData(res.data))
-            console.log(res)
-        } catch (error) {
-            console.log(error)            
-            dispatch(stopSubmit("login", {_error: "Пользователь не был найден в системе"}))
-        }
+        const res = axios.post('/auth', { username, password }).then(
+            (response) => {
+
+                try {
+                    localStorage.setItem('token', response.data)
+                    setAuthorization(response.data)
+                    dispatch(setAuthData(response.data))
+                } catch (e) {
+                    console.log(e)
+                }
+
+            }).catch((error) => {
+                console.log(error.response)
+
+                let errorType = error.response.data.error
+
+                switch (errorType) {
+
+                    case "E_INVALID_PASSWORD" :
+                        dispatch(stopSubmit("login", {_error: "Неверный пароль"}))
+                        break
+
+                    case "E_USER_BLOCKED" :
+                        dispatch(stopSubmit("login", {_error: "Пользователь заблокирован"}))
+                        break
+
+                    default:
+                        dispatch(stopSubmit("login", {_error: "Пользователь не был найден в системе"}))
+                }
+            })
     }
 }
 
