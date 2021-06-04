@@ -13,8 +13,8 @@ class ImportsListContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         importItems: state.importsReducer.importItems,
-        isAuth: state.authReducer.isAuth
-
+        isAuth: state.authReducer.isAuth,
+        userRole: state.authReducer.currentUser.role
     }
 }
 const mapDispatchToProps = (dispatch) => {

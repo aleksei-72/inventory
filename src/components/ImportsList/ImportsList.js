@@ -26,7 +26,8 @@ const ImportsList = (props) => {
     }, [] )
 
     if (props.isAuth === false) { return <Redirect to={"/login"} /> }
-  
+    if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
+    
     return (
       <div className={`wrapper`}>
         <HeaderContainer />

@@ -14,7 +14,8 @@ class UsersContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         usersTableItems: state.usersReducer.users,
-        isAuth: state.authReducer.isAuth
+        isAuth: state.authReducer.isAuth,
+        userRole: state.authReducer.currentUser.role
         // currentPage: state.tableItemsReducer.currentPage,
         // categoryId: state.categoriesReducer.currentCategoryId,
         // searchString: state.tableItemsReducer.search

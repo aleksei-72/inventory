@@ -52,7 +52,9 @@ const Users = (props) => {
       setFetch(true)
     }
   }
+  // userRole
   if (props.isAuth === false) { return <Redirect to={"/login"} /> }
+  if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
 
   return (
     <div className={`wrapper`}>
@@ -82,7 +84,7 @@ const Users = (props) => {
                 role={el.role}
                 username={el.username}
                 blocked={el.blocked}
-                lastActiveAt={el.lastActiveAt}
+                lastActiveAt={el.last_active_at}
                 deleteTableItem={props.deleteTableItem}
                 updateUser={props.updateTableUserItem}
                 updateUserPassword={props.updateTableUserPassword}

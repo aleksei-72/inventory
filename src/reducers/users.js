@@ -29,7 +29,9 @@ const usersReducer = (state = initialState, action) => {
         case DELETE_TABLE_USER_ITEM:
             const deletedUserId = action.userId
             const deletedUser = [...state.users].find(item => item.id === deletedUserId)
+
             const deletedUserIndex = state.users.indexOf(deletedUser)
+
             console.log(deletedUserId, '--id--')
             console.log(deletedUser, '--user--')
             console.log(deletedUserIndex, '--user index--')
@@ -41,10 +43,23 @@ const usersReducer = (state = initialState, action) => {
             return { ...state, users: [...updatedUsersWithoutDeleted] }
             // return { ...state }
 
+        // case DELETE_TABLE_USER_ITEM:
+        //     const deletedItemId = action.itemId
+        //     const deletedItem = [...state.users].find(item => item.id === deletedItemId)
+        //     const deletedItemIndex = state.users.indexOf(deletedItem)
+        //     const updatedItemsWithoutDeleted = [
+        //         ...state.users.splice(deletedItemIndex, 0)
+        //     ]
+
+        //     console.log(updatedItemsWithoutDeleted)
+        //     return { ...state }
+
         case UPDATE_TABLE_USER_ITEM:
-            const updatedItemId = action.item.id
+            const updatedItemId = action.userId
             const updatedItem = [...state.users].find(item => item.id === updatedItemId)
+
             const updatedItemIndex = state.users.indexOf(updatedItem)
+
             console.log("update")
             const updatedItems = [
                 ...state.users.slice(0, updatedItemIndex),
@@ -52,6 +67,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state.users.slice(updatedItemIndex + 1, state.users.length)
             ]
             return { ...state, users: [...updatedItems] }
+            // return { ...state }
 
 
         default:

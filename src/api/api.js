@@ -6,6 +6,7 @@ import {stopSubmit} from 'redux-form'
 import axios from './../axios';
 import { setAuthorization } from './../axios';
 import { deleteAllCategories, deleteCategory, addCategory, updateCategory } from '../reducers/categories'
+import * as errorList from './../errorList'
 import { setImporthData } from '../reducers/imports'
 // import { setCategoriesItems, deleteAllCategories, addCategory } from './../reducers/categories';
 
@@ -81,11 +82,11 @@ export const login = (username, password) => {
 
                 switch (errorType) {
 
-                    case "E_INVALID_PASSWORD" :
+                    case errorList.E_INVALID_PASSWORD :
                         dispatch(stopSubmit("login", {_error: "Неверный пароль"}))
                         break
 
-                    case "E_USER_BLOCKED" :
+                    case errorList.E_USER_BLOCKED :
                         dispatch(stopSubmit("login", {_error: "Пользователь заблокирован"}))
                         break
 

@@ -17,6 +17,7 @@ import OwnersTableItem from './OwnersTableItem';
 const Owners = (props) => {
   console.log(props)
   if (props.isAuth === false) { return <Redirect to={"/login"} /> }
+  if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
 
   return (
     <div className={`wrapper`}>
