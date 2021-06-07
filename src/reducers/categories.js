@@ -6,7 +6,7 @@ const DELETE_CATEGORIES_ITEM = "DELETE_CATEGORIES_ITEM";
 const UPDATE_CATEGORIES_ITEM = "UPDATE_CATEGORIES_ITEM";
 
 const DELETE_ALL_CATEGORIES = "DELETE_ALL_CATEGORIES";
-
+const LOGOUT = "LOGOUT";
 
 let initialState = {
     categories: [],
@@ -55,6 +55,13 @@ const categoriesReducer = (state = initialState, action) => {
         case SET_CATEGORY_ID:
                 console.log(action.categoryId)
                 return {...state, currentCategoryId: action.categoryId}
+
+        case LOGOUT:
+                // console.log(action)
+                // console.log('--------------logout--------------')
+
+                localStorage.removeItem('token')
+                return {...state, categories: [], currentCategoryId:null}
    
         default:
             return state

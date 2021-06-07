@@ -239,14 +239,24 @@ export const updateCategoriesItem = (item) =>{
 }
 
 export const getUsers = (dispatch) => {
-    return axios.get(`/users`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
-        .then((res) => {
+    const res = axios.get(`/users`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then((res) => {
             console.log(res.data)
             // dispatch(setCategoriesItems(res.data))
             // setAuthorization(localStorage.getItem('token'))
             return res.data
         })
+    return res
 }
+
+// export const getItems = (currentPage, categoryId, search) => {
+//     const res = axios.get(`/items?limit=15&skip=${currentPage}&category_id=${categoryId}&query=${search}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
+//         console.log(res)
+//         setAuthorization(localStorage.getItem('token'))
+//         return res
+//     } )
+//     return res
+// }
+
 
 export const addTableUserItem = () => {
     return async dispatch => {
@@ -302,7 +312,7 @@ export const updateUser = (user) =>{
                 blocked:user.blocked
             })
             console.log(res)
-            dispatch(updateTableUserItem(user))
+            dispatch(updateTableUserItem(res.data))
             updateToken(dispatch)
             setAuthorization(localStorage.getItem('token'))
         }

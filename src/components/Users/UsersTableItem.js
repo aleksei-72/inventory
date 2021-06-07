@@ -6,6 +6,42 @@ import Select from 'react-select'
 // import { updateUserPassword } from '../../api/api';
 
 
+function normalEndingForWord(number, variants) {
+    let cases = [2, 0, 1, 1, 1, 2];
+    return number + " " + variants[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+}
+
+
+function dateTimeToNormal(dateTime) {
+
+    //return dateTime
+    let date = Date.parse(dateTime)
+    let now = new Date()
+
+    //Разница в секундах
+    let delta = (now - date)/1000/60
+
+
+    //Отрицательная разница во времени
+    if (delta < 0) {
+        return now.getHours() + ':' + now.getMinutes() + ' ' + now.getFullYear() + 'г'
+    }
+
+    if (delta < 1) {
+        return "Меньше минуты назад"
+    }
+
+    if (delta < 60) {
+        return normalEndingForWord(Math.floor(delta), ['минута', 'минуты', 'минут']) + " назад"
+    }
+
+    if (delta <= 60 * 24) {
+        return normalEndingForWord(Math.floor(delta / 60), ['час', 'часа', 'часов']) +  "  назад"
+    }
+
+    return normalEndingForWord(Math.floor(delta / (60 * 24)), ['день', 'дня', 'дней']) + " назад"
+
+}
 
 const UsersTableItem = (props) => {
     console.log(props)
@@ -199,7 +235,7 @@ const UsersTableItem = (props) => {
 
 
                 <div className={`${style.cell__container} ${style.role}`}>
-                    <RoleComponent />
+                     <RoleComponent />
                 </div>
 
 
@@ -215,7 +251,8 @@ const UsersTableItem = (props) => {
                             console.log(e.currentTarget.value)
                             // console.log(amount)
                         }}
-                        defaultValue={!props.lastActiveAt ? 'Не был в системе' : props.lastActiveAt}
+                        // defaultValue={!props.lastActiveAt ? 'Не был в системе' : props.lastActiveAt}
+                        defaultValue={!props.lastActiveAt ? 'Не был в системе' : dateTimeToNormal(props.lastActiveAt)}
                         className={`${style.role__field}`} />
                 </div>
 
@@ -238,10 +275,10 @@ const UsersTableItem = (props) => {
                         className={`${style.password__field} ${style.field}`} />
                 </div>
                 <div className={`${style.cell__container} ${style.status__container}`}>
-                    <StatusComponent style={statusStyles.selectContainer} />
+                    {props.deletedAt === null ? <StatusComponent style={statusStyles.selectContainer} /> : <div className={`${style.delete_status}`}>Удален</div>}                    
                 </div>
 
-                <button onClick={() => props.deleteTableItem(props.id)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button>
+                {/* <button onClick={() => props.deleteTableItem(props.id)} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button> */}
             </div>
 
         

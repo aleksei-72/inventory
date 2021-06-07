@@ -91,26 +91,41 @@ const Header = (props) => {
             </NavLink>
 
             <div className={style.input_container}>
-                <input className={style.search} type="text" placeholder="Поиск" value={search} onChange={(e) => {
+                <input className={style.search} type="text" placeholder="Поиск" value={search} 
+                
+                onChange={(e) => {
                     console.log(e.currentTarget.value)
                     setSearch(e.target.value)
                     console.log(search)
                     getPreviewItems(0, 0, e.currentTarget.value).then( res => {
                         console.log(res)
                         dispatch(setPreviewTableItems(res.data.items, res.data.total_count))
-                        setSearchPreviewVisibility(true)
+                        setSearchPreviewVisibility(true)                        
                     } )
                 }}
-                
+                // onBlur = { (e) => {
+                //     // setSearch('')
+                // } }
                 />
                 {/* onBlur = {() => setTimeout(setSearchPreviewVisibility(false), 1000)} */}
                 <img src={searchIcon} alt="search" className={style.search_icon} />
-                <button onClick={() => getItems(0, 0, search).then((res) => {
-                    console.log(res.data)
-                    dispatch(setSearchTableItems(res.data.items, search))
-                    setSearchPreviewVisibility(false)
-
-                })} className={style.search_button}>
+                <button onClick={() => {
+                    if(search.length !== 0 ) {
+                        getItems(0, 0, search).then((res) => {
+                            console.log(res.data)
+                            dispatch(setSearchTableItems(res.data.items, search))
+                            setSearchPreviewVisibility(false)                            
+                        }
+                        )
+                    } else {
+                        getItems(0, null, '')
+                        .then(res => {
+                          console.log(res.data)
+                          dispatch(setFirstPageTableItems(res.data.items))
+                        })
+                    }
+                    
+                }} className={style.search_button}>
                     <img src={searchIconBtn} alt="search" className={style.search_icon} />
                 </button>
 

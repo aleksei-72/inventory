@@ -1,5 +1,5 @@
 const SET_IMPORST_LIST = "SET_IMPORTS_LIST";
-// const LOGOUT = "LOGOUT";
+const LOGOUT = "LOGOUT";
 // const UPDATE_TOKEN = "UPDATE_TOKEN";
 // const SET_USER_DATA = "SET_USER_DATA";
 
@@ -16,12 +16,12 @@ const importsReducer = (state = initialState, action) => {
         // case SET_USER_DATA:
         //     return {...state, currentUser: action.data}
 
-        // case LOGOUT:
-        //         console.log(action)
-        //         console.log('--------------logout--------------')
+        case LOGOUT:
+                // console.log(action)
+                // console.log('--------------logout--------------')
 
-        //         localStorage.removeItem('token')
-        //         return {...state, currentUser: {}, isAuth:false}
+                localStorage.removeItem('token')
+                return {...state, importItems: []}
 
         // case UPDATE_TOKEN:
         //         localStorage.setItem('token', action.token)

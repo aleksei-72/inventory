@@ -19,8 +19,8 @@ const authReducer = (state = initialState, action) => {
             return {...state, currentUser: action.data}
 
         case LOGOUT:
-                console.log(action)
-                console.log('--------------logout--------------')
+                // console.log(action)
+                // console.log('--------------logout--------------')
 
                 localStorage.removeItem('token')
                 return {...state, currentUser: {}, isAuth:false}

@@ -13,7 +13,7 @@ import addIcon from './../../img/icons/Add.svg'
 const Users = (props) => {
   console.log(props)
   const dispatch = useDispatch()
-  const [items, setItems] = useState([])
+  // const [items, setItems] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
   const [fetch, setFetch] = useState(true)
   console.log("fetch users ------------------------- ", fetch)
@@ -22,7 +22,7 @@ const Users = (props) => {
 
   useEffect(() => {
     if (fetch) {
-      getUsers()
+      getUsers(currentPage)
         .then(res => {
           console.log(res.data)
           dispatch(setUsersTableItems(res))
@@ -34,27 +34,28 @@ const Users = (props) => {
     }
   }, [fetch])
 
-  useEffect( () => {
-    getImportList().then( res => {
-      console.log(res)
-    } )
-  } )
+  // useEffect( () => {
+  //   getImportList().then( res => {
+  //     console.log(res)
+  //   } )
+  // } )
 
-  useEffect(() => {
-    document.addEventListener('scroll', scrollHandler)
-    return () => {
-      document.removeEventListener('scroll', scrollHandler)
-    }
-  })
+  // useEffect(() => {
+  //   document.addEventListener('scroll', scrollHandler)
+  //   return () => {
+  //     document.removeEventListener('scroll', scrollHandler)
+  //   }
+  // })
 
-  const scrollHandler = (e) => {
-    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length) {
-      setFetch(true)
-    }
-  }
+  // const scrollHandler = (e) => {
+  //   if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length) {
+  //     // setFetch(true)
+  //     console.log(e)
+  //   }
+  // }
   // userRole
   if (props.isAuth === false) { return <Redirect to={"/login"} /> }
-  if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
+  // if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
 
   return (
     <div className={`wrapper`}>
@@ -80,6 +81,7 @@ const Users = (props) => {
             props.usersTableItems.map((el) => {
               return <UsersTableItem
                 id={el.id}
+                key={el.id}
                 name={el.name}
                 role={el.role}
                 username={el.username}
@@ -88,6 +90,7 @@ const Users = (props) => {
                 deleteTableItem={props.deleteTableItem}
                 updateUser={props.updateTableUserItem}
                 updateUserPassword={props.updateTableUserPassword}
+                deletedAt = {el.deleted_at}
               />
             })
           }

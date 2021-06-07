@@ -4,7 +4,7 @@ const DELETE_TABLE_OWNER_ITEM = "DELETE_TABLE_OWNER_ITEM";
 const UPDATE_TABLE_OWNER_ITEM = "UPDATE_TABLE_OWNER_ITEM";
 
 const DELETE_ALL_OWNERS = "DELETE_ALL_OWNERS";
-
+const LOGOUT = "LOGOUT";
 
 let initialState = {
     owners: []
@@ -23,6 +23,7 @@ const ownersReducer = (state = initialState, action) => {
 
         case ADD_NEW_TABLE_OWNER_ITEM:
             console.log("new owner")
+            console.log("action owner", action)
             return { ...state, owners: [action.owner, ...state.owners] }
 
         // case DELETE_TABLE_OWNER_ITEM:
@@ -39,6 +40,7 @@ const ownersReducer = (state = initialState, action) => {
         //     return { ...state, users: [...updatedUsersWithoutDeleted] }
 
         case DELETE_TABLE_OWNER_ITEM:
+            console.log(action)
             console.log('owner')
             const deletedItemId = action.ownerId
             const deletedItem = [...state.owners].find(item => item.id === deletedItemId)
@@ -48,6 +50,7 @@ const ownersReducer = (state = initialState, action) => {
                 ...state.owners.slice(0, deletedItemIndex),
                 ...state.owners.slice(deletedItemIndex + 1, state.owners.length)
             ]
+            console.log(updatedItemsWithoutDeleted)
             return { ...state, owners: [...updatedItemsWithoutDeleted] }
 
         case UPDATE_TABLE_OWNER_ITEM:
@@ -61,6 +64,14 @@ const ownersReducer = (state = initialState, action) => {
                 ...state.owners.slice(updatedItemIndex + 1, state.owners.length)
             ]
             return { ...state, owners: [...updatedItems] }
+
+        
+        case LOGOUT:
+            // console.log(action)
+            // console.log('--------------logout--------------')
+
+            localStorage.removeItem('token')
+            return { ...state, owners: [] }
 
 
         default:

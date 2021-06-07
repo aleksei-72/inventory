@@ -4,7 +4,7 @@ const DELETE_TABLE_USER_ITEM = "DELETE_TABLE_USER_ITEM";
 const UPDATE_TABLE_USER_ITEM = "UPDATE_TABLE_USER_ITEM";
 const DELETE_ALL_USERS = "DELETE_ALL_USERS";
 
-
+const LOGOUT = "LOGOUT";
 
 let initialState = {
     users: [],
@@ -26,22 +26,22 @@ const usersReducer = (state = initialState, action) => {
             console.log("new user")
             return { ...state, users: [action.user, ...state.users] }
 
-        case DELETE_TABLE_USER_ITEM:
-            const deletedUserId = action.userId
-            const deletedUser = [...state.users].find(item => item.id === deletedUserId)
+        // case DELETE_TABLE_USER_ITEM:
+        //     const deletedUserId = action.userId
+        //     const deletedUser = [...state.users].find(item => item.id === deletedUserId)
 
-            const deletedUserIndex = state.users.indexOf(deletedUser)
+        //     const deletedUserIndex = state.users.indexOf(deletedUser)
 
-            console.log(deletedUserId, '--id--')
-            console.log(deletedUser, '--user--')
-            console.log(deletedUserIndex, '--user index--')
-            const updatedUsersWithoutDeleted = [
-                ...state.users.slice(0, deletedUserIndex),
-                ...state.users.slice(deletedUserIndex + 1, state.users.length)
-            ]
-            console.log(updatedUsersWithoutDeleted)
-            return { ...state, users: [...updatedUsersWithoutDeleted] }
-            // return { ...state }
+        //     console.log(deletedUserId, '--id--')
+        //     console.log(deletedUser, '--user--')
+        //     console.log(deletedUserIndex, '--user index--')
+        //     const updatedUsersWithoutDeleted = [
+        //         ...state.users.slice(0, deletedUserIndex),
+        //         ...state.users.slice(deletedUserIndex + 1, state.users.length)
+        //     ]
+        //     console.log(updatedUsersWithoutDeleted)
+        //     // return { ...state, users: [...updatedUsersWithoutDeleted] }
+        //     return { ...state }
 
         // case DELETE_TABLE_USER_ITEM:
         //     const deletedItemId = action.itemId
@@ -55,9 +55,10 @@ const usersReducer = (state = initialState, action) => {
         //     return { ...state }
 
         case UPDATE_TABLE_USER_ITEM:
-            const updatedItemId = action.userId
+            console.log(action)
+            const updatedItemId = action.item.id
             const updatedItem = [...state.users].find(item => item.id === updatedItemId)
-
+            console.log('updatedItem', updatedItem)
             const updatedItemIndex = state.users.indexOf(updatedItem)
 
             console.log("update")
@@ -66,8 +67,19 @@ const usersReducer = (state = initialState, action) => {
                 action.item,
                 ...state.users.slice(updatedItemIndex + 1, state.users.length)
             ]
+            // console.log(updatedItem)
+            console.log(updatedItems)
+            console.log("update")
             return { ...state, users: [...updatedItems] }
             // return { ...state }
+        
+
+        case LOGOUT:
+            // console.log(action)
+            // console.log('--------------logout--------------')
+
+            localStorage.removeItem('token')
+            return { ...state, users: [] }
 
 
         default:
@@ -80,6 +92,7 @@ export const setUsersTableItems = (users) => ({ type: SET_USERS, users })
 export const addNewTableUserItem = (user) => ({ type: ADD_NEW_TABLE_USER_ITEM, user });
 
 export const deleteTableUserItem = (userId) => ({ type: DELETE_TABLE_USER_ITEM, userId });
+
 export const updateTableUserItem = (item) => ({ type: UPDATE_TABLE_USER_ITEM, item });
 
 export const deleteAllUsers = () => ({ type: DELETE_ALL_USERS });

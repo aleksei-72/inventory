@@ -176,7 +176,12 @@ textarea, input {
 }
 
 
-
+.delete_status {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #EB1A1A;
+}
 
 @media print {
     * {

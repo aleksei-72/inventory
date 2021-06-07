@@ -14,6 +14,8 @@ const SET_ROOMS = "SET_ROOMS";
 const SET_INITIAL_STATE = "SET_INITIAL_STATE";
 
 
+const LOGOUT = "LOGOUT";
+
 let initialState = {
     items: [],
     previewItems: [],
@@ -29,52 +31,9 @@ const tableItemsReducer = (state = initialState, action) => {
         case SET_ITEMS:           
             console.log(action.items) 
 
-
-
-            // function removeDuplicates(arr) {
-
-            //     const result = [];
-            //     const duplicatesIndices = [];
-            
-            //     // Перебираем каждый элемент в исходном массиве
-            //     arr.forEach((current, index) => {
-                
-            //         if (duplicatesIndices.includes(index)) return;
-                
-            //         result.push(current);
-                
-            //         // Сравниваем каждый элемент в массиве после текущего
-            //         for (let comparisonIndex = index + 1; comparisonIndex < arr.length; comparisonIndex++) {
-                    
-            //             const comparison = arr[comparisonIndex];
-            //             const currentKeys = Object.keys(current);
-            //             const comparisonKeys = Object.keys(comparison);
-                        
-            //             // Проверяем длину массивов
-            //             if (currentKeys.length !== comparisonKeys.length) continue;
-                        
-            //             // Проверяем значение ключей
-            //             const currentKeysString = currentKeys.sort().join("").toLowerCase();
-            //             const comparisonKeysString = comparisonKeys.sort().join("").toLowerCase();
-            //             if (currentKeysString !== comparisonKeysString) continue;
-                        
-            //             // Проверяем индексы ключей
-            //             let valuesEqual = true;
-            //             for (let i = 0; i < currentKeys.length; i++) {
-            //                 const key = currentKeys[i];
-            //                 if ( current[key] !== comparison[key] ) {
-            //                     valuesEqual = false;
-            //                     break;
-            //                 }
-            //             }
-            //             if (valuesEqual) duplicatesIndices.push(comparisonIndex);
-                        
-            //         } // Конец цикла
-            //     });  
-            //     console.log(result)
-            //     return result;
-            // }
-            // removeDuplicates(action.items)
+        if(state.items.length !==0 && action.items[0].id === state.items[0].id) {
+            return { ...state, items: [...action.items] }
+        }
 
 
             return { ...state, items: [...state.items, ...action.items] }
@@ -149,6 +108,21 @@ const tableItemsReducer = (state = initialState, action) => {
             console.log(updatedItems)
 
             return { ...state, items: [...updatedItems] }
+
+
+        case LOGOUT:
+            // console.log(action)
+            // console.log('--------------logout--------------')
+
+            localStorage.removeItem('token')
+            return { ...state,     
+                items: [],
+                previewItems: [],
+                previewTotal: [],
+                rooms: [],
+                search: '' }
+
+
         default:
             return state
     }

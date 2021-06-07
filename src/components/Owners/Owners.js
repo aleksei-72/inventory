@@ -45,6 +45,7 @@ const Owners = (props) => {
             props.ownersTableItems.map((el) => {
               return <OwnersTableItem
                 id={el.id}
+                key={el.id}
                 name={el.name}
                 // role={el.role}
                 // username={el.username}

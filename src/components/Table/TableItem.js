@@ -257,6 +257,31 @@ const TableItem = (props) => {
     }}     
     />
 
+    // let a = 'НаименованиеssssssssssssssssНаименованиеssssssssssssssss'
+    // console.log(a.length)
+    // console.log( Math.floor(a.length/28) )
+
+
+   
+
+    // let checkStringLength = (string, stringLength) => {
+    //     console.log(string)
+    //     console.log(string.length)
+    //     console.log(stringLength)
+    //     if(string === undefined) {
+    //         console.log(true)
+    //         string = "Наименование"
+    //     }
+    //     console.log(Math.floor(string.length/stringLength))
+    //     let res  =  Math.floor(string.length/stringLength)
+    //     console.log(res)
+    //     if(res === 0) {
+    //         return 1
+    //     }
+    //     return res
+    // }
+        // console.log(b)
+
     return (
         <div className={style.item}>
             <div className={`${style.cell__container} ${style.check}`}>
@@ -294,13 +319,17 @@ const TableItem = (props) => {
 
             <div className={`${style.cell__container} ${style.name}`}>
             {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
-                    onKeyPress={(e) => auto_grow(e.currentTarget)}
+                    // onKeyPress={(e) => auto_grow(e.currentTarget)}
+                    // rows={checkStringLength(props.title, 28)}
                     cols={26}
                     onBlur={(e) => props.updateItem(dataItem)}
                     onChange={(e) => {
+                        e.target.style.height = '32px';
+                        e.target.style.height = e.target.scrollHeight + 'px';
                         setTitle(e.currentTarget.value)
                         console.log(e.currentTarget)
                         console.log(title)
+                        // console.log(checkStringLength(props.title, 28))
                     }}
                     defaultValue={!props.title ? "Наименование" : props.title}
                     className={`${style.title__field} ${style.field}`}/> : <p>{!props.title ? "Наименование" : props.title}</p>}
