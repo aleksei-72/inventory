@@ -55,7 +55,7 @@ const Users = (props) => {
   // }
   // userRole
   if (props.isAuth === false) { return <Redirect to={"/login"} /> }
-  // if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
+  if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
 
   return (
     <div className={`wrapper`}>

@@ -245,6 +245,24 @@ export const getUsers = (dispatch) => {
             // setAuthorization(localStorage.getItem('token'))
             return res.data
         })
+        .catch(error => {
+            
+            let errorType = error.response.data.error
+            console.log(errorType)
+                switch (errorType) {
+
+                    // case errorList.E_DONT_HAVE_PERMISSION :
+                    //     dispatch(stopSubmit("login", {_error: "Неверный пароль"}))
+                    //     break
+
+                    // case errorList.E_USER_BLOCKED :
+                    //     dispatch(stopSubmit("login", {_error: "Пользователь заблокирован"}))
+                    //     break
+
+                    default:
+                        return res.data
+                }
+        }) 
     return res
 }
 
@@ -416,6 +434,7 @@ export const deleteOwnerItem = (ownerId) =>{
         }
         catch (error) {
             console.log(error)
+            
             // setDefaultAppValues(dispatch)
             // dispatch(logout())
             // dispatch(setInitialState())
