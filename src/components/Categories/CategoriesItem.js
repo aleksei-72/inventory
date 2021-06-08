@@ -6,8 +6,10 @@ import { useDispatch } from 'react-redux';
 import { setCategoryId } from './../../reducers/categories';
 import { setCategoryTableItems } from './../../reducers/tableItems';
 import deleteIcon from './../../img/icons/Delete.svg';
+import editIcon from './../../img/icons/Edit.svg';
 
 const CategoriesItem = (props) => {
+    const [editCategory, setEditCategory] = useState(false)
     console.log(props)
     const dispatch = useDispatch()
     // const [title, setTitle] = useState('')
@@ -17,7 +19,7 @@ const CategoriesItem = (props) => {
         title: props.title
     }
 
-
+    console.log(editCategory && false)
     return (
         <div 
         // onClick={(e) => {
@@ -55,31 +57,34 @@ const CategoriesItem = (props) => {
 
             <input
                 onBlur={(e) => {
-
                     dataItem.title = e.target.value
                     console.log(dataItem)
                     props.updateCategoriesItem(dataItem)
                 }}
                 onChange={(e) => {
-                    // setTitle(e.target.value)
                     e.stopPropagation()
-                    // dataItem.title = e.target.value
                     console.log(e.target.value)
-                    // console.log(title)
                 }}
+                disabled = { !editCategory && true}
                 defaultValue={props.title}
-                className={`${style.name__field}`} />
-
-            {/* <div>{props.title}</div> */}
-
-
+                className={editCategory ? `${style.name__field} ${style.active_edit}` : `${style.name__field}`} />
 
 
             {/* {props.visibilityButtons ? <button onClick = { () => props.deleteCategoriesItem(props.id) } className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button> : null}             */}
             {props.visibilityButtons ? <button onClick={(e) => {
                 props.deleteCategoriesItem(props.id)
                 e.stopPropagation()
-            }} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button> : null}
+            }} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button> : <button onClick={(e) => {
+                // props.deleteCategoriesItem(props.id)
+                setEditCategory(!editCategory)
+                e.stopPropagation()
+            }} className={`${style.delete_btn}`}><img src={editIcon} alt="delete item" /></button>}
+
+            {/* <button onClick={(e) => {
+                // props.deleteCategoriesItem(props.id)
+                setEditCategory(!editCategory)
+                e.stopPropagation()
+            }} className={`${style.delete_btn}`}><img src={editIcon} alt="delete item" /></button> */}
         </div>
     )
 }

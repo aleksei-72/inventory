@@ -89,14 +89,14 @@ const TableItem = (props) => {
         dropdownIndicator: () => ({
             color:'#282828',
             position: 'absolute',
-            top: 17,
+            top: 7,
             right: 20
         }),
 
         control: (_, { selectProps: { width } }) => ({
             width: 165,
-            height: 35,
-            margin: 10,
+            height: 25,
+            marginLeft: 10,
         }),
 
         // singleValue: (provided, state) => {
@@ -133,6 +133,9 @@ const TableItem = (props) => {
             padding: 2,
             position: 'absolute',
             right: 20,
+            // maxHeight: 150,
+            // overflowY: "scroll",
+            // overflowX: "hidden",
             top: 35,
             fontFamily: "Inter",
             fontStyle: "normal",
@@ -162,14 +165,14 @@ const TableItem = (props) => {
         dropdownIndicator: () => ({
             color:'#282828',
             position: 'absolute',
-            top: 17,
+            top: 7,
             right: 20
         }),
 
         control: (_, { selectProps: { width } }) => ({
             width: 175,
-            height: 35,
-            margin: 10,
+            height: 25,
+            marginLeft: 10,
         }),
 
         // singleValue: (provided, state) => {
@@ -400,7 +403,7 @@ const TableItem = (props) => {
 
             <div className={`${style.cell__container} ${style.comment}`}>
                 {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
-                    // onKeyPress={(e) => auto_grow(e.currentTarget)}
+                    onKeyPress={(e) => auto_grow(e.currentTarget)}
                     // rows={1}
                     // contenteditable="true"
                     cols={25}

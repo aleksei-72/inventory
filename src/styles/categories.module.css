@@ -31,7 +31,7 @@ color: #828282;
 .item {
     color: #282828;
     width: 288px;
-    height: 54px;
+    height: 62px;
     border: 1px solid #D1D1D1;
     box-sizing: border-box;
     border-radius: 3px;
@@ -84,6 +84,8 @@ color: #828282;
     padding: 5px 8px;
     font-size: 14px;
     margin-left: 8px;
+    display: flex;
+    align-items: center;
 }
 
 .add_item_button > img {
@@ -119,7 +121,17 @@ color: #828282;
     border: 1px solid #FF4C4C;
 
 }
-.name__field:focus {
+
+/* .name__field:focus {
+    background: #FFFFFF;
+    outline: #D1D1D1;
+    border: 1px solid #D1D1D1 !important;
+} */
+
+.name__field {
+    padding: 5px !important;
+}
+.active_edit {
     background: #FFFFFF;
     outline: #D1D1D1;
     border: 1px solid #D1D1D1 !important;

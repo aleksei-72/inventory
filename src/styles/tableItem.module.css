@@ -56,6 +56,8 @@
 
 }
 .owner {
+    padding: 0 !important;
+    padding-left: 10px !important;
     width: 313px;
     min-width: 313px;
 }
@@ -87,7 +89,7 @@
     border: none;
 }
 .cell__container {
-    padding: 10px;
+    padding-left: 10px;
     display: flex;
     align-items: center;
     border-right: 1px solid #BDBDBD; 
