@@ -15,16 +15,17 @@ function normalEndingForWord(number, variants) {
 function dateTimeToNormal(dateTime) {
 
     //return dateTime
-    let date = Date.parse(dateTime)
+    let date = new Date(Date.parse(dateTime))
     let now = new Date()
 
-    //Разница в секундах
+    //Разница в минутах
     let delta = (now - date)/1000/60
 
 
     //Отрицательная разница во времени
     if (delta < 0) {
-        return now.getHours() + ':' + now.getMinutes() + ' ' + now.getFullYear() + 'г'
+        return date.toLocaleString("ru", { year: 'numeric', month: 'long', day: 'numeric',
+            hour: 'numeric', minute: 'numeric'})
     }
 
     if (delta < 1) {
@@ -252,6 +253,7 @@ const UsersTableItem = (props) => {
                             // console.log(amount)
                         }}
                         // defaultValue={!props.lastActiveAt ? 'Не был в системе' : props.lastActiveAt}
+                        // defaultValue={!props.lastActiveAt ? 'Не был в системе' : dateTimeToNormal(props.lastActiveAt)}
                         defaultValue={!props.lastActiveAt ? 'Не был в системе' : dateTimeToNormal(props.lastActiveAt)}
                         className={`${style.role__field}`} />
                 </div>

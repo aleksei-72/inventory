@@ -18,6 +18,7 @@ const TableItem = (props) => {
     const [comment, setComment] = useState(props.comment)
     const [price, setPrice] = useState(props.price)
     const [modalActive, setModalActive] = useState(false)
+    const [inputVisibility, setInputVisibility] = useState(false)
 
 
     function auto_grow(element) {
@@ -260,30 +261,29 @@ const TableItem = (props) => {
     }}     
     />
 
-    // let a = 'НаименованиеssssssssssssssssНаименованиеssssssssssssssss'
-    // console.log(a.length)
-    // console.log( Math.floor(a.length/28) )
 
-
-   
-
-    // let checkStringLength = (string, stringLength) => {
-    //     console.log(string)
-    //     console.log(string.length)
-    //     console.log(stringLength)
-    //     if(string === undefined) {
-    //         console.log(true)
-    //         string = "Наименование"
-    //     }
-    //     console.log(Math.floor(string.length/stringLength))
-    //     let res  =  Math.floor(string.length/stringLength)
-    //     console.log(res)
-    //     if(res === 0) {
-    //         return 1
-    //     }
-    //     return res
-    // }
-        // console.log(b)
+        let checkStringLength = (string, stringLength) => {
+            if(string === undefined || string === null) {
+                string = "Наименование"
+            }
+            console.log(Math.ceil(string.length/stringLength))
+            if(string.length >= 30) {
+                let res  =  (Math.ceil((string.length + 2)/stringLength)) * 25
+                return res
+            }
+                return 26
+        }
+        
+        let setPadding = (string) => {
+            if(string === undefined || string === null) {
+                // console.log(true)
+                string = "Наименование"
+            }
+            if(string.length >= 30) {
+                return 8
+            }
+            return 2
+        }
 
     return (
         <div className={style.item}>
@@ -324,6 +324,8 @@ const TableItem = (props) => {
             {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     // onKeyPress={(e) => auto_grow(e.currentTarget)}
                     // rows={checkStringLength(props.title, 28)}
+                    style = { {height: checkStringLength(props.title, 28), paddingTop: setPadding(props.title)} }
+                    
                     cols={26}
                     onBlur={(e) => props.updateItem(dataItem)}
                     onChange={(e) => {
@@ -339,6 +341,26 @@ const TableItem = (props) => {
                
 
             </div>
+
+            {/* <div onMouseOver = { () => setInputVisibility(true) } onMouseLeave = { () => setInputVisibility(false) } className={`${style.cell__container} ${style.name}`}>
+
+                {((props.currentUser.role === "user" || props.currentUser.role === "admin") && inputVisibility) ? <textarea
+                    // onKeyPress={(e) => auto_grow(e.currentTarget)}
+                    // rows={checkStringLength(props.title, 28)}
+                    cols={26}
+                    onBlur={(e) => props.updateItem(dataItem)}
+                    onChange={(e) => {
+                        e.target.style.height = '32px';
+                        e.target.style.height = e.target.scrollHeight + 'px';
+                        setTitle(e.currentTarget.value)
+                        console.log(e.currentTarget)
+                        console.log(title)
+                        // console.log(checkStringLength(props.title, 28))
+                    }}
+                    defaultValue={!props.title ? "Наименование" : props.title}
+                    className={`${style.title__field} ${style.field}`} /> : <p>{!props.title ? "Наименование" : props.title}</p>}
+
+            </div> */}
 
             <div className={`${style.cell__container} ${style.owner}`}>
                 {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <OwnersSelect/> : <p>{!props.owner.name ? 'Не указано' : props.owner.name}</p>}
@@ -403,6 +425,7 @@ const TableItem = (props) => {
 
             <div className={`${style.cell__container} ${style.comment}`}>
                 {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
+                style = { {height: checkStringLength(props.comment, 28), paddingTop: setPadding(props.comment)} }
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
                     // rows={1}
                     // contenteditable="true"
