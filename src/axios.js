@@ -4,7 +4,7 @@ import React from "react";
 // import store from './store';
 
 
-axios.defaults.baseURL = 'http://inventory.local';
+axios.defaults.baseURL = 'https://api.staging.inventory-platform.gq';
 axios.interceptors.response.use(response => response, error => {
   if (error.response) {
 
