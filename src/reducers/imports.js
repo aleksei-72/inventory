@@ -1,3 +1,5 @@
+import {clearAuthorization} from "../axios";
+
 const SET_IMPORST_LIST = "SET_IMPORTS_LIST";
 const LOGOUT = "LOGOUT";
 // const UPDATE_TOKEN = "UPDATE_TOKEN";
@@ -20,11 +22,11 @@ const importsReducer = (state = initialState, action) => {
                 // console.log(action)
                 // console.log('--------------logout--------------')
 
-                localStorage.removeItem('token')
+                clearAuthorization()
                 return {...state, importItems: []}
 
         // case UPDATE_TOKEN:
-        //         localStorage.setItem('token', action.token)
+        //         setAuthorization(action.token)
         //         return {...state, token:action.token}
     
         default:

@@ -1,3 +1,5 @@
+import {clearAuthorization, setAuthorization} from "../axios";
+
 const SET_AUTH_DATA = "SET_AUTH_DATA";
 const LOGOUT = "LOGOUT";
 const UPDATE_TOKEN = "UPDATE_TOKEN";
@@ -22,11 +24,11 @@ const authReducer = (state = initialState, action) => {
                 // console.log(action)
                 // console.log('--------------logout--------------')
 
-                localStorage.removeItem('token')
+                clearAuthorization()
                 return {...state, currentUser: {}, isAuth:false}
 
         case UPDATE_TOKEN:
-                localStorage.setItem('token', action.token)
+                setAuthorization(action.token)
                 return {...state, token:action.token}
     
         default:

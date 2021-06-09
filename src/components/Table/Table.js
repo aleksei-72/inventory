@@ -11,6 +11,7 @@ import { setCategoriesItems } from './../../reducers/categories';
 import { setOwnersTableItems } from './../../reducers/owners';
 import { setUserData } from '../../reducers/auth';
 import dragScroll from './../../dragScroll';
+import {clearAuthorization} from "../../axios";
 
 const Table = (props) => {
   console.log(props)
@@ -93,7 +94,10 @@ const Table = (props) => {
       getMe().then( res => {
         dispatch(setUserData(res.data))
         console.log(res.data)
-      } )
+      } , () => {
+          clearAuthorization()
+          return <Redirect to={"/login"} />
+      })
       return () => cleanupFunction = true;
     }, [] )
 

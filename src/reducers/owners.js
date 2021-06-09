@@ -1,3 +1,5 @@
+import {clearAuthorization} from "../axios";
+
 const SET_OWNERS = "SET_OWNERS";
 const ADD_NEW_TABLE_OWNER_ITEM = "ADD_NEW_TABLE_OWNER_ITEM";
 const DELETE_TABLE_OWNER_ITEM = "DELETE_TABLE_OWNER_ITEM";
@@ -70,7 +72,7 @@ const ownersReducer = (state = initialState, action) => {
             // console.log(action)
             // console.log('--------------logout--------------')
 
-            localStorage.removeItem('token')
+            clearAuthorization()
             return { ...state, owners: [] }
 
 

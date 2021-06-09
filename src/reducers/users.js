@@ -1,3 +1,5 @@
+import {clearAuthorization} from "../axios";
+
 const SET_USERS = "SET_USERS";
 const ADD_NEW_TABLE_USER_ITEM = "ADD_NEW_TABLE_USER_ITEM";
 const DELETE_TABLE_USER_ITEM = "DELETE_TABLE_USER_ITEM";
@@ -78,7 +80,7 @@ const usersReducer = (state = initialState, action) => {
             // console.log(action)
             // console.log('--------------logout--------------')
 
-            localStorage.removeItem('token')
+            clearAuthorization()
             return { ...state, users: [] }
 
 

@@ -1,3 +1,5 @@
+import {clearAuthorization} from "../axios";
+
 const SET_CATEGORIES = "SET_CATEGORIES";
 const SET_CATEGORY_ID = "SET_CATEGORY_ID";
 
@@ -60,7 +62,7 @@ const categoriesReducer = (state = initialState, action) => {
                 // console.log(action)
                 // console.log('--------------logout--------------')
 
-                localStorage.removeItem('token')
+                clearAuthorization()
                 return {...state, categories: [], currentCategoryId:null}
    
         default:

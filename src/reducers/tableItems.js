@@ -1,3 +1,5 @@
+import {clearAuthorization} from "../axios";
+
 const SET_ITEMS = "SET_ITEMS";
 const SET_FIRST_PAGE_ITEMS = "SET_FIRST_PAGE_ITEMS";
 
@@ -114,7 +116,7 @@ const tableItemsReducer = (state = initialState, action) => {
             // console.log(action)
             // console.log('--------------logout--------------')
 
-            localStorage.removeItem('token')
+            clearAuthorization()
             return { ...state,     
                 items: [],
                 previewItems: [],
