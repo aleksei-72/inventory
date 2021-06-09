@@ -11,8 +11,21 @@ const ImportsListItem = (props) => {
             <div className={style.item}>
                 <div className={`${style.cell__container}  ${style.name}`}>
                     <div className={`${style.cell}`}>
-                            <p>{props.name}</p>
+                            <p className={`${style.filename}`}>{props.name}</p>
                     </div>
+                </div>
+
+                <div className={`${style.cell__container}  ${style.user}`}>
+                    <p>{props.username}</p>
+                </div>
+
+                <div className={`${style.cell__container}  ${style.date}`}>
+                    <p>{(new Date((Date.parse(props.date)))).toLocaleString("ru", { year: 'numeric', month: 'long', day: 'numeric',
+                        hour: 'numeric', minute: 'numeric'})}</p>
+                </div>
+
+                <div className={`${style.cell__container}  ${style.count}`}>
+                    <p>{props.count}</p>
                 </div>
 
                 <div className={`${style.cell__container} ${style.status}`}>

@@ -54,7 +54,9 @@ const ImportsList = (props) => {
                   id={el.id}
                   name={el.fileName}
                   status={el.status}
-                  username={el.username}
+                  date={el.datetime}
+                  count={el.count}
+                  username={el.targetUser.username}
                   description={el.description}
                 />
               })

@@ -13,7 +13,8 @@
     padding: 0px 17px;
     /* border: 1px solid #000; */
 }
-.name {
+
+.name, .date, .user {
     width: 289px;
 }
 .username {
@@ -28,4 +29,14 @@
 }
 .password {
     width: 135px;
+}
+
+.status {
+    /* display: flex;
+    justify-content: start; */
+    width: 600px;
+    border: none;
+}
+.count {
+    width: 150px;
 }

@@ -104,10 +104,10 @@ textarea, input {
 
 
 .item {
-    padding: 0px 20px;
+    padding: 0 20px;
     /* border: 1px solid #000; */
 }
-.name {
+.name, .user, .date {
     width: 339px;
 }
 .username {
@@ -128,6 +128,12 @@ textarea, input {
     justify-content: start; */
     width: 600px;
     border: none;
+}
+.count {
+    width: 150px;
+}
+.filename {
+    width: 140px;
 }
 .succesfully__text {
     color: #15A01B;
