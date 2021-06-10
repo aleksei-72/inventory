@@ -38,7 +38,7 @@
 .item {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     color:#282828;
 }
 .item:nth-child(odd)  {
@@ -105,14 +105,27 @@ textarea, input {
 
 .item {
     padding: 0px 20px;
+    /* padding: 0 20px; */
     /* border: 1px solid #000; */
 }
 .name {
-    width: 339px;
+    width: 252px;
+}
+/* .user {
+    width: 144px;
+} */
+.date {
+    width: 233px;
 }
 .username {
     text-align: left;
-    width: 176px;
+    width: 136px;
+}
+.count {
+    width: 180px;
+}
+.filename {
+    width: 140px;
 }
 .role {
     width: 144px;
@@ -126,7 +139,7 @@ textarea, input {
 .status {
     /* display: flex;
     justify-content: start; */
-    width: 600px;
+    width: 360px;
     border: none;
 }
 .succesfully__text {

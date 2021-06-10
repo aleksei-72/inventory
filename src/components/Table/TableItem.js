@@ -241,16 +241,8 @@ const TableItem = (props) => {
             height: 35,
             marginLeft: -10,
             hyphens: 'auto'
-
-            // border: '1px solid #000'
         }),
 
-        // singleValue: (provided, state) => {
-        //     const opacity = state.isDisabled ? 0.5 : 1;
-        //     const transition = 'opacity 300ms';
-
-        //     return { ...provided, opacity, transition };
-        // }
     }
 
 
@@ -266,14 +258,14 @@ const TableItem = (props) => {
             if(string === undefined || string === null) {
                 string = "Наименование"
             }
-            console.log(Math.ceil(string.length/stringLength))
+            // console.log(Math.ceil(string.length/stringLength))
             if(string.length >= 30) {
                 let res  =  (Math.ceil((string.length + 2)/stringLength)) * 25
                 return res
             }
                 return 26
         }
-        
+
         let setPadding = (string) => {
             if(string === undefined || string === null) {
                 // console.log(true)

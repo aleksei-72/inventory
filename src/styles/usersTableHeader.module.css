@@ -12,15 +12,17 @@
 .item {
     padding: 0px 17px;
     /* border: 1px solid #000; */
+    display: flex;
+    align-items: center;
 }
 .name {
-    width: 289px;
+    width: 275px;
 }
 .username {
     width: 176px;
 }
 .role {
-    width: 125px;
+    width: 145px;
 }
 .lastVisit {
     width: 212px;
@@ -28,4 +30,32 @@
 }
 .password {
     width: 135px;
+}
+
+.status {
+    /* display: flex;
+    justify-content: start; */
+    width: 220px;
+    /* border: none; */
+}
+.count {
+    width: 150px;
+} 
+
+
+.import_name {
+    width: 252px;
+}
+.import_user {
+    width: 135px;
+}
+.import_date {
+    padding-left: 25px;
+    width: 233px;
+}
+.import_count {
+    width: 180px;
+}
+.import_status {
+    width: 180px;
 }

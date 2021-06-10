@@ -16,7 +16,7 @@
     padding-bottom: 40px;
 }
 .imports__wrapper {
-    max-width: 955px;
+    max-width: 1255px;
 }
 
 
@@ -33,6 +33,9 @@
     max-width: 1255px;
     font-size: 20px;
     display: flex;
+}
+.button__import_container {
+    padding-top: 7px;
 }
 .links__containerItem {
     margin-right: 16px;
@@ -146,7 +149,9 @@ textarea, input {
     color: #4C6FFF;
 }
 
-
+.blue {
+    color: #4C6FFF;
+}
 .status__container {
     border-right: none;
 }
@@ -159,7 +164,7 @@ textarea, input {
 }
 .name {
     padding-left: 10px;
-    width: 339px;
+    width: 275px;
 }
 .username {
     text-align: left;

@@ -3,7 +3,7 @@ import CategoriesContainer from '../Categories/CategoriesContainer';
 // import Modal from '../Modal/Modal';
 import HeaderContainer from './../Header/HeaderContainer';
 import TableContainer from './../Table/TableContainer';
-
+import loader from './../../img/img/loader/loader.gif';
 
 const MainApp = (props) => {
     const [fetch, setFetch] = useState(true)
@@ -16,7 +16,11 @@ const MainApp = (props) => {
                     <TableContainer fetch = {fetch} setFetch = {setFetch}/>
                 </main>
                 <div className="download_items_btn__container">
-                    <button className="download_items_btn" onClick = { () => setFetch(true) }>Загрузить элементы</button>
+                    {
+                        fetch ? <img className="loader" src ={loader}/> : <button className="download_items_btn" onClick = { () => setFetch(true) }>Загрузить элементы</button>
+                    }
+                    {/* <img className="loader" src ={loader}/> */}
+                    
                 </div>
                 
 

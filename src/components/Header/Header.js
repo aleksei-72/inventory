@@ -4,77 +4,22 @@ import alertIcon from './../../img/icons/Alert.svg'
 import alertRedIcon from './../../img/icons/AlertRed.svg'
 import searchIcon from './../../img/icons/Search.svg'
 import searchIconBtn from './../../img/icons/Search_btn.svg'
-// import addIcon from './../../img/icons/Add.svg'
 import settingsIcon from './../../img/icons/Settings.svg'
 import { useDispatch } from 'react-redux';
 import { logout } from '../../reducers/auth';
 import { getItems, getUsers, getPreviewItems } from '../../api/api';
-// import { updateToken } from '../../api/api';
 import { setSearchTableItems, setPreviewTableItems, setFirstPageTableItems } from './../../reducers/tableItems';
-// import { printItems } from './../../print';
 import { NavLink } from 'react-router-dom';
 import { setUsersTableItems } from './../../reducers/users';
-// import { getRooms, getPreviewItems } from './../../api/api';
 import SearchPreviewItem from './SearchPreviewItem';
-// import Select from 'react-select';
 
 const Header = (props) => {
     console.log(props)
     const dispatch = useDispatch()
     const [search, setSearch] = useState('')
-    const [searchPreviewVisibility, setSearchPreviewVisibility] = useState(false)
-    
-
-
-
-    // const authOption  = [
-    //     { value: 'logout', label: 'Выход' }
-    //   ];
-    // // console.log(categoriesOption)
-
-
-    // const customAuthsSelectStyles = {
-    //     menu: (provided, state) => ({
-    //         ...provided,
-    //         width: state.selectProps.width,
-    //         borderBottom: '1px dotted pink',
-    //         color: state.selectProps.menuColor,
-    //         padding: 2,
-    //         position: 'absolute',
-    //         right: 20,
-    //         top: 35
-    //     }),
-    //     placeholder: () => ({
-    //         color:'#282828',
-    //         fontSize: 14
-    //     }),
-
-    //     singleValue: () => ({
-    //         fontSize: 14
-    //     }),
-    //     dropdownIndicator: () => ({
-    //         color:'#282828',
-    //         position: 'absolute',
-    //         top: 7,
-    //         right: 20
-    //     }),
-
-    //     control: (_, { selectProps: { width } }) => ({
-    //         width: 145,
-    //         height: 35,
-    //         marginLeft: -10,
-    //         hyphens: 'auto'
-
-    //         // border: '1px solid #000'
-    //     }),
-
-    // }
-
+    const [searchPreviewVisibility, setSearchPreviewVisibility] = useState(false) 
     
     // const AuthSelect = () => <Select placeholder={`${props.currentUser.username}`} defaultValue={`${props.currentUser.username}`} styles={customAuthsSelectStyles} options={authOption}  />
-
-
-
 
     return (
         <header className={style.header}>

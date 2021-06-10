@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import style from './../../styles/users.module.css';
-import deleteIcon from './../../img/icons/Delete.svg';
+// import deleteIcon from './../../img/icons/Delete.svg';
 // import { NavLink } from 'react-router-dom';
 import Select from 'react-select'
 // import { updateUserPassword } from '../../api/api';

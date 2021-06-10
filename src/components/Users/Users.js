@@ -8,7 +8,7 @@ import UsersTableItem from './UsersTableItem';
 import { setUsersTableItems } from './../../reducers/users';
 import UsersTableHeader from './UsersTableHeader';
 import addIcon from './../../img/icons/Add.svg'
-
+import loader from './../../img/img/loader/loader.gif';
 
 const Users = (props) => {
   console.log(props)
@@ -24,7 +24,7 @@ const Users = (props) => {
     if (fetch) {
       getUsers(currentPage)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           dispatch(setUsersTableItems(res))
           setCurrentPage(prevVal => prevVal + 15)
         })
@@ -65,7 +65,7 @@ const Users = (props) => {
 
         <div className={`${style.button__container}`}>
           <div className={`${style.links__container}`}>
-            <div className={`${style.links__containerItem}`}>          <NavLink to='/users' > <div>Пользователи</div> </NavLink>          </div>
+            <div className={`${style.links__containerItem}`}>          <NavLink to='/users' > <div className={`${style.blue}`}>Пользователи</div> </NavLink>          </div>
             <div className={`${style.links__containerItem}`}>          <NavLink to='/owners' > <div>Ответственные</div> </NavLink>          </div>
             <div className={`${style.links__containerItem}`}>          <NavLink to='/imports' > <div>Импорт</div> </NavLink>          </div>
           </div>
@@ -74,8 +74,8 @@ const Users = (props) => {
           </button>
         </div>
 
-
-        <section className={`${style.users__table}`}>
+        {
+          fetch ? <img className="loader" src ={loader}/> : <section className={`${style.users__table}`}>
           <UsersTableHeader />
           {
             props.usersTableItems.map((el) => {
@@ -95,6 +95,9 @@ const Users = (props) => {
             })
           }
         </section>
+        }
+
+        
       </div>
 
     </div>

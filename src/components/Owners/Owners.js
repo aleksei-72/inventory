@@ -12,7 +12,7 @@ import OwnersTableHeader from './OwnersTableHeader';
 import OwnersTableItem from './OwnersTableItem';
 // import { addTableOwnerItem } from './../../api/api';
 // import { getProfiles } from './../../api/api';
-
+import loader from './../../img/img/loader/loader.gif';
 
 const Owners = (props) => {
   console.log(props)
@@ -29,7 +29,7 @@ const Owners = (props) => {
         <div className={`${style.button__container}`}>
           <div className={`${style.links__container}`}>
             <div className={`${style.links__containerItem}`}>          <NavLink to='/users' > <div>Пользователи</div> </NavLink>          </div>
-            <div className={`${style.links__containerItem}`}>          <NavLink to='/owners' > <div>Ответственные</div> </NavLink>          </div>
+            <div className={`${style.links__containerItem}`}>          <NavLink to='/owners' > <div className={`${style.blue}`}>Ответственные</div> </NavLink>          </div>
             <div className={`${style.links__containerItem}`}>          <NavLink to='/imports' > <div>Импорт</div> </NavLink>          </div>
           </div>
           <button onClick={() => props.addTableOwnerItem()} className={style.add_item_button}>Добавить ответственного
