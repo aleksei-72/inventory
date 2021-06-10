@@ -53,9 +53,7 @@ const Users = (props) => {
   //     console.log(e)
   //   }
   // }
-  // userRole
-  if (props.isAuth === false) { return <Redirect to={"/login"} /> }
-  if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
+
 
   return (
     <div className={`wrapper`}>

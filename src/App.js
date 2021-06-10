@@ -5,22 +5,23 @@ import store from './store';
 import UsersContainer from './components/Users/UsersContainer';
 import OwnersContainer from './components/Owners/OwnersContainer';
 import ImportsListContainer from './components/ImportsList/ImportsListContainer';
-// import Modal from './components/Modal/Modal';
-// import ImportsListContainer from './components/ImportsList/ImportsListContainer';
+import { getAuthorization } from "./axios";
+import RoutingMiddleWare from "./routing-middleware"
+
 
 function App() {
-	if ( localStorage.getItem('token') ) { 
+	if (getAuthorization()) {
 		store.getState().authReducer.isAuth = true 
 	}
 	return (
 		<BrowserRouter>
 
 			<Switch>
-				<Route path='/' exact render={() => <MainApp data={store.getState()} />} />
+				<Route path='/' exact render={() => RoutingMiddleWare(['isAuth'], <MainApp data={store.getState()} />)} />
 				<Route path='/login' exact render={() => <LoginContainer />} />
-				<Route path='/users' exact render={() => <UsersContainer />} />
-				<Route path='/owners' exact render={() => <OwnersContainer />} />
-				<Route path='/imports' exact render={() => <ImportsListContainer />} />
+				<Route path='/users' exact render={() => RoutingMiddleWare(['isAuth', 'isAdmin'], <UsersContainer />)} />
+				<Route path='/owners' exact render={() => RoutingMiddleWare(['isAuth', 'isAdmin'], <OwnersContainer />)} />
+				<Route path='/imports' exact render={() => RoutingMiddleWare(['isAuth', 'isAdmin'], <ImportsListContainer />)} />
 			</Switch>
 		</BrowserRouter>
 		
