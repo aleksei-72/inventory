@@ -1,5 +1,8 @@
+import { clearAuthorization } from "../axios";
+
 const SET_IMPORST_LIST = "SET_IMPORTS_LIST";
 const LOGOUT = "LOGOUT";
+
 let initialState = {
     importItems: []
 }
@@ -10,7 +13,7 @@ const importsReducer = (state = initialState, action) => {
         case SET_IMPORST_LIST:
             return {...state, importItems:action.data}
         case LOGOUT:
-                localStorage.removeItem('token')
+                clearAuthorization()
                 return {...state, importItems: []}
         default:
             return state

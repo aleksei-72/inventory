@@ -7,16 +7,8 @@ import axios from './../axios';
 import { setAuthorization } from './../axios';
 import { deleteAllCategories, deleteCategory, addCategory, updateCategory } from '../reducers/categories'
 import * as errorList from './../errorList'
-import { setImporthData } from '../reducers/imports'
-// import { setCategoriesItems, deleteAllCategories, addCategory } from './../reducers/categories';
+// import { setImporthData } from '../reducers/imports'
 
-
-// let axios = axios.create({})
-// if (localStorage.getItem('token')) {
-//     axios = axios.create({
-//         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-//     })
-// }
 
 export const updateToken = (dispatch) => {
     return axios.post('/token')
@@ -27,9 +19,9 @@ export const updateToken = (dispatch) => {
 }
 
 export const getItems = (currentPage, categoryId, search) => {
-    const res = axios.get(`/items?limit=15&skip=${currentPage}&category_id=${categoryId}&query=${search}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
+    const res = axios.get(`/items?limit=15&skip=${currentPage}&category_id=${categoryId}&query=${search}`).then( (res) => {
         console.log(res)
-        setAuthorization(localStorage.getItem('token'))
+         
         return res
     } )
     return res
@@ -37,30 +29,14 @@ export const getItems = (currentPage, categoryId, search) => {
 
 
 export const getPreviewItems = (currentPage, categoryId, search) => {
-    const res = axios.get(`/items?limit=10&skip=${currentPage}&category_id=${categoryId}&query=${search}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
+    const res = axios.get(`/items?limit=10&skip=${currentPage}&category_id=${categoryId}&query=${search}`).then( (res) => {
         console.log(res)
-        setAuthorization(localStorage.getItem('token'))
+         
         return res
     } )
     return res
 }
 
-
-
-// export const login = (username, password) => {
-//     return async dispatch => {
-//         try {
-//             const res = await axios.post('/auth', { username, password })
-//             localStorage.setItem('token', res.data)
-//             setAuthorization(res.data)
-//             dispatch(setAuthData(res.data))
-//             console.log(res)
-//         } catch (error) {
-//             console.log(error)            
-//             dispatch(stopSubmit("login", {_error: "Пользователь не был найден в системе"}))
-//         }
-//     }
-// }
 
 export const login = (username, password) => {
     return async dispatch => {
@@ -68,7 +44,6 @@ export const login = (username, password) => {
             (response) => {
 
                 try {
-                    localStorage.setItem('token', response.data)
                     setAuthorization(response.data)
                     dispatch(setAuthData(response.data))
                 } catch (e) {
@@ -103,7 +78,7 @@ export const addTableItem = () => {
             const res = await axios.post('/items')
             dispatch(addNewTableItem(res.data))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
             console.log(res.data)
             return res.data
         } catch (error) {
@@ -122,7 +97,7 @@ export const deleteItem = (itemId) =>{
             const res = await axios.delete(`/items/${itemId}`)
             console.log(res)
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
             dispatch(deleteTableItem(itemId))
         }
         catch (error) {
@@ -145,7 +120,6 @@ export const updateItem = (item) =>{
                 id:item.id,
                 number:item.number,
                 category_id: item.category,
-                // profile_string: item.owner,
                 title:item.title,
                 comment:item.comment,
                 count:item.count,
@@ -156,7 +130,7 @@ export const updateItem = (item) =>{
             console.log(res.data)
             dispatch(updateTableItem(res.data))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
         }
         catch (error) {
             console.log(error)
@@ -169,11 +143,11 @@ export const updateItem = (item) =>{
 }
 
 export const getCategories = (dispatch) => {
-    return axios.get(`/categories`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+    return axios.get(`/categories` )
         .then((res) => {
             console.log(res.data)
             // dispatch(setCategoriesItems(res.data))
-            setAuthorization(localStorage.getItem('token'))
+             
             return res.data
         })
 }
@@ -186,7 +160,7 @@ export const addCategoriesItem = () => {
             const res = await axios.post('/categories')
             dispatch(addCategory(res.data))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
             console.log(res.data)
             return res.data
         } catch (error) {
@@ -202,7 +176,7 @@ export const deleteCategoriesItem = (categoryId) =>{
             const res = await axios.delete(`/categories/${categoryId}`)
             console.log(res)
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
             dispatch(deleteCategory(categoryId))
         }
         catch (error) {
@@ -226,7 +200,7 @@ export const updateCategoriesItem = (item) =>{
             console.log(res.data)
             dispatch(updateCategory(res.data))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
         }
         catch (error) {
             console.log(error)
@@ -239,10 +213,10 @@ export const updateCategoriesItem = (item) =>{
 }
 
 export const getUsers = (dispatch) => {
-    const res = axios.get(`/users`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then((res) => {
+    const res = axios.get(`/users` ).then((res) => {
             console.log(res.data)
             // dispatch(setCategoriesItems(res.data))
-            // setAuthorization(localStorage.getItem('token'))
+            //  
             return res.data
         })
         .catch(error => {
@@ -266,14 +240,6 @@ export const getUsers = (dispatch) => {
     return res
 }
 
-// export const getItems = (currentPage, categoryId, search) => {
-//     const res = axios.get(`/items?limit=15&skip=${currentPage}&category_id=${categoryId}&query=${search}`, {headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }}).then( (res) => {
-//         console.log(res)
-//         setAuthorization(localStorage.getItem('token'))
-//         return res
-//     } )
-//     return res
-// }
 
 
 export const addTableUserItem = () => {
@@ -282,7 +248,7 @@ export const addTableUserItem = () => {
             const res = await axios.post('/users')
             dispatch(addNewTableUserItem(res.data))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
             console.log(res.data)
             return res.data
         } catch (error) {
@@ -304,7 +270,7 @@ export const deleteUserItem = (userId) =>{
             console.log(res)
             dispatch(deleteTableUserItem(userId))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
         }
         catch (error) {
             console.log(error)
@@ -332,7 +298,7 @@ export const updateUser = (user) =>{
             console.log(res)
             dispatch(updateTableUserItem(res.data))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
         }
         catch (error) {
             console.log(error)
@@ -357,7 +323,7 @@ export const updateUserPassword = (user) =>{
             console.log(res)
             dispatch(updateTableUserItem(user))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
         }
         catch (error) {
             console.log(error)
@@ -371,11 +337,11 @@ export const updateUserPassword = (user) =>{
 }
 
 export const getProfiles = (dispatch) => {
-    return axios.get(`/profiles`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+    return axios.get(`/profiles` )
         .then((res) => {
             console.log(res.data)
             // dispatch(setCategoriesItems(res.data))
-            setAuthorization(localStorage.getItem('token'))
+             
             return res.data
         })
 }
@@ -383,10 +349,10 @@ export const getProfiles = (dispatch) => {
 export const addTableOwnerItem = () => {
     return async dispatch => {
         try {
-            const res = await axios.post('/profiles', { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+            const res = await axios.post('/profiles' )
             dispatch(addNewTableOwnerItem(res.data))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
             console.log(res.data)
             return res.data
         } catch (error) {
@@ -411,7 +377,7 @@ export const updateOwner = (owner) =>{
             console.log(res)
             dispatch(updateTableOwnerItem(owner))
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
         }
         catch (error) {
             console.log(error)
@@ -429,7 +395,7 @@ export const deleteOwnerItem = (ownerId) =>{
             const res = await axios.delete(`/profiles/${ownerId}`)
             console.log(res)
             updateToken(dispatch)
-            setAuthorization(localStorage.getItem('token'))
+             
             dispatch(deleteTableOwnerItem(ownerId))
         }
         catch (error) {
@@ -448,11 +414,11 @@ export const deleteOwnerItem = (ownerId) =>{
 
 
 export const getRooms = (dispatch) => {
-    return axios.get(`/rooms`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+    return axios.get(`/rooms` )
         .then((res) => {
             console.log(res.data)
             // dispatch(setCategoriesItems(res.data))
-            setAuthorization(localStorage.getItem('token'))
+             
             return res.data
         })
 }
@@ -510,20 +476,20 @@ export const importFiles = (items) => {
 }
 
 export const getMe = () => {
-    const res = axios.get(`/me`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then( (res) => {
+    const res = axios.get(`/me` ).then( (res) => {
         console.log(res)
-        setAuthorization(localStorage.getItem('token'))
+         
         return res
     } )
     return res
 }
 
 export const getImportList = (dispatch) => {
-    return axios.get(`/items/imports`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+    return axios.get(`/items/imports` )
         .then((res) => {
             console.log(res.data)
             // dispatch(setImporthData(res.data))
-            setAuthorization(localStorage.getItem('token'))
+             
             return res.data
         })
 }

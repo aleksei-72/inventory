@@ -5,11 +5,10 @@ import store from './store';
 import UsersContainer from './components/Users/UsersContainer';
 import OwnersContainer from './components/Owners/OwnersContainer';
 import ImportsListContainer from './components/ImportsList/ImportsListContainer';
-// import Modal from './components/Modal/Modal';
-// import ImportsListContainer from './components/ImportsList/ImportsListContainer';
+import { getAuthorization } from './axios';
 
 function App() {
-	if ( localStorage.getItem('token') ) { 
+	if ( getAuthorization() ) { 
 		store.getState().authReducer.isAuth = true 
 	}
 	return (

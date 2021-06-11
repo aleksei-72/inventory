@@ -24,10 +24,17 @@ axios.interceptors.response.use(response => response, error => {
 
 export const setAuthorization = token => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  localStorage.setItem('token', token)
 }
 
 export const clearAuthorization = () => {
   axios.defaults.headers.common['Authorization'] = null;
+  localStorage.removeItem('token')
 }
+
+export const getAuthorization = () => {
+  return localStorage.getItem('token');
+}
+
 
 export default axios;
