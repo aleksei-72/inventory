@@ -20,10 +20,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // addTableItem: () => dispatch(addTableItem())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)
+export default connect(mapStateToProps, {})(HeaderContainer)

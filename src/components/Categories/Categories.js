@@ -13,7 +13,6 @@ const Categories = (props) => {
     console.log(props)
     const [visibility, setVisibility] = useState(false)
     const [reportVisibility, setReportVisibility] = useState(false)
-    // const [editCategory, setEditCategory] = useState(false)
 
 
     return (
@@ -26,11 +25,6 @@ const Categories = (props) => {
 
 
             {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <div className={style.button__container}>
-                {/* <button onClick={() => printItems()} className={style.print_button}>
-                    <img src={printIcon} alt="print" className={style.button_icon} />
-                </button> */}
-
-
 
                 <button onClick={() => setReportVisibility(!reportVisibility)} className={style.add_item_button}>
                     Сформировать отчет <img src={reportIcon} alt="add" className={style.button_icon} />

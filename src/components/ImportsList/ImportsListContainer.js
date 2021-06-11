@@ -17,9 +17,7 @@ const mapStateToProps = (state) => {
         userRole: state.authReducer.currentUser.role
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {}
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImportsListContainer)
+
+export default connect(mapStateToProps, {})(ImportsListContainer)

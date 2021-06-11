@@ -25,8 +25,6 @@ let initialState = {
 }
 
 const tableItemsReducer = (state = initialState, action) => {
-    // console.log(action.type)
-    // console.log(action)
     switch (action.type) {
         case SET_ITEMS:           
             console.log(action.items) 
@@ -83,17 +81,6 @@ const tableItemsReducer = (state = initialState, action) => {
             ]
             return { ...state, items: [...updatedItemsWithoutDeleted] }
 
-        // case DELETE_TABLE_ITEM:
-        //     const deletedItemId = action.itemId
-        //     const deletedItem = [...state.items].find(item => item.id === deletedItemId)
-        //     const deletedItemIndex = state.items.indexOf(deletedItem)
-        //     const updatedItemsWithoutDeleted = [
-        //         ...state.items.splice(deletedItemIndex, 0)
-        //     ]
-
-        //     console.log(updatedItemsWithoutDeleted)
-        //     return { ...state }
-
         case UPDATE_TABLE_ITEM:
             const updatedItemId = action.item.id
             const updatedItem = [...state.items].find(item => item.id === updatedItemId)
@@ -131,8 +118,6 @@ const tableItemsReducer = (state = initialState, action) => {
 export const setTableItems = (items, categoryId) => ({ type: SET_ITEMS, items, categoryId });
 export const setFirstPageTableItems = (items) => ({ type: SET_FIRST_PAGE_ITEMS, items });
 export const setPreviewTableItems = (items, total) => ({ type: SET_PREVIEW_ITEMS, items, total });
-
-
 export const setCategoryTableItems = (items) => ({ type: SET_CATEGORY_TABLE_ITEMS, items });
 export const setSearchTableItems = (items, searchString) => ({ type: SET_SEARCH_TABLE_ITEMS, items, searchString});
 export const addTableItem = (item) => ({ type: ADD_NEW_TABLE_ITEM, item });

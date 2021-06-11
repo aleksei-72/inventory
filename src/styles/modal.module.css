@@ -73,20 +73,16 @@
 }
 
 
-
-
 .reportParams__container,
 .reportColumns__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
-    /* border: 1px solid #000; */
 
 }
 .reportModal__content {
-    max-width: 560px; 
-    /* border: 1px solid #000; */
+    max-width: 560px;
 
 }
 .reportParams__title {

@@ -10,25 +10,7 @@ const CategoriesItems = (props) => {
     console.log(props)
 
     const [visibilityButtons, setVisibilityButtons] = useState(false)
-
     const dispatch = useDispatch()
-
-
-    // useEffect(() => {
-    //     getCategories().then(res => {
-    //         console.log(res)
-    //         dispatch(setCategoriesItems(res))
-    //     })
-    // }, [])
-
-    // useEffect(() => {
-    //     getCategories().then(res => {
-    //         console.log(res)
-    //         dispatch(setCategoriesItems(res))
-    //     })
-    // }, [])
-
-
 
     return (
         <div className = {`${style.categoriesItems__container}`}>

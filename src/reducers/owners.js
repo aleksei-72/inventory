@@ -11,8 +11,6 @@ let initialState = {
 }
 
 const ownersReducer = (state = initialState, action) => {
-    // console.log(action.type)
-    // console.log(action)
     switch (action.type) {
         case SET_OWNERS:
             console.log(action.owners)
@@ -25,20 +23,6 @@ const ownersReducer = (state = initialState, action) => {
             console.log("new owner")
             console.log("action owner", action)
             return { ...state, owners: [action.owner, ...state.owners] }
-
-        // case DELETE_TABLE_OWNER_ITEM:
-        //     const deletedOwnerId = action.ownerId
-        //     const deletedOwner = [...state.owners].find(item => item.id === deletedUserId)
-        //     const deletedUserIndex = state.users.indexOf(deletedUser)
-        //     console.log(deletedUserId, '--id--')
-        //     console.log(deletedUser, '--user--')
-        //     console.log(deletedUserIndex, '--user index--')
-        //     const updatedUsersWithoutDeleted = [
-        //         ...state.users.slice(0, deletedUserIndex),
-        //         ...state.users.slice(deletedUserIndex + 1, state.users.length)
-        //     ]
-        //     return { ...state, users: [...updatedUsersWithoutDeleted] }
-
         case DELETE_TABLE_OWNER_ITEM:
             console.log(action)
             console.log('owner')
@@ -84,8 +68,6 @@ export const setOwnersTableItems = (owners) => ({ type: SET_OWNERS, owners })
 export const addNewTableOwnerItem = (owner) => ({ type: ADD_NEW_TABLE_OWNER_ITEM, owner });
 export const deleteTableOwnerItem = (ownerId) => ({ type: DELETE_TABLE_OWNER_ITEM, ownerId });
 export const updateTableOwnerItem = (owner) => ({ type: UPDATE_TABLE_OWNER_ITEM, owner });
-
 export const deleteAllOwners = () => ({ type: DELETE_ALL_OWNERS });
-
 
 export default ownersReducer

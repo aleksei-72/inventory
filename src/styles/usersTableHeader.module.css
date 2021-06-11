@@ -4,14 +4,12 @@
     color: #828282;
     padding: 18px 0px 18px 20px;
     display: flex;
-    /* justify-content: space-between; */
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
     border-radius: 3px;
     margin-bottom: 16px;
 }
 .item {
     padding: 0px 17px;
-    /* border: 1px solid #000; */
     display: flex;
     align-items: center;
 }
@@ -33,10 +31,7 @@
 }
 
 .status {
-    /* display: flex;
-    justify-content: start; */
     width: 220px;
-    /* border: none; */
 }
 .count {
     width: 150px;

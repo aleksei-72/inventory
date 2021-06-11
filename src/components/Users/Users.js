@@ -13,7 +13,6 @@ import loader from './../../img/img/loader/loader.gif';
 const Users = (props) => {
   console.log(props)
   const dispatch = useDispatch()
-  // const [items, setItems] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
   const [fetch, setFetch] = useState(true)
   console.log("fetch users ------------------------- ", fetch)
@@ -34,26 +33,6 @@ const Users = (props) => {
     }
   }, [fetch])
 
-  // useEffect( () => {
-  //   getImportList().then( res => {
-  //     console.log(res)
-  //   } )
-  // } )
-
-  // useEffect(() => {
-  //   document.addEventListener('scroll', scrollHandler)
-  //   return () => {
-  //     document.removeEventListener('scroll', scrollHandler)
-  //   }
-  // })
-
-  // const scrollHandler = (e) => {
-  //   if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150 && items.length) {
-  //     // setFetch(true)
-  //     console.log(e)
-  //   }
-  // }
-  // userRole
   if (props.isAuth === false) { return <Redirect to={"/login"} /> }
   if (props.userRole !== 'admin') { return <Redirect to={"/"} /> }
 

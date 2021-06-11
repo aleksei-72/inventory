@@ -71,12 +71,9 @@ const categoriesReducer = (state = initialState, action) => {
 
 export const setCategoriesItems = (categories) => ({type:SET_CATEGORIES, categories})
 export const setCategoryId = (categoryId) => ({type:SET_CATEGORY_ID, categoryId})
-
 export const addCategory = (item) => ({ type: ADD_CATEGORIES_ITEM, item });
 export const updateCategory = (item) => ({ type: UPDATE_CATEGORIES_ITEM, item });
 export const deleteCategory = (itemId) => ({ type: DELETE_CATEGORIES_ITEM, itemId });
-
 export const deleteAllCategories = () => ({ type: DELETE_ALL_CATEGORIES });
-
 
 export default categoriesReducer

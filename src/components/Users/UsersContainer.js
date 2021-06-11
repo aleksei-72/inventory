@@ -3,8 +3,6 @@ import React from 'react';
 import Users from './Users';
 import { addTableUserItem, deleteUserItem, updateUser, updateUserPassword } from './../../api/api';
 
-
-
 class UsersContainer extends React.Component {
     render() {
         return <Users {...this.props} />
@@ -16,9 +14,6 @@ const mapStateToProps = (state) => {
         usersTableItems: state.usersReducer.users,
         isAuth: state.authReducer.isAuth,
         userRole: state.authReducer.currentUser.role
-        // currentPage: state.tableItemsReducer.currentPage,
-        // categoryId: state.categoriesReducer.currentCategoryId,
-        // searchString: state.tableItemsReducer.search
     }
 }
 const mapDispatchToProps = (dispatch) => {

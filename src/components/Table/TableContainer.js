@@ -17,10 +17,8 @@ const mapStateToProps = (state) => {
         tableItems: state.tableItemsReducer.items,
         categoriesItems: state.categoriesReducer.categories,
         ownersTableItems: state.ownersReducer.owners,
-
         roomsItems: state.tableItemsReducer.rooms,
         currentUser: state.authReducer.currentUser,
-
         usersTableItems: state.usersReducer.users,
         currentPage: state.tableItemsReducer.currentPage,
         isAuth: state.authReducer.isAuth,
@@ -34,6 +32,5 @@ const mapDispatchToProps = (dispatch) => {
         updateTableItem: (item) => dispatch(updateItem(item))
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableContainer)

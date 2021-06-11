@@ -1,18 +1,10 @@
 import React from 'react';
 import HeaderContainer from '../Header/HeaderContainer';
 import style from './../../styles/users.module.css'
-// import { getUsers } from '../../api/api';
-// import { useDispatch } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
-// import UsersTableItem from '../Users/UsersTableItem';
-// import { setUsersTableItems } from '../../reducers/users';
-// import UsersTableHeader from '../Users/UsersTableHeader';
 import addIcon from './../../img/icons/Add.svg'
 import OwnersTableHeader from './OwnersTableHeader';
 import OwnersTableItem from './OwnersTableItem';
-// import { addTableOwnerItem } from './../../api/api';
-// import { getProfiles } from './../../api/api';
-import loader from './../../img/img/loader/loader.gif';
 
 const Owners = (props) => {
   console.log(props)
@@ -36,8 +28,6 @@ const Owners = (props) => {
                     <img src={addIcon} alt="add" className={style.button_icon} />
           </button>
         </div>
-
-
         
         <section className={`${style.users__table} ${style.owners__table}`}>
           <OwnersTableHeader />
@@ -47,10 +37,6 @@ const Owners = (props) => {
                 id={el.id}
                 key={el.id}
                 name={el.name}
-                // role={el.role}
-                // username={el.username}
-                // blocked={el.blocked}
-                // lastActiveAt={el.lastActiveAt}
                 deleteTableOwnerItem = {props.deleteTableOwnerItem}
                 updateOwner = {props.updateTableOwnerItem}
               />

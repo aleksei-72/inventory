@@ -10,15 +10,12 @@ body {
   margin: 0 auto;
   max-width: 1600px;
   height: 100vh;
-  /* padding-bottom: 20px; */
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 * {
-  /* font-size: 14px !important; */
   font-family: 'Inter', sans-serif;
   font-style: normal;
   margin: 0;
@@ -44,7 +41,6 @@ button {
   border: none;
   font-family: Inter;
 font-style: normal;
-/* font-weight: 500; */
 font-size: 14px;
 line-height: 17px;
 }
@@ -59,9 +55,6 @@ button:hover {
   align-items: center;
   border: 1px solid #4C6FFF;
   color: #4C6FFF;
-  /* position: fixed;
-  bottom: 0; */
-  /* margin-bottom: 20px; */
 
 }
 .loader {
@@ -84,18 +77,9 @@ input[type=text] {
   border-radius: 3px;
 }
 .main-table {
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
-  /* overflow-x: scroll; */
-  /* overflow-x: hidden; */
-  /* width: 100%; */
-  /* transform: scaleY(-1); */
 }
-  /* .main-table::-webkit-scrollbar {
-    top:0;
-    position: absolute;
-  } */
 
 .main-content {
   display: flex;
@@ -103,14 +87,11 @@ input[type=text] {
   padding-left: 40px;
   overflow-x: hidden;
   overflow-y: hidden;
-  /* position: relative; */
 }
 
 @media print {
   * {
     -webkit-print-color-adjust: exact;
-    /* background: #000; */
-    /* padding: 5px !important; */
   }
 
   .wrapper {
@@ -122,149 +103,7 @@ input[type=text] {
 .download_items_btn__container {
   padding: 20px;
 }
-/* .css-2b097c-container {
-  width: 120px !important;
-  height: 35px !important;
-  padding: 8px !important;
-} */
 
-/* .css-1hb7zxy-IndicatorsContainer {
-  display: none !important;
-} */
 .css-1okebmr-indicatorSeparator {
   display: none !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-/* body,
-html {
-  color: #fff;
-  text-align: center;
-  background: #efefef;
-  font-family: Helvetica, sans-serif;
-  margin: 0;
-}
-
-.grid-container {
-  background: #efefef;
-  font-family: 'Rubik', sans-serif;
-} */
-
-/* //ENABLE CSS GRID FOR LIFT OFF  🚀 */
-/* @supports(display: grid) { */
-
-  /* .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    
-
-    grid-template-areas:
-      "header header header"
-      "title title footer"
-      "main main main";
-    @media screen and (max-width: 500px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.3fr 1fr auto 1fr;
-      grid-template-areas: 
-        "header"
-        "title"
-        "main"
-        "footer";
-    }
-  } */
-
-  /* .grid-item {
-    color: #fff;
-    background: skyblue;
-    padding: 3.5em 1em;
-    font-size: 1em;
-    font-weight: 700;
-  }
-  
-  .header {
-    background-color: darken(skyblue, 60%);
-    grid-area: header;
-    padding: 1em;
-  }
-  
-  .title {
-    color: #555;
-    background-color: lighten(skyblue, 25%);
-    grid-area: title;
-  }
-
-  .main-table {
-    color: lighten(#555, 25%);
-    background-color: lighten(skyblue, 60%);
-    grid-area: main;
-    padding: 0;
-    overflow-x: scroll;
-    overflow-y: hidden;
-  }
-  
-  .footer {
-    background-color: darken(skyblue, 10%);
-    grid-area: footer;
-    padding: 0.6em;
-  }
-
-  .items {
-    position: relative;
-    width: 100%;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    transition: all 0.2s;
-    transform: scale(0.98);
-    will-change: transform;
-    user-select: none;
-    cursor: pointer;
-  } */
-
-  /* .items.active {
-    background: rgba(255,255,255,0.3);
-    cursor: grabbing;
-    cursor: -webkit-grabbing;
-    transform: scale(1);
-  }
-
-  .tableItem_item__3eONM {
-    display: inline-block;
-    background: skyblue;
-    min-height: 250px;
-    min-width: 400px;
-    margin: 2em 1em;
-    @media screen and (max-width: 500px) {
-      min-height: 200px;
-      min-width: 200px;
-    }
-  }
-} */
-
-
-/* a {
-  display: block;
-  color: lighten(skyblue, 15%);
-  text-decoration: underline;
-  margin: 1em auto;
-} */
-/* 
-p {
-  text-align: left;
-  text-indent: 20px;
-  font-weight: 100;
-}
-
-i {
-  color: skyblue;
-} */

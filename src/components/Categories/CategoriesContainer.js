@@ -23,7 +23,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        // getTableItems: (currentPage, categoryId, search) => dispatch(getItems(currentPage, categoryId, search)),
         deleteCategory: (id) => dispatch(deleteCategoriesItem(id)),
         updateCategory: (item) => dispatch(updateCategoriesItem(item)),
         addCategory: () => dispatch(addCategoriesItem()),

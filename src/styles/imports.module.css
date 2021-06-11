@@ -4,10 +4,6 @@
     max-width: 955px;
 }
 
-
-.users__table {    
-    /* padding: 0px 40px; */
-}
 .cell {
     font-weight: 400;
     font-size: 14px;
@@ -65,7 +61,6 @@
     padding: 0px 16px;
 }
 .number {
-    /* width: 146px; */
     min-width: 146px;
     justify-content: flex-end;
 }
@@ -75,11 +70,8 @@
     display: flex;
     align-items: center;
     border-right: 1px solid #BDBDBD;
-    /* max-width: 250px; */
-    word-wrap: break-word;
-    
+    word-wrap: break-word;    
 }
-
 
 textarea, input {
     background: transparent;
@@ -87,7 +79,6 @@ textarea, input {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    /* text-align: right; */
     resize: none !important;
     overflow: hidden;
 }
@@ -101,19 +92,12 @@ textarea, input {
     border-right: none;
 }
 
-
-
 .item {
     padding: 0px 20px;
-    /* padding: 0 20px; */
-    /* border: 1px solid #000; */
 }
 .name {
     width: 252px;
 }
-/* .user {
-    width: 144px;
-} */
 .date {
     width: 233px;
 }
@@ -137,8 +121,6 @@ textarea, input {
     width: 135px;
 }
 .status {
-    /* display: flex;
-    justify-content: start; */
     width: 360px;
     border: none;
 }

@@ -3,12 +3,11 @@ import style from './../../styles/modal.module.css'
 import closeIcon from './../../img/icons/Close.svg';
 import Select from 'react-select';
 import { createReport } from '../../api/api';
+import { customUsersReportSelectStyles } from '../../styles/selects/reactSelectStyles';
+import { customCategoriesReportSelectStyles, customRoomsReportSelectStyles, customColumnsReportSelectStyles } from './../../styles/selects/reactSelectStyles';
 
 
 const ReportModal = (props) => {
-    // console.log(props)
-
-
     let dataItem = {
         filters: {
             room_id: null,
@@ -21,68 +20,13 @@ const ReportModal = (props) => {
         columns: ["room", "profile", "category", "department", "count", "number", "title", "price", "comment", "created_at", "updated_at"]
     }
 
-
-    const customUsersSelectStyles = {
-        menu: (provided, state) => ({
-            ...provided,
-            width: state.selectProps.width,
-            borderBottom: '1px dotted pink',
-            // color: state.selectProps.menuColor,
-            color: '#282828',
-            padding: 2,
-            position: 'absolute',
-            width: 230,
-            // right: 20,
-            // top: 35
-        }),
-        menuList: () => ({
-            color:'#282828',
-            fontSize: 14,
-            fontFamily: "Inter",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            lineHeight: "19px"
-        }),
-        placeholder: () => ({
-            color:'#282828',
-            fontSize: 14,
-            fontFamily: "Inter",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            lineHeight: "19px"
-        }),
-
-        singleValue: () => ({
-            color: '#282828',
-            fontSize: 14
-        }),
-        dropdownIndicator: () => ({
-            color: '#282828',
-            position: 'absolute',
-            top: 6,
-            right: 10
-        }),
-
-        control: (_, { selectProps: { width } }) => ({
-            width: 230,
-            height: 35,
-            // marginRight: 8,
-            border: "1px solid #D1D1D1",
-            borderRadius: "3px"
-        })
-    }
+   
 
     const ownersOption = props.ownersTableItems.map(el => {
         return { value: el.name, label: el.name, id: el.id }
     })
 
-
-    // const OwnersSelect = () => <Select placeholder={!props.owner.name ? 'Не указано' : props.owner.name} defaultValue={props.owner.name} styles={customUsersSelectStyles} options={ownersOption} onChange={(e) => {
-    //     dataItem.profile = e.id
-    //     props.updateItem(dataItem)
-    // }} />
-
-    const OwnersSelect = () => <Select placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customUsersSelectStyles} options={ownersOption} onChange={(e) => {
+    const OwnersSelect = () => <Select placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customUsersReportSelectStyles} options={ownersOption} onChange={(e) => {
         console.log(e)
         dataItem.filters.profile_id = e.id
         console.log(dataItem)
@@ -94,59 +38,9 @@ const ReportModal = (props) => {
         return { value: el.title, label: el.title, id: el.id }
     })
 
-    const customCategoriesSelectStyles = {
-        menu: (provided, state) => ({
-            ...provided,
-            width: state.selectProps.width,
-            borderBottom: '1px dotted pink',
-            color: '#282828',
-            padding: 2,
-            position: 'absolute',
-            width: 145,
-            // left: -9
-            // right: -20,
-            // top: 35
-        }),
-        menuList: () => ({
-            color:'#282828',
-            fontSize: 14,
-            fontFamily: "Inter",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            lineHeight: "19px"
-        }),
-        placeholder: () => ({
-            color:'#282828',
-            fontSize: 14,
-            fontFamily: "Inter",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            lineHeight: "19px"
-        }),
+    
 
-        singleValue: () => ({
-            color: '#282828',
-            fontSize: 14
-        }),
-        dropdownIndicator: () => ({
-            color: '#282828',
-            position: 'absolute',
-            top: 6,
-            right: 10
-        }),
-
-        control: (_, { selectProps: { width } }) => ({
-            width: 145,
-            height: 35,
-            // marginLeft: -10,
-            hyphens: 'auto',
-            border: "1px solid #D1D1D1",
-            borderRadius: "3px"
-            // border: '1px solid #000'
-        })
-    }
-
-    const CategoriesSelect = () => <Select placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customCategoriesSelectStyles} options={categoriesOption}
+    const CategoriesSelect = () => <Select placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customCategoriesReportSelectStyles} options={categoriesOption}
         onChange={(e) => {
             console.log(e)
             dataItem.filters.category_id = e.id
@@ -160,68 +54,16 @@ const ReportModal = (props) => {
     })
 
 
-    const customRoomsSelectStyles = {
-        menu: (provided, state) => ({
-            ...provided,
-            width: state.selectProps.width,
-            borderBottom: '1px dotted pink',
-            color: '#282828',
-            padding: 2,
-            position: 'absolute',
-            width: 115,
-            // right: 20,
-            // top: 35
-        }),
-        menuList: () => ({
-            color:'#282828',
-            fontSize: 14,
-            fontFamily: "Inter",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            lineHeight: "19px"
-        }),
-        placeholder: () => ({
-            color:'#282828',
-            fontSize: 14,
-            fontFamily: "Inter",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            lineHeight: "19px"
-        }),
-
-        singleValue: () => ({
-            color: '#282828',
-            fontSize: 14
-        }),
-        dropdownIndicator: () => ({
-            color: '#282828',
-            position: 'absolute',
-            top: 6,
-            right: 10
-        }),
-
-        control: (_, { selectProps: { width } }) => ({
-            width: 115,
-            height: 35,
-            // marginRight: 8,
-            border: "1px solid #D1D1D1",
-            borderRadius: "3px"
-        }),
-    }
+    
 
     const LocationSelect = () => <Select placeholder={`Выбрать`}
         defaultValue={`Выбрать`}
-        styles={customRoomsSelectStyles} options={roomsOption}
+        styles={customRoomsReportSelectStyles} options={roomsOption}
         onChange={(e) => {
             console.log(e)
             dataItem.filters.room_id = e.id
             console.log(dataItem)
         }} />
-
-
-
-
-    // columns: ["room", "profile", "category", "department", "count", "number", "title", "price", "comment", "created_at", "updatedAt"]
 
 
     const columnsOption = [
@@ -237,73 +79,9 @@ const ReportModal = (props) => {
         { value: 'created_at', label: 'Дата создания' },
         { value: 'updated_at', label: 'Дата обновления' },
     ];
-    // console.log(categoriesOption)
 
 
-    const customColumnsSelectStyles = {
-        menu: (provided, state) => ({
-            ...provided,
-            width: state.selectProps.width,
-            borderBottom: '1px dotted pink',
-            color: '#282828',
-            padding: 2,
-            position: 'absolute',
-            width: "500px",
-            // right: 20,
-            // top: 35
-        }),
-        menuList: () => ({
-            color:'#282828',
-            fontSize: 14,
-            fontFamily: "Inter",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            lineHeight: "19px"
-        }),
-        placeholder: () => ({
-            color:'#282828',
-            fontSize: 14,
-            fontFamily: "Inter",
-            fontStyle: "normal",
-            fontWeight: "normal",
-            lineHeight: "19px"
-        }),
-
-        singleValue: () => ({
-            color: '#282828',
-            fontSize: 14
-        }),
-        dropdownIndicator: () => ({
-            color: '#282828',
-            position: 'absolute',
-            top: 8,
-            right: 10
-        }),
-        indicatorContainer: () => ({
-            color: '#282828'
-        }),
-        control: (_, { selectProps: { width } }) => ({
-            width: "500px",
-            height: 35,
-            margin: "0px auto",
-            hyphens: 'auto',
-            border: "1px solid #D1D1D1",
-            borderRadius: "3px"
-
-            // border: '1px solid #000'
-        }),
-        indicatorsContainer: () => ({
-            position: "absolute",
-            width: 66,
-            display: "flex",
-            justifyContent: "space-between",
-            right: 0,
-            top: 0
-        })
-    }
-
-
-    const ColumnsSelect = () => <Select isMulti={true} placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customColumnsSelectStyles} options={columnsOption}
+    const ColumnsSelect = () => <Select isMulti={true} placeholder={'Выбрать'} defaultValue={'Выбрать'} styles={customColumnsReportSelectStyles} options={columnsOption}
         onChange={(e) => {
             console.log(e)
             let selectedColumns = []
@@ -315,14 +93,8 @@ const ReportModal = (props) => {
             console.log(selectedColumns)
             dataItem.columns = selectedColumns
             console.log(dataItem)
-
-            // props.updateItem(dataItem)
         }}
     />
-
-
-
-
 
 
     return (
