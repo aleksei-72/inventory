@@ -1,6 +1,4 @@
 import axios from "axios";
-import {Redirect} from "react-router-dom";
-import React from "react";
 import * as errorList from "./errorList";
 //import {stopSubmit} from "redux-form";
 
@@ -10,7 +8,6 @@ axios.interceptors.response.use(response => response, error => {
   if (error.response) {
 
       console.log(error.response)
-
       let errorType = error.response.data.error
 
       if ([errorList.E_TOKEN_INVALID, errorList.E_TOKEN_EXPIRED,
@@ -18,11 +15,9 @@ axios.interceptors.response.use(response => response, error => {
           clearAuthorizationAndRedirect()
           return
       }
-
-
   }
 
-  //return Promise.reject(error);
+  return Promise.reject(error);
 });
 
 const clearAuthorizationAndRedirect = () => {
