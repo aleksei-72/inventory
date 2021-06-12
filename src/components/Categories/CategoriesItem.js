@@ -43,15 +43,26 @@ const CategoriesItem = (props) => {
                 disabled = { !editCategory && true}
                 defaultValue={props.title}
                 className={editCategory ? `${style.name__field} ${style.active_edit}` : `${style.name__field}`} />
+            {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <>
 
-            {props.visibilityButtons ? <button onClick={(e) => {
+                {props.visibilityButtons ? <button onClick={(e) => {
+                    props.deleteCategoriesItem(props.id)
+                    e.stopPropagation()
+                }} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button> : <button onClick={(e) => {
+                    // props.deleteCategoriesItem(props.id)
+                    setEditCategory(!editCategory)
+                    e.stopPropagation()
+                }} className={`${style.delete_btn}`}><img src={editIcon} alt="delete item" /></button>}
+            </>
+            }
+            {/* {props.visibilityButtons ? <button onClick={(e) => {
                 props.deleteCategoriesItem(props.id)
                 e.stopPropagation()
             }} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button> : <button onClick={(e) => {
                 // props.deleteCategoriesItem(props.id)
                 setEditCategory(!editCategory)
                 e.stopPropagation()
-            }} className={`${style.delete_btn}`}><img src={editIcon} alt="delete item" /></button>}
+            }} className={`${style.delete_btn}`}><img src={editIcon} alt="delete item" /></button>} */}
         </div>
     )
 }

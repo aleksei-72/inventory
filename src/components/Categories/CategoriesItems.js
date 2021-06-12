@@ -13,18 +13,26 @@ const CategoriesItems = (props) => {
     const dispatch = useDispatch()
 
     return (
-        <div className = {`${style.categoriesItems__container}`}>
+        <div className={`${style.categoriesItems__container}`}>
             {
                 props.categoriesItems.map((el) => {
                     // console.log(el)
-                    return <CategoriesItem visibilityButtons ={visibilityButtons} setVisibilityButtons = {setVisibilityButtons} deleteCategoriesItem = {props.deleteCategoriesItem} updateCategoriesItem = {props.updateCategoriesItem} searchString = {props.searchString} title = {el.title} key= {el.id} id = {el.id}/>
+                    return <CategoriesItem currentUser = {props.currentUser} visibilityButtons={visibilityButtons} setVisibilityButtons={setVisibilityButtons} deleteCategoriesItem={props.deleteCategoriesItem} updateCategoriesItem={props.updateCategoriesItem} searchString={props.searchString} title={el.title} key={el.id} id={el.id} />
                 })
             }
-            <button onClick = { (e) => {
+            { (props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <div>
+                    <button onClick={(e) => {
+                        e.stopPropagation()
+                        props.addCategoriesItem()
+                    }} className={`${style.categoriesItems__button} ${style.categoriesItems__button_add}`}>Добавить категорию</button>
+                    <button onClick={() => setVisibilityButtons(!visibilityButtons)} className={`${style.categoriesItems__button} ${style.categoriesItems__button_delete}`}>{!visibilityButtons ? 'Удалить категорию' : 'Применить изменения'}</button>
+                </div>
+            }
+            {/* <button onClick = { (e) => {
                     e.stopPropagation()
                     props.addCategoriesItem()
                 } } className = {`${style.categoriesItems__button} ${style.categoriesItems__button_add}`}>Добавить категорию</button>
-            <button onClick = { () => setVisibilityButtons(!visibilityButtons)} className = {`${style.categoriesItems__button} ${style.categoriesItems__button_delete}`}>{!visibilityButtons ? 'Удалить категорию' : 'Применить изменения'}</button>
+            <button onClick = { () => setVisibilityButtons(!visibilityButtons)} className = {`${style.categoriesItems__button} ${style.categoriesItems__button_delete}`}>{!visibilityButtons ? 'Удалить категорию' : 'Применить изменения'}</button> */}
         </div>
     )
 }

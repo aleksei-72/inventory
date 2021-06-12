@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './../../styles/modal.module.css'
 import closeIcon from './../../img/icons/Close.svg';
 import Select from 'react-select';
 import { createReport } from '../../api/api';
 import { customUsersReportSelectStyles } from '../../styles/selects/reactSelectStyles';
+import alertRedIcon from './../../img/icons/AlertRed.svg';
 import { customCategoriesReportSelectStyles, customRoomsReportSelectStyles, customColumnsReportSelectStyles } from './../../styles/selects/reactSelectStyles';
 
 
 const ReportModal = (props) => {
+    const [warning, setWarning] = useState(false)
     let dataItem = {
         filters: {
             room_id: null,
@@ -129,11 +131,25 @@ const ReportModal = (props) => {
                     </div>
                 </div>
 
+                {warning && <div className={style.search_preview__warning}>
+                        <img src={alertRedIcon} alt="alert" />
+                        <p className={style.search_preview__red_text}>Сформирован пустой файл</p>
+                </div>}
+                
                 <div className={`${style.button__container}`}>
-                    <button onClick={() => props.setActive(false)} className={style.cancel_btn}>Отмена</button>
+                    <button onClick={() => {
+                        setWarning(false)
+                        props.setActive(false)
+                        }} className={style.cancel_btn}>Отмена</button>
                     <button onClick={() => {
                         console.log('1')
-                        createReport(dataItem)
+                        createReport(dataItem).then( res => {
+                            if(res === 204) {
+                                setWarning(true)
+                            } else {
+                                setWarning(false)
+                            }
+                        })
                     }} className={style.delete_btn}>Сформировать</button>
                 </div>
             </div>

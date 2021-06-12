@@ -27,6 +27,9 @@ const Users = (props) => {
           dispatch(setUsersTableItems(res))
           setCurrentPage(prevVal => prevVal + 15)
         })
+        .catch(error => {
+          console.log(error)
+        } )
         .finally(() => {
           setFetch(false)
         })
@@ -75,8 +78,6 @@ const Users = (props) => {
           }
         </section>
         }
-
-        
       </div>
 
     </div>

@@ -7,6 +7,7 @@ import axios from './../axios';
 import { setAuthorization } from './../axios';
 import { deleteAllCategories, deleteCategory, addCategory, updateCategory } from '../reducers/categories'
 import * as errorList from './../errorList'
+import { compose } from 'redux'
 // import { setImporthData } from '../reducers/imports'
 
 
@@ -442,13 +443,19 @@ export const createReport = (item) => {
 
 
     )
-    .then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'file.xlsx');
-        document.body.appendChild(link);
-        link.click();
+    .then((res) => {
+        if(res.status === 204) {
+            return res.status
+        } else {
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.xlsx');
+            document.body.appendChild(link);
+            link.click();
+            console.log(res)
+        }
+
       });
     return res
 }

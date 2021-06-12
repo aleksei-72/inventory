@@ -73,6 +73,26 @@
 }
 
 
+.search_preview__warning {
+    display: flex;
+    align-items: center;
+    background: rgba(237, 242, 247, 0.5);
+    border-radius: 3px;
+    margin: 8px 23px;
+    padding: 8px;
+}
+.search_preview__warning img {
+    margin-right: 8px;
+    /* margin-top: -16px; */
+}
+.search_preview__red_text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FF4C4C;
+}
+
 .reportParams__container,
 .reportColumns__container {
     display: flex;

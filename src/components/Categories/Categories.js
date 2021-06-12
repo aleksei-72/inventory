@@ -21,7 +21,7 @@ const Categories = (props) => {
                 <h2 className={style.title}>Категории</h2>
                 <button className={`${style.link}`} onClick={() => setVisibility(!visibility)}>Открыть категории</button>
             </div>
-            {visibility ? <CategoriesItems  addCategoriesItem = {props.addCategory} deleteCategoriesItem = {props.deleteCategory} updateCategoriesItem = {props.updateCategory} searchString={props.searchString} categoriesItems={props.categoriesItems} /> : null}
+            {visibility ? <CategoriesItems currentUser = {props.currentUser}  addCategoriesItem = {props.addCategory} deleteCategoriesItem = {props.deleteCategory} updateCategoriesItem = {props.updateCategory} searchString={props.searchString} categoriesItems={props.categoriesItems} /> : null}
 
 
             {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <div className={style.button__container}>
