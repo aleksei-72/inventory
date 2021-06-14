@@ -106,7 +106,10 @@ const ReportModal = (props) => {
 
                 <div className={`${style.title__container}`}>
                     <h2 className={`${style.title}`}>Формирование отчета</h2>
-                    <button className={style.close_btn} onClick={() => props.setActive(false)}><img src={closeIcon} alt="close" /></button>
+                    <button className={style.close_btn} onClick={() => {
+                        setWarning(false)
+                        props.setActive(false)
+                        }}><img src={closeIcon} alt="close" /></button>
                 </div>
 
                 <div className={`${style.reportParams__container}`}>

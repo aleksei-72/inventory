@@ -5,12 +5,13 @@ import store from './store';
 import UsersContainer from './components/Users/UsersContainer';
 import OwnersContainer from './components/Owners/OwnersContainer';
 import ImportsListContainer from './components/ImportsList/ImportsListContainer';
-import { getAuthorization } from './axios';
+import { getAuthorization, setAuthorization } from './axios';
 
 function App() {
 	if ( getAuthorization() ) { 
 		store.getState().authReducer.isAuth = true 
 	}
+	setAuthorization(getAuthorization())
 	return (
 		<BrowserRouter>
 

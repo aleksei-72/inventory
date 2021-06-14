@@ -13,7 +13,7 @@ import { setUserData } from '../../reducers/auth';
 import dragScroll from './../../dragScroll';
 
 const Table = (props) => {
-  console.log(props)
+  // console.log(props)
   const dispatch = useDispatch()
   const [items, setItems] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
@@ -92,7 +92,7 @@ const Table = (props) => {
       let cleanupFunction = false;
       getMe().then( res => {
         dispatch(setUserData(res.data))
-        console.log(res.data)
+        // console.log(res.data)
       } )
       return () => cleanupFunction = true;
     }, [] )

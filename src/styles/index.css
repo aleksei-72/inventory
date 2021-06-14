@@ -66,6 +66,9 @@ h1 {
   font-size: 24px;
   line-height: 29px;
 }
+input {
+  cursor: text;
+}
 input[type=text] {
   width: 461px;
   padding: 13px 18px;
@@ -87,6 +90,7 @@ input[type=text] {
   padding-left: 40px;
   overflow-x: hidden;
   overflow-y: hidden;
+  /* padding-top: 50px; */
 }
 
 @media print {

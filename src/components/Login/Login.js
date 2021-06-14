@@ -31,7 +31,7 @@ const Login = (props) => {
                         type="password" />
                 </label>
                 <div className={style.forgot}>
-                    <span>Забыли пароль?</span>
+                    {/* <span>Забыли пароль?</span> */}
                 </div>
                 <button className={style.button}>Войти в аккаунт</button>
 

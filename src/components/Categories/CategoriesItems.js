@@ -21,11 +21,15 @@ const CategoriesItems = (props) => {
                 })
             }
             { (props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <div>
-                    <button onClick={(e) => {
+                    {!visibilityButtons ? <button onClick={(e) => {
                         e.stopPropagation()
                         props.addCategoriesItem()
-                    }} className={`${style.categoriesItems__button} ${style.categoriesItems__button_add}`}>Добавить категорию</button>
-                    <button onClick={() => setVisibilityButtons(!visibilityButtons)} className={`${style.categoriesItems__button} ${style.categoriesItems__button_delete}`}>{!visibilityButtons ? 'Удалить категорию' : 'Применить изменения'}</button>
+                    }} className={`${style.categoriesItems__button} ${style.categoriesItems__button_add}`}>Добавить категорию</button> : <button onClick={(e) => {
+                        e.stopPropagation()
+                        setVisibilityButtons(!visibilityButtons)
+                        // props.addCategoriesItem()
+                    }} className={`${style.categoriesItems__button} ${style.categoriesItems__button_add}`}>Сохранить</button>}
+                    <button onClick={() => setVisibilityButtons(!visibilityButtons)} className={`${style.categoriesItems__button} ${style.categoriesItems__button_delete}`}>{!visibilityButtons ? 'Удалить категорию' : 'Отмена'}</button>
                 </div>
             }
             {/* <button onClick = { (e) => {

@@ -84,11 +84,11 @@ const TableItem = (props) => {
 
     return (
         <div className={style.item}>
-            <div className={`${style.cell__container} ${style.check}`}>
+            {/* <div className={`${style.cell__container} ${style.check}`}>
                 <input checked={check} onChange={(e) => {
                     setCheck(e.currentTarget.checked)
                 }} className={`${style.cell}`} type="checkbox" />
-            </div>
+            </div> */}
 
             <div className={(props.currentUser.role === "admin" || props.currentUser.role === "user") ? `${style.cell__container}  ${style.number}` : `${style.cell__container}  ${style.number} ${style.cell__container_user}`}>
                 <div className={`${style.cell}`}>
@@ -96,7 +96,7 @@ const TableItem = (props) => {
                     {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                         onKeyPress={(e) => auto_grow(e.currentTarget)}
                         rows={1}
-                        cols={10}
+                        cols={13}
                         onBlur={() => props.updateItem(dataItem)}
                         onChange={(e) => {
                             setNumber(e.target.value)
@@ -163,27 +163,51 @@ const TableItem = (props) => {
             <div className={`${style.cell__container} ${style.price}`}>
                 {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     rows={1}
-
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
-                    onBlur={(e) => props.updateItem(dataItem)}
+                    onBlur={(e) => {
+                        let newPrice = parseInt(e.currentTarget.value.replace(/[^\d]/g, ''))
+
+                        if (isNaN(newPrice)) {
+                            newPrice = 0
+                        }
+                        newPrice = new Intl.NumberFormat('ru-RU').format(newPrice)
+
+                        e.currentTarget.value = newPrice
+                        props.updateItem(dataItem)
+                    }}
                     onChange={(e) => {
-                        setPrice(e.currentTarget.value)
+                        let newPrice = e.currentTarget.value.replace(/[^\d]/g, '')
+                        
+                        if (isNaN(parseInt(newPrice))) {
+                            newPrice = 0
+                        }
+                        setPrice(newPrice)
+
                         console.log(price)
                     }}
-                    defaultValue={!props.price? 0 : props.price}
-                    className={`${style.amount__field} ${style.field}`} /> : <p>{!props.price? 0 : props.price}</p>}
-                
+                    defaultValue={!props.price? 0 : (new Intl.NumberFormat('ru-RU').format(props.price))}
+                    className={`${style.amount__field} ${style.field}`} /> : <p>{!props.price? 0 : props.price}</p>}                
             </div>
 
 
 
-            <div className={`${style.cell__container} ${style.cost}`}>
+            {/* <div className={`${style.cell__container} ${style.cost}`}>
                 {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     rows={1}
 
                     disabled="disabled"
                     defaultValue={!NaN ? props.price * parseInt(props.count, 10) : 0}
                     className={`${style.amount__field} ${style.field}`} /> : <p>{!NaN ? props.price * parseInt(props.count, 10) : 0}</p>}
+               
+            </div> */}
+
+            <div className={`${style.cell__container} ${style.cost}`}>
+                {<textarea
+                    rows={1}
+
+                    disabled="disabled"
+                    value={!NaN ? new Intl.NumberFormat('ru-RU').format(props.price * parseInt(props.count, 10)) : 0}
+                    className={`${style.amount__field} ${style.field}`} />}
                
             </div>
 

@@ -7,6 +7,7 @@
     word-wrap: break-word;
 }
 .item {
+    cursor: move;
     position: relative;
     min-height: 65px;
     display: flex;
@@ -16,7 +17,6 @@
 .item:nth-child(odd)  {
     background: rgba(237, 242, 247, 0.5);
 }
-
 .check {
     height: 100px;
     position: absolute;
@@ -52,7 +52,7 @@
     min-width: 313px;
 }
 .location {
-    width: 204px;
+    width: 234px;
     min-width: 204px;
 }
 .location_item {
@@ -72,7 +72,8 @@
 
 .comment {
     border-right: none !important;
-    width: 230px;
+    width: 350px;
+    max-width: 350px !important;
     min-width: 230px;
     border: none;
 }

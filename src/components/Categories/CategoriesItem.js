@@ -6,9 +6,11 @@ import { setCategoryId } from './../../reducers/categories';
 import { setCategoryTableItems } from './../../reducers/tableItems';
 import deleteIcon from './../../img/icons/Delete.svg';
 import editIcon from './../../img/icons/Edit.svg';
+import Modal from './../Modal/Modal';
 
 const CategoriesItem = (props) => {
     const [editCategory, setEditCategory] = useState(false)
+    const [modalActive, setModalActive] = useState(false)
     console.log(props)
     const dispatch = useDispatch()
     let dataItem = {
@@ -46,7 +48,8 @@ const CategoriesItem = (props) => {
             {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) && <>
 
                 {props.visibilityButtons ? <button onClick={(e) => {
-                    props.deleteCategoriesItem(props.id)
+                    setModalActive(true)
+                    // props.deleteCategoriesItem(props.id)
                     e.stopPropagation()
                 }} className={style.delete_btn}><img src={deleteIcon} alt="delete item" /></button> : <button onClick={(e) => {
                     // props.deleteCategoriesItem(props.id)
@@ -63,6 +66,9 @@ const CategoriesItem = (props) => {
                 setEditCategory(!editCategory)
                 e.stopPropagation()
             }} className={`${style.delete_btn}`}><img src={editIcon} alt="delete item" /></button>} */}
+
+
+            <Modal active = {modalActive} setActive = {setModalActive} categoryId = {props.id} deleteCategory = {props.deleteCategoriesItem} deleteItem = {props.deleteItem} id = {props.id}/>
         </div>
     )
 }

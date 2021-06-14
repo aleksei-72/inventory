@@ -7,7 +7,7 @@
     /* justify-content: space-between; */
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
     border-radius: 3px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
 }
 
 .table {
@@ -34,7 +34,7 @@
 }
 .location {
     padding-left: 20px;
-    width:204px;
+    width:234px;
 }
 
 .amount {

@@ -51,7 +51,7 @@ const UsersTableItem = (props) => {
     }
 
 
-    const RoleComponent = () => <Select placeholder={props.role} defaultValue={`${props.role}`} styles={customStyles} options={roleOptions} onChange={(e) => {
+    const RoleComponent = () => <Select placeholder={props.role ? `${props.role}` : 'reader'} defaultValue={props.role ? `${props.role}` : 'reader'} styles={customStyles} options={roleOptions} onChange={(e) => {
         dataItem.role = e.value
         setRole(e.value)
         props.updateUser(dataItem)
@@ -110,7 +110,10 @@ const UsersTableItem = (props) => {
             <div className={`${style.cell__container} ${style.password}`}>
                 <input
                     type='password'
-                    onBlur={(e) => props.updateUserPassword(itemPassword)}
+                    onBlur={(e) => {
+                        e.currentTarget.value = ''
+                        props.updateUserPassword(itemPassword)
+                    }}
                     onChange={(e) => {
                         itemPassword.password = e.currentTarget.value
                         console.log(e.currentTarget.value)
