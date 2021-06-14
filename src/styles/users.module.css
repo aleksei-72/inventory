@@ -76,7 +76,7 @@
     border: 1px solid #4C6FFF;
 }
 .add_item_button:hover {
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    background: rgba(237, 242, 247, 0.5);
 }
 .button_icon {
     margin-left: 10px;

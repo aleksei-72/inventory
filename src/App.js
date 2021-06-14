@@ -9,9 +9,9 @@ import { getAuthorization, setAuthorization } from './axios';
 
 function App() {
 	if ( getAuthorization() ) { 
-		store.getState().authReducer.isAuth = true 
+		store.getState().authReducer.isAuth = true
+		setAuthorization(getAuthorization())
 	}
-	setAuthorization(getAuthorization())
 	return (
 		<BrowserRouter>
 

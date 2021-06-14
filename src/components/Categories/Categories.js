@@ -5,7 +5,7 @@ import CategoriesItems from './CategoriesItems';
 // import printIcon from './../../img/icons/Print.svg'
 import addIcon from './../../img/icons/Add.svg'
 import importIcon from './../../img/icons/import.svg'
-import reportIcon from './../../img/icons/report.svg'
+import reportIcon from './../../img/icons/documentReport.svg'
 import ReportModal from '../Modal/ReportModal';
 import { importFiles } from '../../api/api';
 

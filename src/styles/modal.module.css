@@ -69,6 +69,9 @@
     padding: 0px 24px;
     color: #282828;
 }
+.warning__container_text {
+    font-weight: 400 !important;
+}
 .warning__container p{
     margin-bottom: 12px;
 }

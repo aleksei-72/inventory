@@ -37,7 +37,7 @@
     justify-content: flex-end;
 }
 .category {
-    width: 146px;
+    width: 156px;
     min-width: 146px;
 }
 .name {
@@ -48,8 +48,8 @@
 .owner {
     padding: 0 !important;
     padding-left: 10px !important;
-    width: 313px;
-    min-width: 313px;
+    width: 243px;
+    min-width: 243px;
 }
 .location {
     width: 234px;
@@ -115,6 +115,11 @@ textarea {
     outline: #D1D1D1;
     border: 1px solid #D1D1D1 !important;
 }
+.number__field {
+    width: 130px;
+    text-align: right;
+    padding-right: 20px;
+}
 .title__field,
 .location__field,
 .commemt__field {
@@ -126,7 +131,13 @@ textarea {
 .category__field {
     color: #4C6FFF;
 }
-
+.owner_text,
+.location_text {
+    padding-left: 15px;
+}
+.category_text   {
+    padding-left: 12px;
+}
 @keyframes newTableItem {
     0% {
         opacity: 0;

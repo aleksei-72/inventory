@@ -23,17 +23,17 @@
 }
 .category {
     padding: 0px 20px;
-    width: 146px;
+    width: 156px;
 }
 .name {
     width: 263px;
 }
 .owner {
     padding: 0px 27px;
-    width: 313px;
+    width: 243px;
 }
 .location {
-    padding-left: 20px;
+    padding-left: 25px;
     width:234px;
 }
 
@@ -46,6 +46,7 @@
 }
 .price,
 .cost {
+    text-align: right;
     width: 180px;
 }
 

@@ -98,7 +98,7 @@ export const customUsersSelectStyles = {
         width: 165,
         height: 25,
         marginLeft: 10,
-        cursor: "pointer"
+        cursor: "pointer",
 
     })
 }
@@ -188,7 +188,7 @@ export const customCategoriesSelectStyles = {
         color:'#282828',
         position: 'absolute',
         top: 7,
-        right: 20
+        right: 10
     }),
 
     control: (_, { selectProps: { width } }) => ({
@@ -196,7 +196,8 @@ export const customCategoriesSelectStyles = {
         height: 35,
         marginLeft: -10,
         hyphens: 'auto',
-        cursor: "pointer"
+        cursor: "pointer",
+        paddingLeft: 14
 
     }),
 

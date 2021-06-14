@@ -5,7 +5,6 @@ import closeIcon from './../../img/icons/Close.svg';
 
 
 const Modal = (props) => {
-    console.log(props)
     return (
         <div className={ props.active ? `${style.modal} ${style.active}` : `${style.modal}`} onClick = { () => props.setActive(false) }>
             <div className={`${style.modal__content}`} onClick = { e => e.stopPropagation() }>
@@ -14,8 +13,8 @@ const Modal = (props) => {
                     <button className={style.close_btn} onClick={() => props.setActive(false)}><img src={closeIcon} alt="close" /></button> 
                 </div>
                 <div className={`${style.warning__container}`}>
-                    <p>Вы действительно хотите <span>удалить данный элемент?</span></p>
-                    <p>Оменить данное действие будет <span>невозможно</span>.</p>
+                    <p className={`${style.warning__container_text}`}>Вы действительно хотите <span>удалить данный элемент?</span></p>
+                    <p className={`${style.warning__container_text}`}>Оменить данное действие будет <span>невозможно</span>.</p>
                 </div>
                 
                 <div className={`${style.button__container}`}>                    

@@ -91,9 +91,11 @@ const TableItem = (props) => {
             </div> */}
 
             <div className={(props.currentUser.role === "admin" || props.currentUser.role === "user") ? `${style.cell__container}  ${style.number}` : `${style.cell__container}  ${style.number} ${style.cell__container_user}`}>
+
                 <div className={`${style.cell}`}>
 
-                    {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
+                    <textarea
+                        disabled = {(props.currentUser.role === "user" || props.currentUser.role === "admin") ? false : true}
                         onKeyPress={(e) => auto_grow(e.currentTarget)}
                         rows={1}
                         cols={13}
@@ -104,19 +106,19 @@ const TableItem = (props) => {
                             console.log(number)
                         }}
                         defaultValue={props.number}
-                        className={`${style.number__field} ${style.field}`}  placeholder="0"/> : <p>{props.number}</p>}
-                    
+                        className={`${style.number__field} ${style.field}`} placeholder="0" />
+
                 </div>
             </div>
 
 
             <div className={`${style.cell__container} ${style.category}`}>
-                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <CategoriesSelect /> : <p>{props.categoryTitle}</p>}
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <CategoriesSelect /> : <p className={`${style.category_text}`}>{props.categoryTitle}</p>}
                 
             </div>
 
 
-            <div className={`${style.cell__container} ${style.name}`}>
+            {/* <div className={`${style.cell__container} ${style.name}`}>
             {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
                     style = { {height: checkStringLength(props.title, 28), paddingTop: setPadding(props.title)} }
                     
@@ -133,19 +135,39 @@ const TableItem = (props) => {
                     className={`${style.title__field} ${style.field}`}/> : <p>{!props.title ? "Наименование" : props.title}</p>}
                
 
+            </div> */}
+
+            <div className={`${style.cell__container} ${style.name}`}>
+            <textarea
+                    style = { {height: checkStringLength(props.title, 28), paddingTop: setPadding(props.title)} }
+                    disabled = {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? false : true}
+                    cols={26}
+                    onBlur={(e) => props.updateItem(dataItem)}
+                    onChange={(e) => {
+                        e.target.style.height = '32px';
+                        e.target.style.height = e.target.scrollHeight + 'px';
+                        setTitle(e.currentTarget.value)
+                        console.log(e.currentTarget)
+                        console.log(title)
+                    }}
+                    defaultValue={!props.title ? "Наименование" : props.title}
+                    className={`${style.title__field} ${style.field}`}/>
+               
+
             </div>
 
             <div className={`${style.cell__container} ${style.owner}`}>
-                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <OwnersSelect/> : <p>{!props.owner.name ? 'Не указано' : props.owner.name}</p>}
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <OwnersSelect/> : <p className={`${style.owner_text}`}>{!props.owner.name ? 'Не указано' : props.owner.name}</p>}
             </div>
 
             <div className={`${style.cell__container} ${style.location}`}>
-                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <LocationSelect/> : <p>{`${locationVal[0].department.title} (${locationVal[0].number})`}</p>}
+                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <LocationSelect/> : <p className={`${style.location_text}`}>{`${locationVal[0].department.title} (${locationVal[0].number})`}</p>}
             </div>
 
 
             <div className={`${style.cell__container} ${style.amount}`}>
-                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
+                <textarea
+                    disabled = {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? false : true}
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
                     rows={1}
                     cols={5}
@@ -155,13 +177,13 @@ const TableItem = (props) => {
                         console.log(amount)
                     }}
                     defaultValue={!props.count ? '0 шт' : props.count}
-                    className={`${style.amount__field} ${style.field}`} /> : <p>{!props.count ? '0 шт' : props.count}</p>}
-                
+                    className={`${style.amount__field} ${style.field}`} />                
             </div>
 
 
             <div className={`${style.cell__container} ${style.price}`}>
-                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
+                <textarea
+                    disabled = {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? false : true}
                     rows={1}
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
                     onBlur={(e) => {
@@ -186,7 +208,7 @@ const TableItem = (props) => {
                         console.log(price)
                     }}
                     defaultValue={!props.price? 0 : (new Intl.NumberFormat('ru-RU').format(props.price))}
-                    className={`${style.amount__field} ${style.field}`} /> : <p>{!props.price? 0 : props.price}</p>}                
+                    className={`${style.amount__field} ${style.field}`} />              
             </div>
 
 
@@ -213,7 +235,8 @@ const TableItem = (props) => {
 
 
             <div className={`${style.cell__container} ${style.comment}`}>
-                {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? <textarea
+            <textarea
+                disabled = {(props.currentUser.role === "user" || props.currentUser.role === "admin" ) ? false : true}
                 style = { {height: checkStringLength(props.comment, 28), paddingTop: setPadding(props.comment)} }
                     onKeyPress={(e) => auto_grow(e.currentTarget)}
                     cols={25}
@@ -224,7 +247,7 @@ const TableItem = (props) => {
                         console.log(comment)
                     }}
                     defaultValue={!props.comment ? 'Исправно' : props.comment}
-                    className={`${style.commemt__field} ${style.field}`} /> : <p>{!props.comment ? 'Исправно' : props.comment}</p>}
+                    className={`${style.commemt__field} ${style.field}`} />
                
             </div>
 

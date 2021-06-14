@@ -321,8 +321,9 @@ export const updateUserPassword = (user) =>{
                 id: user.id,
                 password:user.password
             })
-            console.log(res)
-            dispatch(updateTableUserItem(user))
+            console.log(res.data)
+            // dispatch(updateTableUserItem(user))
+            dispatch(updateTableUserItem(res.data))
             updateToken(dispatch)
              
         }
