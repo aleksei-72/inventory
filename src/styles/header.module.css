@@ -6,7 +6,7 @@
     width: 100%;
     max-width: 1600px;
     position: fixed;
-    z-index: 99999;
+    z-index: 9999;
     background: #fff;
     top: 0;
 }

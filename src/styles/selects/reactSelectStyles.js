@@ -48,6 +48,7 @@ export const customStyles = {
         height: 35,
         margin: 10,
         marginLeft: -7,
+        cursor: "pointer"
     })
 }
 
@@ -97,6 +98,8 @@ export const customUsersSelectStyles = {
         width: 165,
         height: 25,
         marginLeft: 10,
+        cursor: "pointer"
+
     })
 }
 
@@ -146,6 +149,8 @@ export const customRoomsSelectStyles = {
         width: 175,
         height: 25,
         marginLeft: 10,
+        cursor: "pointer"
+
     }),
 }
 
@@ -190,7 +195,9 @@ export const customCategoriesSelectStyles = {
         width: 145,
         height: 35,
         marginLeft: -10,
-        hyphens: 'auto'
+        hyphens: 'auto',
+        cursor: "pointer"
+
     }),
 
 }
@@ -217,6 +224,8 @@ export const customStatusStyles = {
         height: 35,
         margin: 10,
         marginLeft: -7,
+        cursor: "pointer"
+
         // border: '1px solid #000'
     }),
 }
@@ -267,7 +276,9 @@ export const customUsersReportSelectStyles = {
         height: 35,
         // marginRight: 8,
         border: "1px solid #D1D1D1",
-        borderRadius: "3px"
+        borderRadius: "3px",
+        cursor: "pointer"
+
     })
 }
 
@@ -315,7 +326,9 @@ export const customCategoriesReportSelectStyles = {
         // marginLeft: -10,
         hyphens: 'auto',
         border: "1px solid #D1D1D1",
-        borderRadius: "3px"
+        borderRadius: "3px",
+        cursor: "pointer"
+
         // border: '1px solid #000'
     })
 }
@@ -367,7 +380,9 @@ export const customColumnsReportSelectStyles = {
         margin: "0px auto",
         hyphens: 'auto',
         border: "1px solid #D1D1D1",
-        borderRadius: "3px"
+        borderRadius: "3px",
+        cursor: "pointer"
+
     }),
     indicatorsContainer: () => ({
         position: "absolute",
@@ -424,6 +439,8 @@ export const customRoomsReportSelectStyles = {
         height: 35,
         // marginRight: 8,
         border: "1px solid #D1D1D1",
-        borderRadius: "3px"
+        borderRadius: "3px",
+        cursor: "pointer"
+
     }),
 }

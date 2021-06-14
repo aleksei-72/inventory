@@ -121,6 +121,7 @@ color: #828282;
 
 .name__field {
     padding: 5px !important;
+    cursor: pointer;
 }
 .active_edit {
     background: #FFFFFF;
