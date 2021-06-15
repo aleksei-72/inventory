@@ -9,7 +9,7 @@ const UsersTableHeader = (props) => {
             <div className={`${style.item} ${style.role}`}>Роль</div>
             <div className={`${style.item} ${style.lastVisit}`}>Последний визит</div>
             <div className={`${style.item} ${style.password}`}>Пароль</div>
-            <div className={`${style.item} ${style.status}`}>Стастус пользователя</div>
+            <div className={`${style.item} ${style.status}`}>Статус пользователя</div>
         </header>
 
     )
