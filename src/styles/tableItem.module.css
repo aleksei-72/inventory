@@ -52,7 +52,8 @@
     min-width: 243px;
 }
 .location {
-    width: 234px;
+    width: 344px;
+    max-width: 344px !important;
     min-width: 204px;
 }
 .location_item {

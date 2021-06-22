@@ -66,7 +66,9 @@ export const customUsersSelectStyles = {
         fontFamily: "Inter",
         fontStyle: "normal",
         fontWeight: "normal",
-        lineHeight: "19px"
+        lineHeight: "19px",
+        maxHeight: '350px',
+        overflowY: 'scroll'
     }),
     placeholder: () => ({
         color:'#282828',
@@ -116,7 +118,9 @@ export const customRoomsSelectStyles = {
         fontFamily: "Inter",
         fontStyle: "normal",
         fontWeight: "normal",
-        lineHeight: "19px"
+        lineHeight: "19px",
+        maxHeight: '350px',
+        overflowY: 'scroll'
     }),
     menuList: () => ({
         color:'#282828',
@@ -146,7 +150,7 @@ export const customRoomsSelectStyles = {
     }),
 
     control: (_, { selectProps: { width } }) => ({
-        width: 175,
+        width: 315,
         height: 25,
         marginLeft: 10,
         cursor: "pointer"
@@ -163,7 +167,9 @@ export const customCategoriesSelectStyles = {
         padding: 2,
         position: 'absolute',
         right: 20,
-        top: 35
+        top: 35,
+        maxHeight: '350px',
+        overflowY: 'scroll'
     }),
     placeholder: () => ({
         color:'#282828',
