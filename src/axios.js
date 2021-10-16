@@ -3,7 +3,7 @@ import * as errorList from "./errorList";
 // import store from './store';
 
 
-axios.defaults.baseURL = 'https://api.staging.inventory-platform.gq';
+axios.defaults.baseURL = '/api';
 axios.interceptors.response.use(response => response, error => {
   if (error.response) {
 
